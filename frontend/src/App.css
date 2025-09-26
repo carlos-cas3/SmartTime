@@ -1,0 +1,39 @@
+
+
+.dashboard {
+  display: grid;
+  grid-template-columns: minmax(150px, 250px) 1fr; /* Sidebar revisar responsive*/ 
+  grid-template-rows: 60px 1fr;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  transition: grid-template-columns 0.3s; /* animación suave */
+}
+
+.dashboard.collapsed{
+  grid-template-columns: 0px 1fr; /* ahora el contenido ocupa más */
+}
+
+
+.sidebar {
+  grid-row: 1 / 3;
+  transition: width 0.3s;
+}
+
+.sidebar.collapsed {
+  overflow: hidden;
+}
+
+.topbar {
+  grid-column: 2 / 3;
+  background-color: #34495e;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+} 
+
+.content {
+  grid-column: 2 / 3;
+  padding: 20px;
+  background-color: #ecf0f1;
+}
