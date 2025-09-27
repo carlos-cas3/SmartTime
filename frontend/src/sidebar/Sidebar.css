@@ -30,19 +30,19 @@
 }
 
 .toggle-button {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 0.5rem;
-    background-color: #e5f4fe;
+    background-color: #0093f4;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
+    cursor: pointer;
+    
 }
 
 .toggle-button:hover {
     transform: scale(1.2);
 }
+
 
 
 .sidebar-menu {

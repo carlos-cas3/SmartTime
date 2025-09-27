@@ -1,4 +1,5 @@
 import splitOutHorizontal from "../assets/split-out-horizontal.svg";
+import toggleRight from "../assets/toggleRight-Sidebar-icon.svg"
 
 function SidebarHeader({ collapsed, setCollapsed }) {
     return (
@@ -15,9 +16,9 @@ function SidebarHeader({ collapsed, setCollapsed }) {
                     aria-label="Toggle Sidebar"
                 >
                     <img
-                        src={splitOutHorizontal}
+                        src={toggleRight}
                         alt="Expand"
-                        className="icon"
+                        className="toggle-icon"
                     />
                 </button>
             )}

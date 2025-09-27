@@ -1,4 +1,4 @@
-import splitInHorizontal from "../assets/split-in-horizontal.svg";
+import toggleLeft from "../assets/toggleLeft-Sidebar-icon.svg"
 
 function Topbar({ collapsed, setCollapsed }) {
     return (
@@ -12,9 +12,9 @@ function Topbar({ collapsed, setCollapsed }) {
                 aria-label="Toggle Sidebar"
             >
                 <img
-                    src={splitInHorizontal}
+                    src={toggleLeft}
                     alt="Toggle"
-                    className={`icon ${collapsed ? "rotated" : ""}`}
+                    className={`toggle-icon ${collapsed ? "rotated" : ""}`}
                 />
             </button>
             )}
