@@ -1,21 +1,9 @@
-import './App.css'
-
-import Sidebar from './sidebar/Sidebar';
-import Topbar from './topbar/Topbar';
-import Content from './content/Content';
-import { useState } from 'react';
+import { useRoutes } from "react-router-dom";
+import routes from "./routes/routes";
 
 function App() {
-  
-  const [collapsed, setCollapsed] = useState(false);
-
-  return (
-    <div className={`dashboard ${collapsed ? 'collapsed' : ''}`}>
-      <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
-      <Topbar collapsed={collapsed} setCollapsed={setCollapsed} />
-      <Content />
-    </div>
-  );
+    const routing = useRoutes(routes);
+    return routing;
 }
 
 export default App;

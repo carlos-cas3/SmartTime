@@ -3,17 +3,35 @@
     flex-direction: column;
     height: 100vh;           /* ocupa toda la pantalla */
     background-color: white; /* tu color de fondo */
+    color: black;
+    margin:0;
+    padding: 0;
 }
 
 .sidebar-header {
     height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: #0093f4;
-    padding: 0 1rem 0 0;
     border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     
+}
+
+.sidebar-header .toggle-button {
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar.collapsed {
+    display: flex;
+    flex-direction: column;
 }
 
 .logo-section {
@@ -21,6 +39,9 @@
     display: flex; 
     align-items: center;
 }
+
+
+
 
 .app-name {
     font-weight: bold;
@@ -30,7 +51,7 @@
 }
 
 .toggle-button {
-    background-color: #0093f4;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,6 +83,8 @@
     border-radius: 1rem;
     padding: 0.5rem;
     background-color: white;
+    text-decoration: none; /* quitar subrayado de los links */
+    color: inherit;
 }
 
 .sidebar-item:hover {

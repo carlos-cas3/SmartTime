@@ -1,5 +1,5 @@
-import splitOutHorizontal from "../assets/split-out-horizontal.svg";
-import toggleRight from "../assets/toggleRight-Sidebar-icon.svg"
+import toggleRight from "../assets/toggleRight-Sidebar-icon.svg";
+import toggleLeft from "../assets/toggleLeft-Sidebar-icon.svg";
 
 function SidebarHeader({ collapsed, setCollapsed }) {
     return (
@@ -9,19 +9,36 @@ function SidebarHeader({ collapsed, setCollapsed }) {
                 {!collapsed && <span className="app-name">SmartTime</span>}
             </div>
 
-            {!collapsed && (
-                <button
-                    onClick={() => setCollapsed(true)}
-                    className="toggle-button"
-                    aria-label="Toggle Sidebar"
-                >
-                    <img
-                        src={toggleRight}
-                        alt="Expand"
-                        className="toggle-icon"
-                    />
-                </button>
-            )}
+            <div className="button-content">
+                {!collapsed && (
+                    <button
+                        onClick={() => setCollapsed(true)}
+                        className="toggle-button"
+                        aria-label="Colapsar Sidebar"
+                    >
+                        <img
+                            src={toggleRight}
+                            alt="Colapsar"
+                            className="toggle-icon"
+                        />
+                    </button>
+                )}
+
+                {/* Botón cuando está colapsado */}
+                {collapsed && (
+                    <button
+                        onClick={() => setCollapsed(false)}
+                        className="toggle-button"
+                        aria-label="Expandir Sidebar"
+                    >
+                        <img
+                            src={toggleLeft}
+                            alt="Expandir"
+                            className="toggle-icon"
+                        />
+                    </button>
+                )}
+            </div>
         </div>
     );
 }
