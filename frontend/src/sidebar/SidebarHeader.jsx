@@ -1,5 +1,5 @@
-import toggleRight from "../assets/toggleRight-Sidebar-icon.svg";
-import toggleLeft from "../assets/toggleLeft-Sidebar-icon.svg";
+import ToggleRightIcon from "../assets/toggleRight-Sidebar-icon.svg?react";
+import ToggleLeftIcon from "../assets/toggleLeft-Sidebar-icon.svg?react";
 
 function SidebarHeader({ collapsed, setCollapsed }) {
     return (
@@ -16,26 +16,17 @@ function SidebarHeader({ collapsed, setCollapsed }) {
                         className="toggle-button"
                         aria-label="Colapsar Sidebar"
                     >
-                        <img
-                            src={toggleRight}
-                            alt="Colapsar"
-                            className="toggle-icon"
-                        />
+                        <ToggleRightIcon className="toggle-icon" />
                     </button>
                 )}
 
-                {/* Botón cuando está colapsado */}
                 {collapsed && (
                     <button
                         onClick={() => setCollapsed(false)}
                         className="toggle-button"
                         aria-label="Expandir Sidebar"
                     >
-                        <img
-                            src={toggleLeft}
-                            alt="Expandir"
-                            className="toggle-icon"
-                        />
+                        <ToggleLeftIcon className="toggle-icon" />
                     </button>
                 )}
             </div>
