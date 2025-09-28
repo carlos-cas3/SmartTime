@@ -1,4 +1,5 @@
-import splitOutHorizontal from "../assets/split-out-horizontal.svg";
+import ToggleRightIcon from "../assets/toggleRight-Sidebar-icon.svg?react";
+import ToggleLeftIcon from "../assets/toggleLeft-Sidebar-icon.svg?react";
 
 function SidebarHeader({ collapsed, setCollapsed }) {
     return (
@@ -8,19 +9,27 @@ function SidebarHeader({ collapsed, setCollapsed }) {
                 {!collapsed && <span className="app-name">SmartTime</span>}
             </div>
 
-            {!collapsed && (
-                <button
-                    onClick={() => setCollapsed(true)}
-                    className="toggle-button"
-                    aria-label="Toggle Sidebar"
-                >
-                    <img
-                        src={splitOutHorizontal}
-                        alt="Expand"
-                        className="icon"
-                    />
-                </button>
-            )}
+            <div className="button-content">
+                {!collapsed && (
+                    <button
+                        onClick={() => setCollapsed(true)}
+                        className="toggle-button"
+                        aria-label="Colapsar Sidebar"
+                    >
+                        <ToggleRightIcon className="toggle-icon" />
+                    </button>
+                )}
+
+                {collapsed && (
+                    <button
+                        onClick={() => setCollapsed(false)}
+                        className="toggle-button"
+                        aria-label="Expandir Sidebar"
+                    >
+                        <ToggleLeftIcon className="toggle-icon" />
+                    </button>
+                )}
+            </div>
         </div>
     );
 }

@@ -1,5 +1,4 @@
 import SidebarItem from "./SidebarItem";
-
 import SingOutSidebarIcon from "../assets/signOut-Sidebar-icon.svg?react";
 
 function SidebarFooter({ collapsed }) {
@@ -21,11 +20,11 @@ function SidebarFooter({ collapsed }) {
                     icon={icon}
                     label={label}
                     collapsed={collapsed}
-                    active={false}
-                    onClick={action}
+                    onClick={action} // no lleva path, así entra en modo botón
                 />
             ))}
         </div>
     );
 }
+
 export default SidebarFooter;

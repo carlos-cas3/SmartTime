@@ -1,23 +1,15 @@
-import splitInHorizontal from "../assets/split-in-horizontal.svg";
+import "./Topbar.css";
+import TopbarMenu from "./TopbarMenu";
+import Clock from "./Clock";
 
-function Topbar({ collapsed, setCollapsed }) {
+function Topbar() {
     return (
         <div className="topbar">
+            {/* Reloj a la izquierda */}
+            <Clock />
 
-            {collapsed && (
-
-            <button
-                onClick={() => setCollapsed(false)}
-                className="toggle-button"
-                aria-label="Toggle Sidebar"
-            >
-                <img
-                    src={splitInHorizontal}
-                    alt="Toggle"
-                    className={`icon ${collapsed ? "rotated" : ""}`}
-                />
-            </button>
-            )}
+            {/* Menú a la derecha */}
+            <TopbarMenu />
         </div>
     );
 }

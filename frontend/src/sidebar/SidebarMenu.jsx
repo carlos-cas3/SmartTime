@@ -1,32 +1,32 @@
-import { useState } from "react";
-import SidebarItem from "./SidebarItem";
-
 import HomeSidebarIcon from "../assets/home-Sidebar-icon.svg?react";
 import CalendarSidebarIcon from "../assets/calendar-Sidebar-icon.svg?react";
 import AssignmentsSidebarIcon from "../assets/assignments-Sidebar-icon.svg?react";
+import SidebarItem from "./SidebarItem";
 
 function SidebarMenu({ collapsed }) {
-    const [activeIndex, setActiveIndex] = useState(0);
-
     const menuItems = [
-        { icon: HomeSidebarIcon, label: "Home" },
-        { icon: CalendarSidebarIcon, label: "Calendar" },
-        { icon: AssignmentsSidebarIcon, label: "Assignments" },
+        { icon: HomeSidebarIcon, label: "Home", path: "/home" },
+        { icon: CalendarSidebarIcon, label: "Calendar", path: "/calendar" },
+        {
+            icon: AssignmentsSidebarIcon,
+            label: "Assignments",
+            path: "/assignments",
+        },
     ];
 
     return (
         <div className="sidebar-menu">
-            {menuItems.map(({ icon, label }, index) => (
+            {menuItems.map(({ icon, label, path }, index) => (
                 <SidebarItem
                     key={index}
                     icon={icon}
                     label={label}
+                    path={path}
                     collapsed={collapsed}
-                    active={index == activeIndex}
-                    onClick={() => setActiveIndex(index)}
                 />
             ))}
         </div>
     );
 }
+
 export default SidebarMenu;

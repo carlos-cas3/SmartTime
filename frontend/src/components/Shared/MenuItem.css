@@ -1,0 +1,57 @@
+/* === ITEM BASE === */
+.menu-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 2.5rem;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    background-color: white;
+    text-decoration: none; /* quitar subrayado de los links */
+    color: inherit;
+    transition: background 0.2s ease;
+}
+
+.menu-item:hover {
+    background: #e5f4fe;
+}
+
+.menu-item.active {
+    background-color: #0093f4;
+}
+
+/* === ICONO === */
+.icon-container {
+    width: 3rem;
+    height: 3rem;
+    background-color: #e5f4fe;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-item:hover .icon-container {
+    background-color: #ceeafd;
+}
+
+
+/* === ICONO SVG === */
+.menu-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* === LABEL === */
+.menu-label {
+    margin-left: 0.5rem;
+    font-size: 18px;
+}
+
+.menu-item.active .menu-label {
+    color: white;
+}
+
+.menu-item.active .menu-icon {
+    fill: #0093f4;
+}
