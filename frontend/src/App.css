@@ -4,6 +4,8 @@
   grid-template-rows: 60px 1fr;     /* Topbar + content */
   height: 100vh;
   transition: grid-template-columns 0.2s ease;
+  column-gap: 1rem;
+  row-gap: 1rem;
 }
 
 .dashboard.collapsed {
@@ -28,11 +30,8 @@
 .topbar {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
-  background: #2196f3;
-  color: white;
   display: flex;
   align-items: center;
-  padding: 0 1rem;
 }
 
 /* Contenido abajo a la derecha */

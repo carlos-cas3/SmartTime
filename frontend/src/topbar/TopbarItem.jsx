@@ -1,15 +1,16 @@
 import MenuItem from "../components/Shared/MenuItem";
 
-function SidebarItem({ icon, label, path, onClick, collapsed }) {
+function TopbarItem({ icon, label, path, onClick, collapsed, extraContent }) {
     return (
         <MenuItem
             icon={icon}
             label={label}
             path={path}
             onClick={onClick}
-            showLabel={!collapsed} 
+            showLabel={!collapsed}
+            extraContent={extraContent}
         />
     );
 }
 
-export default SidebarItem;
+export default TopbarItem;

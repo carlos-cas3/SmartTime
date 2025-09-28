@@ -4,8 +4,6 @@
     height: 100vh;           /* ocupa toda la pantalla */
     background-color: white; /* tu color de fondo */
     color: black;
-    margin:0;
-    padding: 0;
 }
 
 .sidebar-header {
@@ -16,6 +14,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    flex-shrink: 0;
     
 }
 
@@ -25,8 +24,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
 }
 
 .sidebar.collapsed {
@@ -40,9 +37,6 @@
     align-items: center;
 }
 
-
-
-
 .app-name {
     font-weight: bold;
     font-size: 24px;
@@ -51,7 +45,6 @@
 }
 
 .toggle-button {
-    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
