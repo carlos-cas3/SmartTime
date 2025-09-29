@@ -13,6 +13,7 @@ import { useEvents } from "./hooks/useEvents"; // hook para manejar eventos (CRU
 import EventForm from "./EventForm"; // formulario de creación/edición de eventos
 import EventItem from "./EventItem"; // render personalizado de eventos
 import Modal from "../UI/Modal"; // modal genérico reutilizable
+import CustomMonth from "./custom/headers/CustomMonth";
 
 // Configuración de localización (idioma español con date-fns)
 const locales = {
@@ -61,7 +62,7 @@ export default function CalendarPage() {
                 events={events}
                 startAccessor="start"
                 endAccessor="end"
-                style={{ height: 600 }}
+                style={{ height: "90vh"}}
                 selectable
                 views={["month", "week", "day", "agenda"]}
                 view={view}
@@ -73,18 +74,10 @@ export default function CalendarPage() {
                 timeslots={2} // número de divisiones por hora (ej: 30 min = 2 slots)
                 min={new Date(1970, 1, 1, 0, 0)} // empieza a las 00:00
                 max={new Date(1970, 1, 1, 23, 59)} // termina a las 23:59
-                messages={{
-                    next: "Siguiente",
-                    previous: "Anterior",
-                    today: "Hoy",
-                    month: "Mes",
-                    week: "Semana",
-                    day: "Día",
-                    agenda: "Agenda",
-                }}
                 components={{
                     event: EventItem,
                     toolbar: CustomToolbar,
+                    month: {header: CustomMonth},
                 }}
                 onSelectSlot={handleSelectSlot} // 👈 usamos single click aquí
                 onDoubleClickEvent={(event) => alert(`Evento: ${event.title}`)}
