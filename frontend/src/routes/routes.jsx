@@ -1,6 +1,6 @@
 import Layout from "../layout/Layout";
 import Home from "../components/Home/Home";
-import Calendar from "../components/calendar/Calendar";
+import Calendar from "../pages/Calendar";
 import Assignments from "../components/assignments/Assignments";
 
 import Profile from "../components/profile/Profile";

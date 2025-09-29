@@ -1,0 +1,26 @@
+.calendar-container {
+    padding: 1rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* asegurar que la toolbar reciba clicks y se vea bien */
+.rbc-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.rbc-toolbar button {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* evento visual */
+.rbc-event {
+    border-radius: 6px;
+    font-size: 0.85rem;
+    padding: 2px 4px;
+}
