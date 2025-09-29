@@ -1,0 +1,57 @@
+.calendar-container {
+    padding: 1rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* asegurar que la toolbar reciba clicks y se vea bien */
+.rbc-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.rbc-toolbar button {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* evento visual */
+.rbc-event {
+    border-radius: 6px;
+    font-size: 0.85rem;
+    padding: 2px 4px;
+}
+
+/* Cuando paso el cursor sobre un día en la vista mes */
+/* Vista de mes */
+.rbc-day-bg:hover {
+    background-color: #c42c2c !important;
+    cursor: pointer;
+}
+
+/* Vista de semana o día (celdas horarias) */
+.rbc-time-slot:hover {
+    background-color: #d34444 !important;
+    cursor: pointer;
+}
+
+/* Vista de agenda (filas con fechas) */
+.rbc-agenda-table tbody>tr:hover {
+    background-color: #e21a1a !important;
+    cursor: pointer;
+}
+
+/* Hover en columna de la semana o día */
+.rbc-day-slot:hover {
+    background-color: #f0f0f0 !important;
+    cursor: pointer;
+}
+
+/* Para que no bloquee los eventos ya creados */
+.rbc-day-slot .rbc-event {
+    z-index: 2;
+    position: relative;
+}
