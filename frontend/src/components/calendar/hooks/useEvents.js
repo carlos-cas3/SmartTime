@@ -1,3 +1,4 @@
+// src/components/calendar/hooks/useEvents.js
 import { useState } from "react";
 
 export function useEvents() {
@@ -5,37 +6,19 @@ export function useEvents() {
         {
             id: 1,
             title: "Clase de Matemáticas",
-            start: new Date(2025, 8, 28, 10, 0), // (Año, MesIndexado0, Día, Hora, Minuto)
-            end: new Date(2025, 8, 28, 12, 0),
             type: "clase",
-        },
-        {
-            id: 2,
-            title: "Examen de Historia",
-            start: new Date(2025, 8, 29, 9, 0),
-            end: new Date(2025, 8, 29, 11, 0),
-            type: "examen",
+            start: new Date(),
+            end: new Date(new Date().getTime() + 60 * 60 * 1000),
         },
     ]);
 
-    // Crear evento
-    const addEvent = (event) => {
-        setEvents((prev) => [...prev, { id: Date.now(), ...event }]);
-    };
+    const addEvent = (event) =>
+        setEvents([...events, { ...event, id: Date.now() }]);
 
-    // Editar evento
-    const updateEvent = (id, updatedEvent) => {
-        setEvents((prev) =>
-            prev.map((event) =>
-                event.id === id ? { ...event, ...updatedEvent } : event
-            )
-        );
-    };
+    const removeEvent = (id) => setEvents(events.filter((e) => e.id !== id));
 
-    // Eliminar evento
-    const deleteEvent = (id) => {
-        setEvents((prev) => prev.filter((event) => event.id !== id));
-    };
+    const updateEvent = (id, newData) =>
+        setEvents(events.map((e) => (e.id === id ? { ...e, ...newData } : e)));
 
-    return { events, addEvent, updateEvent, deleteEvent };
+    return { events, addEvent, removeEvent, updateEvent };
 }
