@@ -10,9 +10,6 @@
     border-bottom: none;
 }
 
-.rbc-header:hover {
-    background-color: gray;
-}
 
 .rbc-date-cell {
     display: flex;
@@ -24,6 +21,8 @@
 .rbc-button-link {
     font-size: 20px;
 }
+
+
 
 /* === Día actual resaltado === */
 .rbc-date-cell.rbc-now .rbc-button-link {
@@ -41,5 +40,8 @@
 }
 
 .rbc-month-view .rbc-day-bg {
+    cursor: pointer;
     
 }
+
+
