@@ -11,6 +11,8 @@
     height: 5rem;
     /* un poco más alto para que se note el espacio */
     box-sizing: border-box;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
 }
 
 .toolbar-right {

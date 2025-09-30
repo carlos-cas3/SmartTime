@@ -1,0 +1,53 @@
+/* Estilos para el header del mes */
+.rbc-custom-month-header {
+    text-align: center;
+    color: #1e3a8a;
+    font-size: 14px;
+}
+
+.rbc-header {
+    padding-top: 1rem;
+    border-bottom: none;
+}
+
+
+.rbc-date-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.rbc-button-link {
+    font-size: 20px;
+}
+
+
+
+/* === Día actual resaltado === */
+.rbc-date-cell.rbc-now .rbc-button-link {
+    background-color: #0093f4;
+    /* azul fuerte */
+    color: #fff;
+    /* texto blanco */
+    border-radius: 50%;
+    /* círculo */
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rbc-month-view .rbc-day-bg {
+    cursor: pointer;
+    
+}
+
+.rbc-today,
+.rbc-day-bg.rbc-today,
+.rbc-date-cell.rbc-today,
+.rbc-day-bg.rbc-off-range-bg.rbc-today,
+.rbc-date-cell.rbc-off-range.rbc-today {
+  background-color: rgba(152, 226, 255, 0.35) !important; /* fondo suave */
+}

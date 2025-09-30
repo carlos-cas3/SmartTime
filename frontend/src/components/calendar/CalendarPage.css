@@ -5,18 +5,6 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-/* asegurar que la toolbar reciba clicks y se vea bien */
-.rbc-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.75rem;
-}
-
-.rbc-toolbar button {
-    cursor: pointer;
-    user-select: none;
-}
 
 /* evento visual */
 .rbc-event {
@@ -25,12 +13,6 @@
     padding: 2px 4px;
 }
 
-/* Cuando paso el cursor sobre un día en la vista mes */
-/* Vista de mes */
-.rbc-day-bg:hover {
-    background-color: #c42c2c !important;
-    cursor: pointer;
-}
 
 /* Vista de semana o día (celdas horarias) */
 .rbc-time-slot:hover {
@@ -44,14 +26,36 @@
     cursor: pointer;
 }
 
-/* Hover en columna de la semana o día */
-.rbc-day-slot:hover {
-    background-color: #f0f0f0 !important;
+
+.rbc-date-cell {
     cursor: pointer;
 }
 
-/* Para que no bloquee los eventos ya creados */
-.rbc-day-slot .rbc-event {
-    z-index: 2;
-    position: relative;
+
+
+/* Quitar gris y habilitar clic */
+.rbc-off-range-bg {
+    background-color: white !important;
+    cursor: pointer !important;
+}
+
+
+.rbc-date-cell.rbc-off-range {
+    color: black !important;
+    opacity: 1 !important;
+}
+
+.rbc-day-bg:hover,
+.rbc-off-range-bg:hover {
+    background-color: #ffeeee !important;
+    cursor: pointer;
+}
+
+
+.context-menu {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 8px;
+    z-index: 9999;
 }

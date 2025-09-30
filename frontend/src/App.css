@@ -6,6 +6,7 @@
   transition: grid-template-columns 0.2s ease;
   column-gap: 1rem;
   row-gap: 1rem;
+  overflow: hidden;
 }
 
 .dashboard.collapsed {
@@ -18,6 +19,7 @@
 
 .dashboard.no-topbar {
   grid-template-rows: 1fr;
+  overflow: hidden;
 }
 
 .dashboard.no-topbar .content{
@@ -40,6 +42,7 @@
   grid-row: 1 / 2;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
 
 /* Contenido abajo a la derecha */
@@ -50,4 +53,5 @@
   background: #f5f5f5;
   overflow-y: auto;
   border-radius: 2rem;
+  overflow: hidden;
 }
