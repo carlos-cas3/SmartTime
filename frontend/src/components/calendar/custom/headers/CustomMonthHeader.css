@@ -44,4 +44,10 @@
     
 }
 
-
+.rbc-today,
+.rbc-day-bg.rbc-today,
+.rbc-date-cell.rbc-today,
+.rbc-day-bg.rbc-off-range-bg.rbc-today,
+.rbc-date-cell.rbc-off-range.rbc-today {
+  background-color: rgba(152, 226, 255, 0.35) !important; /* fondo suave */
+}

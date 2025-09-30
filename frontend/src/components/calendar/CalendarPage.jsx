@@ -9,6 +9,10 @@ import "./CalendarPage.css";
 import CustomToolbar from "./custom/CustomToolbar";
 import CustomMonthHeader from "./custom/headers/CustomMonthHeader";
 import useHighlightMonthCell from "./custom/headers/hooks/useHighlightMonthCell";
+import CustomDateCell from "./custom/headers/CustomDateCell";
+import { useEffect } from "react";
+import ContextMenu from "./menu/ContextMenu";
+import CustomDateCellWrapper from "./menu/CustomDateCellWrapper";
 
 const locales = { es };
 
@@ -23,16 +27,31 @@ const localizer = dateFnsLocalizer({
 export default function CalendarPage() {
     const [view, setView] = useState("month");
     const [date, setDate] = useState(new Date());
+    const [menu, setMenu] = useState(null);
+    const [events, setEvents] = useState([]);
 
     const { dayPropGetter, handleSelectSlot } = useHighlightMonthCell();
 
-    
+    useEffect(() => {
+        const handler = (e) => {
+            const { date, x, y } = e.detail;
+            setMenu({ date, position: { x, y } });
+        };
+        window.addEventListener("openContextMenu", handler);
+        return () => window.removeEventListener("openContextMenu", handler);
+    }, []);
+
+    const closeMenu = () => setMenu(null);
 
     return (
         <div className="calendar-container">
             <Calendar
                 localizer={localizer}
                 style={{ height: "90vh" }}
+                events={events}
+                startAccessor="start"
+                endAccessor="end"
+                titleAccessor="title"
                 selectable
                 views={["month", "week", "day", "agenda"]}
                 view={view}
@@ -46,11 +65,23 @@ export default function CalendarPage() {
                 max={new Date(1970, 1, 1, 23, 59)}
                 components={{
                     toolbar: CustomToolbar,
-                    month: { header: CustomMonthHeader},
+                    month: {
+                        header: CustomMonthHeader,
+                        dateHeader: CustomDateCell,
+                    },
+                    dateCellWrapper: CustomDateCellWrapper,
                 }}
                 dayPropGetter={dayPropGetter}
-                onSelectSlot={handleSelectSlot} 
             />
+
+            {menu && (
+                <ContextMenu
+                    position={menu.position}
+                    date={menu.date}
+                    onClose={closeMenu}
+                    onCreate={(newEvent) => setEvents([...events, newEvent])}
+                />
+            )}
         </div>
     );
 }

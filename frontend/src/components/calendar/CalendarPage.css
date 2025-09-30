@@ -27,7 +27,35 @@
 }
 
 
+.rbc-date-cell {
+    cursor: pointer;
+}
 
-.rbc-day-bg:hover {
-    background-color: #e21a1a;
+
+
+/* Quitar gris y habilitar clic */
+.rbc-off-range-bg {
+    background-color: white !important;
+    cursor: pointer !important;
+}
+
+
+.rbc-date-cell.rbc-off-range {
+    color: black !important;
+    opacity: 1 !important;
+}
+
+.rbc-day-bg:hover,
+.rbc-off-range-bg:hover {
+    background-color: #ffeeee !important;
+    cursor: pointer;
+}
+
+
+.context-menu {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 8px;
+    z-index: 9999;
 }
