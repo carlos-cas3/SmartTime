@@ -1,16 +1,25 @@
 import React from "react";
 
-export default function CustomDateCellWrapper({ value, children, onClick }) {
+function getRowCol(date) {
+    const startOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+    const startDay = startOfMonth.getDay() === 0 ? 7 : startOfMonth.getDay();
+    const diff = Math.floor((date - startOfMonth) / (1000 * 60 * 60 * 24));
+    const row = Math.floor((diff + startDay - 1) / 7);
+    const col = (startDay - 1 + diff) % 7;
+    return { row, col };
+}
+
+export default function CustomDateCellWrapper({ value, children }) {
     const handleClick = (e) => {
-        // Detener propagación para que react-big-calendar no procese doble
         e.stopPropagation();
+        e.preventDefault();
 
-        if (onClick) onClick(e);
+        const rect = e.currentTarget.getBoundingClientRect();
+        const { row, col } = getRowCol(value);
 
-        // Abrir el menú contextual
         window.dispatchEvent(
             new CustomEvent("openContextMenu", {
-                detail: { date: value, x: e.clientX, y: e.clientY },
+                detail: { date: value, rect, row, col },
             })
         );
     };

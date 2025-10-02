@@ -1,94 +1,68 @@
-import React, { useState } from "react";
+// src/menu/ContextMenu.jsx
+import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import "./ContextMenu.css";
+import { calculatePositionFromRect } from "../../../utils/positionHelpers";
 
-export default function ContextMenu({ position, date, onClose, onCreate }) {
-    const [title, setTitle] = useState("");
-    const [desc, setDesc] = useState("");
-    const [start, setStart] = useState(
-        new Date(date).toISOString().slice(0, 16) // formato "YYYY-MM-DDTHH:mm"
-    );
-    const [end, setEnd] = useState(
-        new Date(date.getTime() + 60 * 60 * 1000).toISOString().slice(0, 16) // +1h
-    );
+export default function ContextMenu({
+    rect,
+    date,
+    row,
+    col,
+    onClose,
+    onCreate,
+}) {
+    const [style, setStyle] = useState({});
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!title.trim()) return;
+    function getPlacementFromRowCol(row, col) {
+        if (row <= 1) {
+            // primeras filas → top
+            if (col <= 4) return { side: "right", vertical: "top" };
+            return { side: "left", vertical: "top" };
+        } else if (row === 2) {
+            if (col <= 4) return { side: "right", vertical: "middle" };
+            return { side: "left", vertical: "middle" };
+        } else {
+            if (col <= 4) return { side: "right", vertical: "bottom" };
+            return { side: "left", vertical: "bottom" };
+        }
+    }
 
-        onCreate({
-            title,
-            desc,
-            start: new Date(start),
-            end: new Date(end),
+    useEffect(() => {
+        const cellWidth = rect.width;
+        const cellHeight = rect.height;
+        const menuWidth = cellWidth * 2; // ocupa 2 columnas
+        const menuHeight = cellHeight * 3; // ocupa 3 filas
+
+        const { side, vertical } = getPlacementFromRowCol(row, col);
+
+        // calcular posición usando el helper
+        const { x, y } = calculatePositionFromRect(
+            rect,
+            menuWidth,
+            menuHeight,
+            4,
+            side
+        );
+
+        setStyle({
+            position: "absolute",
+            top: `${y}px`,
+            left: `${x}px`,
+            width: `${menuWidth}px`,
+            height: `${menuHeight}px`,
+            zIndex: 9999, // asegura que quede encima del calendario
         });
+    }, [rect, row, col]);
 
-        onClose();
-    };
-
-    return (
-        <div
-            className="context-menu"
-            style={{
-                top: position.y,
-                left: position.x,
-                position: "absolute",
-                background: "white",
-                border: "1px solid #ccc",
-                padding: "12px",
-                borderRadius: "8px",
-                zIndex: 10000,
-                width: "220px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-            }}
-        >
-            <form onSubmit={handleSubmit}>
-                <h4 style={{ margin: "0 0 8px 0" }}>Nuevo evento</h4>
-
-                <input
-                    type="text"
-                    placeholder="Título"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    style={{ width: "100%", marginBottom: "6px" }}
-                    autoFocus
-                />
-
-                <textarea
-                    placeholder="Descripción"
-                    value={desc}
-                    onChange={(e) => setDesc(e.target.value)}
-                    style={{
-                        width: "100%",
-                        marginBottom: "6px",
-                        resize: "none",
-                    }}
-                    rows={2}
-                />
-
-                <label style={{ fontSize: "12px" }}>Inicio</label>
-                <input
-                    type="datetime-local"
-                    value={start}
-                    onChange={(e) => setStart(e.target.value)}
-                    style={{ width: "100%", marginBottom: "6px" }}
-                />
-
-                <label style={{ fontSize: "12px" }}>Fin</label>
-                <input
-                    type="datetime-local"
-                    value={end}
-                    onChange={(e) => setEnd(e.target.value)}
-                    style={{ width: "100%", marginBottom: "10px" }}
-                />
-
-                <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                    <button type="button" onClick={onClose}>
-                        Cancelar
-                    </button>
-                    <button type="submit">Guardar</button>
-                </div>
-            </form>
-        </div>
+    return createPortal(
+        <div className="context-menu" style={style}>
+            <h4>Acciones para {date.toLocaleDateString()}</h4>
+            <div className="actions">
+                <button onClick={onClose}>Cancelar</button>
+                <button onClick={() => onCreate({ date })}>Crear evento</button>
+            </div>
+        </div>,
+        document.body
     );
 }
