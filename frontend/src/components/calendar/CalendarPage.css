@@ -51,21 +51,6 @@
     cursor: pointer;
 }
 
-.rbc-month-view .rbc-day-bg {}
-
-
-.context-menu {
-    position: absolute;
-    min-width: 180px;
-    /* tamaño fijo */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    z-index: 2000;
-    /* sobre el calendario */
-}
 
 .rbc-month-view {
     border: 1px solid #ddd;

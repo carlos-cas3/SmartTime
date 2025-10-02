@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import "./ContextMenu.css";
 import { calculatePositionFromRect } from "../../../utils/positionHelpers";
 
+// Para hacer esto necsito : helpers: gridHelpters y positionHelpers | CustomDateCellWrapper.jsx | ContextMenu.jsx | CalendarPage.jsx
 export default function ContextMenu({
     rect,
     date,
@@ -17,14 +18,14 @@ export default function ContextMenu({
     function getPlacementFromRowCol(row, col) {
         if (row <= 1) {
             // primeras filas → top
-            if (col <= 4) return { side: "right", vertical: "top" };
-            return { side: "left", vertical: "top" };
+            if (col <= 4) return { side: "left", vertical: "top" };
+            return { side: "right", vertical: "top" };
         } else if (row === 2) {
-            if (col <= 4) return { side: "right", vertical: "middle" };
-            return { side: "left", vertical: "middle" };
+            if (col <= 4) return { side: "left", vertical: "middle" };
+            return { side: "right", vertical: "middle" };
         } else {
-            if (col <= 4) return { side: "right", vertical: "bottom" };
-            return { side: "left", vertical: "bottom" };
+            if (col <= 4) return { side: "left", vertical: "bottom" };
+            return { side: "right", vertical: "bottom" };
         }
     }
 
