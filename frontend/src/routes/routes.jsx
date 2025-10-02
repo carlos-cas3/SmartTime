@@ -9,22 +9,52 @@ import Notifications from "../components/notifications/Notifications"
 
 import Login from "../components/login/Login";
 
+
+import Exams from "../components/assignments/exams/Exams";
+import Extras from "../components/assignments/extras/Extras";
+import Projects from "../components/assignments/projects/Projects";
+import Tasks from "../components/assignments/tasks/Tasks";
+
+
+import WeeklyLoad from "../components/weeklyLoad/WeeklyLoad";
+import Reports from "../components/reports/Reports";
+
+
+
 const routes = [
     {
         path: "/",
         element: <Layout />,
         children: [
             {
-                path: "home",
+                path: "dashboard",
                 element: <Home />,
             },
             {
-                path: "calendar",
+                path: "calendario",
                 element: <Calendar />,
             },
             {
-                path: "assignments",
-                element: <Assignments/>
+                path: "actividades",
+                element: <Assignments/>,
+                children: [
+                    {
+                        path: "examenes",
+                        element: <Exams/>
+                    },
+                    {
+                        path: "extras",
+                        element: <Extras/>
+                    },
+                    {
+                        path: "proyectos",
+                        element: <Projects/>
+                    },
+                    {
+                        path: "tareas",
+                        element: <Tasks/>
+                    }
+                ]
             },
             {
                 path: "profile",
@@ -37,13 +67,21 @@ const routes = [
             {
                 path: "notifications",
                 element: <Notifications/>
+            },
+            {
+                path: "cargaSemanal",
+                element: <WeeklyLoad/>
+            },
+            {
+                path: "reportes",
+                element: <Reports/>
             }
         ],
     },
     {
         path: "/login",
         element: <Login/>
-    }
+    },
 ];
 
 export default routes;
