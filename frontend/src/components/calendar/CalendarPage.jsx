@@ -11,6 +11,7 @@ import CustomMonthHeader from "./custom/headers/CustomMonthHeader";
 import useHighlightMonthCell from "./custom/headers/hooks/useHighlightMonthCell";
 import CustomDateCell from "./custom/headers/CustomDateCell";
 import { useEffect } from "react";
+
 import ContextMenu from "./menu/ContextMenu";
 import CustomDateCellWrapper from "./menu/CustomDateCellWrapper";
 
@@ -34,14 +35,19 @@ export default function CalendarPage() {
 
     useEffect(() => {
         const handler = (e) => {
-            const { date, x, y } = e.detail;
-            setMenu({ date, position: { x, y } });
+            const { date, rect } = e.detail;
+            setMenu({ date: new Date(date), rect });
         };
         window.addEventListener("openContextMenu", handler);
         return () => window.removeEventListener("openContextMenu", handler);
     }, []);
 
     const closeMenu = () => setMenu(null);
+
+    const onCreate = (ev) => {
+        console.log("Crear evento", ev);
+        closeMenu();
+    };
 
     return (
         <div className="calendar-container">
@@ -76,10 +82,11 @@ export default function CalendarPage() {
 
             {menu && (
                 <ContextMenu
-                    position={menu.position}
+                
+                    rect={menu.rect}
                     date={menu.date}
                     onClose={closeMenu}
-                    onCreate={(newEvent) => setEvents([...events, newEvent])}
+                    onCreate={onCreate}
                 />
             )}
         </div>

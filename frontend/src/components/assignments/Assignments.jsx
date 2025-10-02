@@ -1,8 +1,13 @@
+// components/assignments/Assignments.jsx
+import { Outlet, Link } from "react-router-dom";
 
-function Assignments() {
+export default function Assignments() {
     return (
-        <h1>Tarea</h1>
-    )
+        <div>
+            <h2>Actividades</h2>
+            <div className="submenu-content">
+                <Outlet /> {/* Aquí se renderizan los hijos */}
+            </div>
+        </div>
+    );
 }
-
-export default Assignments

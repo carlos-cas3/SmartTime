@@ -1,32 +1,120 @@
 .context-menu {
-    position: absolute;
     background: white;
     border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-    padding: 0.75rem;
-    z-index: 2000;
-    width: 180px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem;
+    border-radius: 6px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.context-date {
-    margin: 0 0 0.5rem 0;
-    font-weight: bold;
+
+/* Flechita base */
+.context-menu::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+}
+
+/* Si abre a la derecha */
+.context-menu--right::before {
+    left: -16px;
+    border-right-color: #fff;
+    box-shadow: -1px 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Si abre a la izquierda */
+.context-menu--left::before {
+    right: -16px;
+    border-left-color: #fff;
+    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo interno */
+.context-menu h4 {
+    margin: 0 0 10px 0;
     font-size: 14px;
-    color: #1e3a8a;
+    font-weight: bold;
+    color: #333;
+}
+
+.context-menu input[type="text"],
+.context-menu textarea,
+.context-menu input[type="datetime-local"] {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 6px 8px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.2s ease-in-out;
+}
+
+.context-menu input:focus,
+.context-menu textarea:focus {
+    border-color: #0078d7;
+    box-shadow: 0 0 3px rgba(0, 120, 215, 0.3);
+}
+
+.context-menu textarea {
+    resize: none;
+}
+
+.context-menu label {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 3px;
+    color: #666;
+}
+
+.context-menu .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
 }
 
 .context-menu button {
-    display: block;
-    width: 100%;
-    background: none;
+    padding: 6px 12px;
+    font-size: 13px;
     border: none;
-    text-align: left;
-    padding: 0.5rem;
-    font-size: 14px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background 0.2s ease-in-out;
 }
 
-.context-menu button:hover {
-    background-color: #f0f0f0;
+.context-menu button[type="button"] {
+    background: #f1f1f1;
+    color: #333;
+}
+
+.context-menu button[type="button"]:hover {
+    background: #e2e2e2;
+}
+
+.context-menu button[type="submit"] {
+    background: #0078d7;
+    color: white;
+}
+
+.context-menu button[type="submit"]:hover {
+    background: #005a9e;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

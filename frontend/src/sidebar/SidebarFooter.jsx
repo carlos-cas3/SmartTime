@@ -1,26 +1,31 @@
+// SidebarFooter.jsx
+import { useNavigate } from "react-router-dom";
 import SidebarItem from "./SidebarItem";
 import SingOutSidebarIcon from "../assets/signOut-Sidebar-icon.svg?react";
 
 function SidebarFooter({ collapsed }) {
+    const navigate = useNavigate();
+
     const footerItems = [
         {
             icon: SingOutSidebarIcon,
             label: "Cerrar Sesión",
-            action: () => {
-                window.location.href = "/login";
+            onClick: () => {
+                // aquí podrías limpiar tokens/localStorage
+                navigate("/login"); // 👈 navegación SPA
             },
         },
     ];
 
     return (
         <div className="sidebar-footer">
-            {footerItems.map(({ icon, label, action }, index) => (
+            {footerItems.map(({ icon, label, onClick }, index) => (
                 <SidebarItem
                     key={index}
                     icon={icon}
                     label={label}
                     collapsed={collapsed}
-                    onClick={action} // no lleva path, así entra en modo botón
+                    onClick={onClick} // pasa la función
                 />
             ))}
         </div>
