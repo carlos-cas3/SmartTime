@@ -94,7 +94,15 @@ export default function LoginForm({ onLogin }) {
                 {/* Enlace para registrarse */}
                 <p className="register">
                     ¿No tienes una cuenta?{" "}
-                    <a href="/register">Regístrate aquí</a>
+                    <a
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            window.location.href = "/register";
+                        }}
+                    >
+                        Regístrate aquí
+                    </a>
                 </p>
             </form>
         </div>
