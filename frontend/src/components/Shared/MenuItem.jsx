@@ -28,7 +28,7 @@ function MenuItem({
             <NavLink
                 to={path}
                 className={({ isActive }) =>
-                    `menu-item ${isActive ? "active" : ""}`
+                    `menu-item ${isActive ? "active-parent" : ""}`
                 }
             >
                 {content}

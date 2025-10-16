@@ -1,12 +1,13 @@
 import ToggleRightIcon from "../assets/toggleRight-Sidebar-icon.svg?react";
 import ToggleLeftIcon from "../assets/toggleLeft-Sidebar-icon.svg?react";
+import StudentIcon from "../assets/student.svg?react";
 
 function SidebarHeader({ collapsed, setCollapsed }) {
     return (
         <div className="sidebar-header">
             <div className="logo-section">
-                <img src="./src/assets/logo.png" alt="Logo" className="logo" />
-                {!collapsed && <span className="app-name">SmartTime</span>}
+                <StudentIcon className="logo" />
+                {!collapsed && <span className="app-name">SmartFISI</span>}
             </div>
 
             <div className="button-content">

@@ -6,37 +6,39 @@
     height: 2.5rem;
     border-radius: 1rem;
     padding: 0.5rem;
-    background-color: white;
+    background: transparent;
     text-decoration: none;
-    /* quitar subrayado de los links */
-    color: inherit;
+    color: #F8E9ED;
+    /* texto claro sobre fondo vino */
     transition: background 0.2s ease, color 0.2s ease;
 }
 
 .menu-item:hover {
-    background: #e5f4fe;
+    background: #9B2C55;
+    /* vino más claro */
 }
 
 /* === ICONO === */
 .icon-container {
     width: 3rem;
     height: 3rem;
-    background-color: #e5f4fe;
+    background-color: rgba(255, 255, 255, 0.15);
     border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, border 0.2s ease;
 }
 
 .menu-item:hover .icon-container {
-    background-color: #ceeafd;
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 /* === ICONO SVG === */
 .menu-icon {
     width: 1.5rem;
     height: 1.5rem;
+    fill: #F8E9ED;
     transition: fill 0.2s ease;
 }
 
@@ -44,39 +46,32 @@
 .menu-label {
     margin-left: 0.5rem;
     font-size: 18px;
+    color: #F8E9ED;
     transition: color 0.2s ease;
 }
 
-/* === ESTILO ACTIVO (cuando el padre está abierto o activo) === */
+/* === ESTILO ACTIVO (padre abierto o seleccionado) === */
 .menu-item.active-parent {
-    background-color: #0093f4;
-    /* fondo azul */
+    background-color: #D23E6E;
+    /* rosado fuerte */
     color: white;
-}
-
-.menu-item.active-parent .menu-label {
-    color: white;
-    /* texto blanco */
 }
 
 .menu-item.active-parent .icon-container {
-    background-color: white;
-    /* fondo blanco para el icono */
+    background-color: #F8E9ED;
 }
 
 .menu-item.active-parent .menu-icon {
-    fill: #0093f4;
-    /* svg azul */
+    fill: #7C1E3F;
+    /* vino oscuro */
 }
-
 
 /* --- SUBMENU --- */
 .submenu {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
     margin-left: 2.5rem;
-    /* indentado hacia la derecha */
     margin-top: 0.5rem;
 }
 
@@ -84,99 +79,60 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    height: 2.5rem;
+    height: 2.3rem;
     border-radius: 0.8rem;
     padding: 0.3rem 0.8rem;
-    background-color: white;
-    text-decoration: none;
-    color: inherit;
+    background-color: #F8E9ED;
+    /* fondo claro para contraste */
+    color: #7C1E3F;
+    /* texto vino */
     font-size: 15px;
     gap: 0.8rem;
-    /* un poco más chico que el padre */
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .submenu-item:hover {
-    background: #f0f8ff;
-    /* azul muy suave */
+    background: #FFD1DF;
+    /* rosado suave */
 }
 
 .submenu-item.active {
-    background-color: #0093f4;
+    background-color: #D23E6E;
     color: white;
 }
 
 .submenu-item .icon-container {
     width: 2.5rem;
     height: 2.5rem;
-    background-color: #e5f4fe;
+    background-color: rgba(124, 30, 63, 0.1);
     border-radius: 0.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.submenu-item:hover .icon-container {
-    background-color: #ceeafd;
-}
-
 .submenu-item.active .icon-container {
     background-color: white;
 }
 
-
-/* Cuando se abre por click (padre expandido) */
+/* === Estado abierto (padre expandido) === */
 .menu-item.open-parent {
-    background-color: #e5f4fe;
-    /* azul muy suave, similar al hover */
-    color: #0093f4;
-    /* texto en azul principal */
-}
-
-.menu-item.open-parent .menu-label {
-    color: #0093f4;
-    /* etiqueta azul */
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #FFD1DF;
 }
 
 .menu-item.open-parent .icon-container {
-    background-color: white;
-    /* el contenedor queda blanco */
-    border: 1px solid #0093f4;
-    /* borde azul para dar contraste */
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid #FFD1DF;
 }
 
 .menu-item.open-parent .menu-icon {
-    fill: #0093f4;
-    /* icono azul */
+    fill: #FFD1DF;
 }
 
-/* 🔹 Estilo cuando el padre está activo o abierto */
-.active-parent {
-    background-color: #1e40af;
-    /* azul */
-    color: #fff;
-    font-weight: 600;
-    border-radius: 8px;
-}
-
-
-
-/* Si está activo, manda sobre el estado abierto */
-.menu-item.active-parent {
-    background-color: #0093f4; /* azul principal */
-    color: white;
-    font-weight: 600;
-    border-radius: 8px;
-}
-
-.menu-item.active-parent .menu-label {
-    color: white;
-}
-
-.menu-item.active-parent .icon-container {
-    background-color: white;
-    border: none;
-}
-
-.menu-item.active-parent .menu-icon {
-    fill: #0093f4;
+.menu-item,
+.menu-item a,
+.submenu-item,
+.submenu-item a {
+    text-decoration: none !important;
 }

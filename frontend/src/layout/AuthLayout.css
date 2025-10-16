@@ -1,0 +1,48 @@
+.auth-layout {
+    height: 100vh;
+    background: linear-gradient(180deg, #7a1631, #4b0b18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.auth-logo {
+    background: white;
+    color: #7a1631;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5rem;
+    font-size: 1.6rem;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+.auth-title {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Aquí se coloca el formulario */
+.auth-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer */
+.auth-footer {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+}

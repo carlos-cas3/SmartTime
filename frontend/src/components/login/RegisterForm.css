@@ -1,0 +1,102 @@
+.register-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2.2rem;
+    width: 100%;
+    max-width: 560px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    color: #7a1631;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #a41e45;
+}
+
+.register-box h2 {
+    text-align: center;
+    margin-bottom: 0.3rem;
+    color: #4b0b18;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem 1rem;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.4rem 0.6rem;
+    background: #f9fafb;
+}
+
+.input-group.full {
+    grid-column: 1 / 3;
+}
+
+.input-group .icon {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    color: #7a1631;
+}
+
+.input-group input {
+    border: none;
+    outline: none;
+    flex: 1;
+    background: transparent;
+    font-size: 0.95rem;
+}
+
+.register-button {
+    background-color: #7a1631;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.8rem;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    transition: 0.3s;
+}
+
+.register-button:hover {
+    background-color: #a41e45;
+}
+
+.login-link {
+    margin-top: 1.2rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.login-link a {
+    color: #a00030;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

@@ -9,11 +9,18 @@ function SidebarItem({ icon, label, path, children, collapsed, onClick }) {
 
     const handleClick = () => {
         if (onClick) {
-            onClick(); // 🔴 si es botón como Cerrar Sesión
+            onClick(); // 🔴 para botones como "Cerrar sesión"
         } else if (hasChildren) {
             setOpen(!open);
         }
     };
+
+    // 🔹 Cierra automáticamente el submenu cuando el sidebar se colapsa
+    useEffect(() => {
+        if (collapsed) {
+            setOpen(false);
+        }
+    }, [collapsed]);
 
     return (
         <div>
@@ -21,7 +28,7 @@ function SidebarItem({ icon, label, path, children, collapsed, onClick }) {
                 <MenuItem
                     icon={icon}
                     label={label}
-                    path={!hasChildren && !onClick ? path : undefined} // solo path si no es botón
+                    path={!hasChildren && !onClick ? path : undefined}
                     showLabel={!collapsed}
                 />
             </div>
