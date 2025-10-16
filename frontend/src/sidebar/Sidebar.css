@@ -3,20 +3,21 @@
     flex-direction: column;
     height: 100vh;
     /* ocupa toda la pantalla */
-    background-color: white;
+    background-color: #7C1E3F;
     /* tu color de fondo */
     color: black;
+    border-radius: 1rem;
 }
 
 .sidebar-header {
     height: 60px;
-    background-color: #0093f4;
-    border-radius: 2rem;
+    background-color: #7C1E3F;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
     flex-shrink: 0;
+    border-bottom: 1px solid #eee;
 
 }
 
@@ -39,6 +40,13 @@
     align-items: center;
 }
 
+.logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+    fill: white;
+}
 .app-name {
     font-weight: bold;
     font-size: 24px;
