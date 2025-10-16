@@ -6,7 +6,7 @@ function SidebarHeader({ collapsed, setCollapsed }) {
     return (
         <div className="sidebar-header">
             <div className="logo-section">
-                <StudentIcon className="logo" />
+                <StudentIcon className="logo"/>
                 {!collapsed && <span className="app-name">SmartFISI</span>}
             </div>
 
