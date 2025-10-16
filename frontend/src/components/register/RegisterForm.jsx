@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaUser, FaEnvelope, FaLock, FaIdCard } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./RegisterForm.css";
 
 export default function RegisterForm({ onRegister }) {
@@ -14,6 +14,8 @@ export default function RegisterForm({ onRegister }) {
         confirmar: "",
     });
 
+    const navigate = useNavigate(); // 👈 Hook para navegar sin recargar la página
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -25,6 +27,9 @@ export default function RegisterForm({ onRegister }) {
         e.preventDefault();
         console.log("Registro:", formData);
         if (onRegister) onRegister(formData);
+
+        // Ejemplo: podrías redirigir al login luego de registrar correctamente
+        // navigate("/login");
     };
 
     return (
@@ -116,7 +121,17 @@ export default function RegisterForm({ onRegister }) {
             </button>
 
             <div className="login-link">
-                ¿Ya tienes una cuenta? <a href="/login">Inicia sesión aquí</a>
+                ¿Ya tienes una cuenta?{" "}
+                <span
+                    onClick={() => navigate("/login")} // 👈 Esto reemplaza al <a href="/login">
+                    style={{
+                        color: "#007bff",
+                        cursor: "pointer",
+                        textDecoration: "underline",
+                    }}
+                >
+                    Inicia sesión aquí
+                </span>
             </div>
         </form>
     );
