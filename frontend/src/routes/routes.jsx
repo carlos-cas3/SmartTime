@@ -8,7 +8,7 @@ import Settings from "../components/settings/Settings";
 import Notifications from "../components/notifications/Notifications"
 
 import Login from "../components/login/Login";
-import Register from "../components/login/Register";
+import Register from "../components/register/Register";
 
 import Exams from "../components/assignments/exams/Exams";
 import Extras from "../components/assignments/extras/Extras";
