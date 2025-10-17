@@ -2,6 +2,7 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  display: flex;
 }
 
 .icon {
@@ -13,5 +14,12 @@
 .logo {
   height: 50px;
   object-fit: contain;
+}
+
+html, body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  overflow: hidden; 
 }
 

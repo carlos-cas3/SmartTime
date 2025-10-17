@@ -1,0 +1,124 @@
+.info-card-list {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Header */
+.info-card-list-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.info-card-list-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Descripción */
+.info-card-list-desc {
+    display: flex;
+    justify-content: flex-start;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Contenedor de lista */
+.info-card-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* Ítem individual */
+.info-card-list-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    transition: background 0.2s ease;
+}
+
+.info-card-list-item:hover {
+    background-color: #f3f3f3;
+}
+
+/* Lado izquierdo */
+.info-card-list-left {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex: 1;
+}
+
+.info-card-list-icon {
+    color: #800000;
+    /* color vino */
+}
+
+.info-card-list-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.activity-title {
+    font-weight: 600;
+    color: #333;
+}
+
+.activity-course {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* Lado derecho */
+.info-card-list-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.activity-date {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.calendar-icon {
+    color: #800000;
+}
+
+/* Prioridades */
+.activity-priority {
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    text-transform: capitalize;
+}
+
+.priority-alta {
+    background-color: #ff4d4f;
+    color: white;
+}
+
+.priority-media {
+    background-color: #ffa940;
+    color: white;
+}
+
+.priority-baja {
+    background-color: #52c41a;
+    color: white;
+}
