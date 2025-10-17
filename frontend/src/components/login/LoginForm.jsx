@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // 👈 Importamos el hook
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 
 export default function LoginForm({ onLogin }) {
     const [codigo, setCodigo] = useState("");
     const [password, setPassword] = useState("");
     const [recordarme, setRecordarme] = useState(false);
-    const navigate = useNavigate(); // 👈 Inicializamos navigate
+    const navigate = useNavigate(); 
 
     const handleSubmit = (e) => {
         e.preventDefault();
