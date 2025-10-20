@@ -38,9 +38,7 @@ function Layout() {
             </div>
 
             <div className="content">
-                <main>
                     <Outlet />
-                </main>
             </div>
         </div>
     );

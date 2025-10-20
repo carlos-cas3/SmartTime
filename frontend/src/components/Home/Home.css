@@ -1,0 +1,36 @@
+/* Contenedor global */
+/* Evita que el contenedor se contraiga inesperadamente */
+.dashboard-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Cada fila es independiente */
+.dashboard-row {
+    display: grid;
+    gap: 2rem;
+}
+
+/* FILAS con columnas específicas */
+.dashboard-row.row-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.dashboard-row.row-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.dashboard-row.row-1 {
+    grid-template-columns: 1fr;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .dashboard-row {
+        grid-template-columns: 1fr !important;
+    }
+}

@@ -2,20 +2,13 @@ import React from "react";
 import { FaBookOpen, FaBriefcase, FaCode, FaCalendarAlt } from "react-icons/fa";
 import "./InfoCardList.css";
 
-export default function InfoCardList({ title, description, listItems }) {
+export default function InfoCardList({ description, listItems }) {
     return (
         <div className="info-card-list">
-            {/* Header */}
             <div className="info-card-list-header">
-                <h3 className="info-card-list-title">{title}</h3>
+                {description && <p>{description}</p>}
             </div>
 
-            {/* Descripción */}
-            <div className="info-card-list-desc">
-                <p>{description}</p>
-            </div>
-
-            {/* Lista de actividades */}
             <div className="info-card-list-container">
                 {listItems.map((item, index) => (
                     <div key={index} className="info-card-list-item">
@@ -29,24 +22,20 @@ export default function InfoCardList({ title, description, listItems }) {
                                 )}
                                 {item.icon === "code" && <FaCode size={22} />}
                             </div>
+
                             <div className="info-card-list-text">
-                                <h4 className="activity-title">{item.title}</h4>
-                                <span className="activity-course">
-                                    {item.course}
-                                </span>
+                                <h4>{item.title}</h4>
+                                <span>{item.course}</span>
                             </div>
                         </div>
 
                         <div className="info-card-list-right">
-                            <div className="activity-date">
-                                <FaCalendarAlt
-                                    size={16}
-                                    className="calendar-icon"
-                                />
+                            <div className="date">
+                                <FaCalendarAlt size={15} />
                                 <span>{item.date}</span>
                             </div>
                             <span
-                                className={`activity-priority priority-${item.priority.toLowerCase()}`}
+                                className={`priority ${item.priority.toLowerCase()}`}
                             >
                                 {item.priority}
                             </span>

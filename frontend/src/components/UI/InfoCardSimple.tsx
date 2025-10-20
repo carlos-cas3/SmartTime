@@ -20,7 +20,7 @@ const InfoCardSimple: React.FC<InfoCardSimpleProps> = ({
 
             {typeof progress === "number" &&
                 (chart ? (
-                    <div style={{ width: "100%", height: "120px" }}>
+                    <div style={{ width: "50%", height: "120px" }}>
                         {chart}
                     </div>
                 ) : (

@@ -4,6 +4,17 @@ import "./InfoCard.css";
 import InfoCardSimple from "./InfoCardSimple";
 import InfoCardStats from "./InfoCardStats";
 import InfoCardList from "./InfoCardList";
+import InfoCardSettings from "./InfoCardSettings"; // 👈 importa tu componente
+
+interface SettingsItem {
+    key: string;
+    icon?: React.ReactNode;
+    title: string;
+    description?: string;
+    type: "toggle" | "select" | "button" | "custom";
+    value?: any;
+    options?: { value: any; label: string }[];
+}
 
 interface ListItem {
     title: string;
@@ -20,7 +31,9 @@ interface InfoCardProps {
     progress?: number;
     chart?: React.ReactNode;
     listItems?: ListItem[];
-    variant?: "simple" | "stats" | "list";
+    settingsItems?: SettingsItem[]; // 👈 añadimos esta prop
+    onChangeSetting?: (key: string, value: any) => void;
+    variant?: "simple" | "stats" | "list" | "settings"; // 👈 añadimos "settings"
 }
 
 const InfoCard: React.FC<InfoCardProps> = ({
@@ -31,6 +44,8 @@ const InfoCard: React.FC<InfoCardProps> = ({
     progress,
     chart,
     listItems,
+    settingsItems,
+    onChangeSetting,
     variant = "simple",
 }) => {
     return (
@@ -58,7 +73,16 @@ const InfoCard: React.FC<InfoCardProps> = ({
             )}
 
             {variant === "list" && listItems && (
-                <InfoCardList listItems={listItems} />
+                <InfoCardList description={description} listItems={listItems} />
+            )}
+
+            {variant === "settings" && settingsItems && (
+                <InfoCardSettings
+                    title={title}
+                    description={description}
+                    settingsItems={settingsItems as any}
+                    onChange={onChangeSetting}
+                />
             )}
         </div>
     );
