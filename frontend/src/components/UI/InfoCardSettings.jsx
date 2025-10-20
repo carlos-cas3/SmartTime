@@ -5,8 +5,8 @@ import "./InfoCardSettings.css";
 /**
  * settingsItems: Array de objetos:
  * {
- *   key: string (único),
- *   icon?: ReactNode (o string para mapear si quieres),
+ *   key: string,
+ *   icon?: ReactNode,
  *   title: string,
  *   description?: string,
  *   type: "toggle" | "select" | "button" | "custom",
@@ -14,26 +14,22 @@ import "./InfoCardSettings.css";
  *   options?: Array<{ value: any, label: string }>
  * }
  *
- * onChange(key, newValue) => función que actualiza y persiste (autosave)
+ * onChange(key, newValue) => función para actualizar valores temporalmente
  *
- * NOTE: el componente hace *autosave* — llama onChange tan pronto cambia.
+ * NOTA: No guarda automáticamente. Solo cambia localmente.
  */
 export default function InfoCardSettings({
-    title,
     description,
     settingsItems = [],
     onChange,
 }) {
-    // local snapshot para manejar ediciones instantáneas y cancelar si ESC
+    // Estado local (sin autosave)
     const [localValues, setLocalValues] = useState(() =>
         settingsItems.reduce((acc, it) => ({ ...acc, [it.key]: it.value }), {})
     );
 
-    // feedback de guardado por item (map key -> boolean)
-    const [savedMap, setSavedMap] = useState({});
-
     useEffect(() => {
-        // si settingsItems cambian desde el padre, sincronizamos valores
+        // sincronizar cuando cambien los props
         setLocalValues(
             settingsItems.reduce(
                 (acc, it) => ({ ...acc, [it.key]: it.value }),
@@ -42,27 +38,11 @@ export default function InfoCardSettings({
         );
     }, [settingsItems]);
 
-    // helper autosave: actualiza local + llama onChange + micro feedback
-    const handleSave = (key, newVal) => {
-        setLocalValues((prev) => ({ ...prev, [key]: newVal }));
-        if (typeof onChange === "function") onChange(key, newVal);
-        // show saved state temporarily
-        setSavedMap((prev) => ({ ...prev, [key]: true }));
-        setTimeout(
-            () => setSavedMap((prev) => ({ ...prev, [key]: false })),
-            1200
-        );
-    };
-
-    // toggle for select inline editing: store which item is open for editing
     const [editingKey, setEditingKey] = useState(null);
-
-    // keyboard and click outside for inline editor
     const inlineRefs = useRef({});
 
     useEffect(() => {
         function handleClick(e) {
-            // close any editing if clicked outside its area
             if (editingKey) {
                 const el = inlineRefs.current[editingKey];
                 if (el && !el.contains(e.target)) setEditingKey(null);
@@ -72,12 +52,17 @@ export default function InfoCardSettings({
         return () => document.removeEventListener("mousedown", handleClick);
     }, [editingKey]);
 
+    const handleValueChange = (key, newVal) => {
+        setLocalValues((prev) => ({ ...prev, [key]: newVal }));
+        if (typeof onChange === "function") onChange(key, newVal);
+    };
+
     const handleToggle = (key, current) => {
-        handleSave(key, !current);
+        handleValueChange(key, !current);
     };
 
     const handleSelectChoose = (key, val) => {
-        handleSave(key, val);
+        handleValueChange(key, val);
         setEditingKey(null);
     };
 
@@ -148,51 +133,32 @@ export default function InfoCardSettings({
         }
 
         if (item.type === "button") {
-            // button type triggers onChange with a true/triggered flag
             return (
                 <button
                     className="settings-action-btn"
-                    onClick={() => {
-                        if (typeof onChange === "function")
-                            onChange(item.key, true);
-                        setSavedMap((prev) => ({ ...prev, [item.key]: true }));
-                        setTimeout(
-                            () =>
-                                setSavedMap((prev) => ({
-                                    ...prev,
-                                    [item.key]: false,
-                                })),
-                            1200
-                        );
-                    }}
+                    onClick={() => handleValueChange(item.key, true)}
                 >
                     {item.actionLabel ?? "Acción"}
                 </button>
             );
         }
 
-        // default / custom: show value text (click to edit if has options)
         return <div className="plain-value">{String(val ?? "")}</div>;
     };
 
     return (
         <div className="info-card-settings">
             <div className="settings-header">
-                <div>
-                    {description && (
-                        <p className="settings-desc">{description}</p>
-                    )}
-                </div>
+                {description && <p className="settings-desc">{description}</p>}
             </div>
 
             <div className="settings-list">
                 {settingsItems.map((item) => (
                     <div className="settings-item" key={item.key}>
                         <div className="settings-left">
-                            <div className="settings-icon">
-                                {/* allow passing ReactNode icon or fallback mapping */}
-                                {item.icon ? item.icon : null}
-                            </div>
+                            {item.icon && (
+                                <div className="settings-icon">{item.icon}</div>
+                            )}
                             <div className="settings-text">
                                 <div className="settings-item-title">
                                     {item.title}
@@ -208,9 +174,7 @@ export default function InfoCardSettings({
                         <div className="settings-right">
                             <div className="settings-control-wrap">
                                 {renderControl(item)}
-                                {savedMap[item.key] && (
-                                    <span className="saved-pill">Guardado</span>
-                                )}
+                                {/* ❌ Eliminado el mensaje "Guardado" */}
                             </div>
                         </div>
                     </div>

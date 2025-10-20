@@ -1,25 +1,40 @@
-import { FaBell, FaPalette } from "react-icons/fa";
+import { FaBell, FaPalette, FaMoon } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
 import InfoCard from "../UI/InfoCard";
 
 function Settings() {
     const settings = [
         {
-            key: "notifications",
-            title: "Notificaciones",
-            description: "Activa o desactiva las alertas por correo",
-            type: "toggle",
-            value: true,
-            icon: <FaBell />,
+            key: "language",
+            title: "Idioma",
+            description: "Selecciona el idioma de la aplicación",
+            type: "select",
+            value: "Español",
+            options: [
+                { value: "Español", label: "Español" },
+                { value: "Inglés", label: "Inglés" },
+                { value: "Quechua", label: "Quechua" },
+            ],
+            icon: <FaPalette />,
         },
         {
             key: "theme",
             title: "Tema",
-            description: "Selecciona el color del panel",
+            description: "Activa el tema oscuro de la aplicación",
+            type: "toggle",
+            value: false,
+            icon: <FaMoon />,
+        },
+        {
+            key: "hourZone",
+            title: "Zona Horaria",
+            description: "Selecciona la zona horaria de la aplicación",
             type: "select",
-            value: "light",
+            value: "GMT-5",
             options: [
-                { value: "light", label: "Claro" },
-                { value: "dark", label: "Oscuro" },
+                { value: "GMT-5", label: "GMT-5" },
+                { value: "GMT-6", label: "GMT-6" },
+                { value: "GMT-7", label: "GMT-7" },
             ],
             icon: <FaPalette />,
         },
@@ -27,7 +42,15 @@ function Settings() {
 
     return (
         <InfoCard
-            title="Configuraciones"
+            title={
+                <div className="info-card-header-custom">
+                    <IoMdSettings className="info-card-icon" />
+                    <span className="info-card-title-text">
+                        Preferencias del Sistema
+                    </span>
+                </div>
+            }
+            description="Personaliza la apariencia y configuración regional"
             variant="settings"
             settingsItems={settings}
         />

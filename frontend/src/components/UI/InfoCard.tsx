@@ -78,7 +78,6 @@ const InfoCard: React.FC<InfoCardProps> = ({
 
             {variant === "settings" && settingsItems && (
                 <InfoCardSettings
-                    title={title}
                     description={description}
                     settingsItems={settingsItems as any}
                     onChange={onChangeSetting}
