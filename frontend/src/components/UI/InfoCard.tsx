@@ -34,6 +34,7 @@ interface InfoCardProps {
     settingsItems?: SettingsItem[]; // 👈 añadimos esta prop
     onChangeSetting?: (key: string, value: any) => void;
     variant?: "simple" | "stats" | "list" | "settings"; // 👈 añadimos "settings"
+    actions?: React.ReactNode; // 👈 añadimos actions
 }
 
 const InfoCard: React.FC<InfoCardProps> = ({
@@ -47,6 +48,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
     settingsItems,
     onChangeSetting,
     variant = "simple",
+    actions, 
 }) => {
     return (
         <div
@@ -81,8 +83,12 @@ const InfoCard: React.FC<InfoCardProps> = ({
                     description={description}
                     settingsItems={settingsItems as any}
                     onChange={onChangeSetting}
+                
                 />
             )}
+            
+             {/* 👇 Nuevo bloque para el botón (si existe) */}
+            {actions && <div className="info-card-actions">{actions}</div>}
         </div>
     );
 };

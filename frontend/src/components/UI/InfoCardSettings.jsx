@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaChevronDown, FaCheck } from "react-icons/fa";
+
 import "./InfoCardSettings.css";
 
 /**
