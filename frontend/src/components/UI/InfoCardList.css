@@ -1,124 +1,105 @@
 .info-card-list {
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
+    border-radius: 14px;
+    padding: 0 1.5rem 0 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-/* Header */
-.info-card-list-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.info-card-list-title {
-    font-size: 1.2rem;
+.info-card-list-header h3 {
     font-weight: 600;
-    color: #333;
+    color: #222;
 }
 
-/* Descripción */
-.info-card-list-desc {
-    display: flex;
-    justify-content: flex-start;
-    color: #666;
-    font-size: 0.95rem;
+.info-card-list-header p {
+    font-size: 0.9rem;
+    color: #777;
 }
 
-/* Contenedor de lista */
 .info-card-list-container {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.9rem;
 }
 
-/* Ítem individual */
 .info-card-list-item {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 0.8rem 1rem;
-    transition: background 0.2s ease;
+    background: #f7f7f7;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    transition: transform 0.15s ease, background 0.2s ease;
 }
 
 .info-card-list-item:hover {
-    background-color: #f3f3f3;
+    background: #f0f0f0;
+    transform: translateX(3px);
 }
 
-/* Lado izquierdo */
 .info-card-list-left {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    flex: 1;
+    gap: 1rem;
 }
 
 .info-card-list-icon {
     color: #800000;
-    /* color vino */
 }
 
-.info-card-list-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.activity-title {
+.info-card-list-text h4 {
     font-weight: 600;
-    color: #333;
+    font-size: 1rem;
 }
 
-.activity-course {
+.info-card-list-text span {
     font-size: 0.85rem;
-    color: #777;
+    color: #666;
 }
 
-/* Lado derecho */
+/* Right side */
 .info-card-list-right {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.activity-date {
+.info-card-list-right .date {
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    font-size: 0.85rem;
     color: #555;
-    font-size: 0.9rem;
 }
 
-.calendar-icon {
-    color: #800000;
-}
-
-/* Prioridades */
-.activity-priority {
-    font-weight: 600;
-    padding: 0.3rem 0.7rem;
+.priority {
+    padding: 0.35rem 0.7rem;
     border-radius: 9999px;
     font-size: 0.8rem;
+    font-weight: 600;
     text-transform: capitalize;
 }
 
-.priority-alta {
-    background-color: #ff4d4f;
+.priority.alta {
+    background: #ff4d4f;
     color: white;
 }
 
-.priority-media {
-    background-color: #ffa940;
+.priority.media {
+    background: #ffa940;
     color: white;
 }
 
-.priority-baja {
-    background-color: #52c41a;
+.priority.baja {
+    background: #52c41a;
     color: white;
+}
+
+@media (max-width: 768px) {
+    .info-card-list-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7rem;
+    }
 }

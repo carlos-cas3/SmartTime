@@ -3,6 +3,9 @@ import InfoCard from "../UI/InfoCard";
 import StudyHoursChart from "../charts/StudyHoursChart";
 import ActivityLineChart from "../charts/ActivityLineChart";
 
+import "./Home.css";
+import ProgressBarChart from "../charts/ProgressBarChart";
+
 export default function Dashboard() {
     const actividades = [
         {
@@ -29,41 +32,23 @@ export default function Dashboard() {
     ];
 
     return (
-        <div
-            style={{
-                display: "grid",
-                gap: "1.5rem",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gridTemplateRows: "auto auto auto",
-                gridTemplateAreas: `
-                    "a b c"
-                    "d e e"
-                    "f f f"
-                `,
-            }}
-        >
-            {/* FILA 1 → 3 columnas */}
-
-            <div style={{ gridArea: "a" }}>
+        <div className="dashboard-rows">
+            <div className="dashboard-row row-3">
+                {/* FILA 1 → 3 columnas */}
                 <InfoCard
                     title="Usuarios activos"
                     icon={FaUser}
                     value="1,230"
                     description="Usuarios en línea hoy"
                 />
-            </div>
-
-            <div style={{ gridArea: "b" }}>
                 <InfoCard
                     title="Avance del proyecto"
                     value="60%"
                     description="Completado hasta la fecha"
                     progress={60}
                 />
-            </div>
-
-            <div style={{ gridArea: "c" }}>
                 <InfoCard
+                    variant="simple" // ✅ usa simple para que pase por InfoCardSimple
                     title="Avance del proyecto"
                     value="60%"
                     description="Completado hasta la fecha"
@@ -72,17 +57,13 @@ export default function Dashboard() {
             </div>
 
             {/* FILA 2 → 2 columnas */}
-
-            <div style={{ gridArea: "d" }}>
+            <div className="dashboard-row row-2">
                 <InfoCard
                     title="Distribución de horas dedicadas al estudio"
                     description="Horas de estudio semanales"
                     variant="stats"
                     chart={<StudyHoursChart />}
                 />
-            </div>
-
-            <div style={{ gridArea: "e" }}>
                 <InfoCard
                     title="Distribución de horas dedicadas al estudio"
                     description="Horas de estudio semanales"
@@ -92,12 +73,11 @@ export default function Dashboard() {
             </div>
 
             {/* FILA 3 → 1 columna */}
-
-            <div style={{ gridArea: "f" }}>
+            <div className="dashboard-row row-1">
                 <InfoCard
                     title="Actividades pendientes"
-                    variant="list"
                     description="Lista de actividades con sus fechas y prioridades"
+                    variant="list"
                     icon={FaTasks}
                     listItems={actividades}
                 />

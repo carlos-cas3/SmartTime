@@ -1,11 +1,10 @@
 .info-card {
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
     transition: transform 0.2s ease;
 }
 
@@ -18,7 +17,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem 0 2rem;
 }
 
 .info-card-title {
@@ -29,7 +27,6 @@
 
 .info-card-icon {
     color: #800000;
-    /* vino o el color que desees */
 }
 
 /* --- Variante simple --- */
@@ -48,7 +45,6 @@
 .info-card-desc {
     font-size: 0.9rem;
     color: #666;
-    margin-top: 0.3rem;
 }
 
 /* --- Barra de progreso --- */
@@ -68,7 +64,6 @@
 .info-card-progress-bar {
     height: 100%;
     background-color: #6B002C;
-    /* color vino */
     border-radius: 9999px;
     transition: width 0.5s ease;
 }
@@ -82,6 +77,27 @@
 }
 
 
-.info-card-simple .recharts-responsive-container {
-    height: 120px !important;
+
+/* Actions button */
+.info-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    height: 2.5rem;
+}
+
+.settings-action-btn {
+    background: #6b002c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.55rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.settings-action-btn:hover {
+    background: #8b0038;
+    transform: translateY(-2px);
 }
