@@ -1,7 +1,7 @@
 import React from "react";
 import { IconType } from "react-icons";
 import "./InfoCard.css";
-import InfoCardSimple from "./InfoCardSimple";
+import InfoCardSimple from "./InfoCard/InfoCardSimple";
 import InfoCardStats from "./InfoCardStats";
 import InfoCardList from "./InfoCardList";
 import InfoCardSettings from "./InfoCardSettings";
