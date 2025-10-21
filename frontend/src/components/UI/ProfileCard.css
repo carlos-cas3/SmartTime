@@ -1,0 +1,122 @@
+.profile-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ✨ efecto de elevación al hacer hover */
+.profile-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card.full {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-card.compact {
+    flex-direction: row;
+    text-align: left;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    background-color: #79142a;
+    /* color vino */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.profile-email {
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.profile-code {
+    margin: 0.4rem 0;
+}
+
+.profile-code-input {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    margin-left: 0.4rem;
+    width: 80px;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+.profile-faculty,
+.profile-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.profile-icon {
+    color: #79142a;
+}
+
+.profile-edit-btn {
+    margin-top: 1rem;
+    background-color: #79142a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.profile-edit-btn:hover {
+    background-color: #5e0f22;
+}
+
+/* Etiquetas (tags) para versión compacta */
+.profile-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0.3rem 0;
+}
+
+.tag {
+    background-color: #f2f2f2;
+    border-radius: 6px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.tag.role {
+    background-color: #f8e4ea;
+    color: #79142a;
+}

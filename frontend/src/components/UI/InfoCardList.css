@@ -1,15 +1,10 @@
 .info-card-list {
     background: #fff;
     border-radius: 14px;
-    padding: 0 1.5rem 0 1.5rem;
+    padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-}
-
-.info-card-list-header h3 {
-    font-weight: 600;
-    color: #222;
 }
 
 .info-card-list-header p {
@@ -23,6 +18,16 @@
     gap: 0.9rem;
 }
 
+/* Estado vacío */
+.info-card-list-empty {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #999;
+    padding: 1rem 0;
+    font-style: italic;
+}
+
+/* Items */
 .info-card-list-item {
     display: flex;
     justify-content: space-between;
@@ -73,6 +78,7 @@
     color: #555;
 }
 
+/* Prioridades */
 .priority {
     padding: 0.35rem 0.7rem;
     border-radius: 9999px;
