@@ -1,25 +1,24 @@
 import Layout from "../layout/Layout";
 import Dashboard from "../features/dashboard/Dashboard";
 import Calendar from "../pages/Calendar";
-import Assignments from "../components/assignments/Assignments";
+import Assignments from "../features/assignments/Assignments";
 
-import Profile from "../components/profile/Profile";
-import Settings from "../components/settings/Settings";
-import Notifications from "../components/notifications/Notifications"
-
+import Profile from "../features/profile/Profile";
+import Settings from "../features/settings/Settings";
+import Notifications from "../features/notifications/Notifications";
+import Reports from "../features/reports/Reports";
 import Login from "../features/auth/login/Login";
 import Register from "../features/auth/register/Register";
 
-import Exams from "../components/assignments/exams/Exams";
-import Extras from "../components/assignments/extras/Extras";
-import Projects from "../components/assignments/projects/Projects";
-import Tasks from "../components/assignments/tasks/Tasks";
+import Exams from "../features/assignments/exams/Exams";
+import Extras from "../features/assignments/extras/Extras";
+import Projects from "../features/assignments/projects/Projects";
+import Tasks from "../features/assignments/tasks/Tasks";
 
 
-import CargaSemanal from "../components/cargaSemanal/CargaSemanal";
-import Reports from "../components/reports/Reports";
+import CargaSemanal from "../features/cargaSemanal/CargaSemanal";
 
-import EditProfile from "../editprofile/EditProfile";
+import EditProfile from "../features/editprofile/EditProfile";
 
 
 

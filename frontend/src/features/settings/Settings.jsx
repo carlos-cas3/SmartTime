@@ -1,17 +1,18 @@
 import { useState } from "react";
-import { FaPalette, FaMoon } from "react-icons/fa";
-import { IoMdSettings } from "react-icons/io";
+
 import { IoLanguage } from "react-icons/io5";
+import { IoMdSettings } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import { FaPalette, FaMoon } from "react-icons/fa";
 import {
     MdSystemSecurityUpdateWarning,
     MdOutlineSecurity,
 } from "react-icons/md";
 
-import InfoCard from "../UI/InfoCard";
-import "./Settings.css";
-import ProfileCard from "../UI/Profilecard";
+import InfoCard from "../../components/UI/InfoCard";
+import ProfileCard from "../../components/UI/Profilecard";
 
-import { useNavigate } from "react-router-dom";
+import "./Settings.css";
 
 function Settings() {
     const navigate = useNavigate(); 

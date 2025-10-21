@@ -1,4 +1,4 @@
-import InfoCard from "../UI/InfoCard";
+import InfoCard from "../../components/UI/InfoCard";
 import { FaBookOpen, FaCheckCircle, FaClock } from "react-icons/fa";
 import { IoAlertCircle } from "react-icons/io5";
 import "./CargaSemanal.css";
