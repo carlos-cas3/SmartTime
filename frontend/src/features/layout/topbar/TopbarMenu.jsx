@@ -1,6 +1,6 @@
-import UserTopbarIcon from "../assets/user-Topbar-icon.svg?react";
-import SettingsTopbarIcon from "../assets/settings-Topbar-icon.svg?react";
-import NotificationTopbarIcon from "../assets/notifications-Topbar-icon.svg?react"
+import UserTopbarIcon from "../../../assets/user-Topbar-icon.svg?react";
+import SettingsTopbarIcon from "../../../assets/settings-Topbar-icon.svg?react";
+import NotificationTopbarIcon from "../../../assets/notifications-Topbar-icon.svg?react"
 
 import TopbarItem from "./TopbarItem";
 

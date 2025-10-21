@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import MenuItem from "../components/Shared/MenuItem";
+import MenuItem from "../../../components/Shared/MenuItem";
 import SubmenuItem from "./SubMenuItem";
 
 function SidebarItem({ icon, label, path, children, collapsed, onClick }) {

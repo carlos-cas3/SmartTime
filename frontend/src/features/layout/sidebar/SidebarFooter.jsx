@@ -1,7 +1,7 @@
 // SidebarFooter.jsx
 import { useNavigate } from "react-router-dom";
 import SidebarItem from "./SidebarItem";
-import SingOutSidebarIcon from "../assets/signOut-Sidebar-icon.svg?react";
+import SingOutSidebarIcon from "../../../assets/signOut-Sidebar-icon.svg?react";
 
 function SidebarFooter({ collapsed }) {
     const navigate = useNavigate();

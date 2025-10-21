@@ -1,6 +1,6 @@
-import ToggleRightIcon from "../assets/toggleRight-Sidebar-icon.svg?react";
-import ToggleLeftIcon from "../assets/toggleLeft-Sidebar-icon.svg?react";
-import StudentIcon from "../assets/student.svg?react";
+import ToggleRightIcon from "../../../assets/toggleRight-Sidebar-icon.svg?react";
+import ToggleLeftIcon from "../../../assets/toggleLeft-Sidebar-icon.svg?react";
+import StudentIcon from "../../../assets/student.svg?react";
 
 function SidebarHeader({ collapsed, setCollapsed }) {
     return (

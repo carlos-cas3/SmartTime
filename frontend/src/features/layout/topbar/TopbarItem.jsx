@@ -1,4 +1,5 @@
-import MenuItem from "../components/Shared/MenuItem";
+import MenuItem from "../../../components/Shared/MenuItem";
+
 
 function TopbarItem({ icon, label, path, onClick, collapsed, extraContent }) {
     return (

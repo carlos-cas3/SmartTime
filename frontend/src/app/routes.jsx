@@ -1,4 +1,4 @@
-import Layout from "../layout/Layout";
+import Layout from "../features/layout/Layout";
 import Dashboard from "../features/dashboard/Dashboard";
 import Calendar from "../pages/Calendar";
 import Assignments from "../features/assignments/Assignments";

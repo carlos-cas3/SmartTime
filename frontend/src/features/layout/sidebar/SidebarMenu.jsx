@@ -1,14 +1,14 @@
-import HomeSidebarIcon from "../assets/home-Sidebar-icon.svg?react";
-import CalendarSidebarIcon from "../assets/calendar-Sidebar-icon.svg?react";
-import AssignmentsSidebarIcon from "../assets/assignments-Sidebar-icon.svg?react";
+import HomeSidebarIcon from "../../../assets/home-Sidebar-icon.svg?react";
+import CalendarSidebarIcon from "../../../assets/calendar-Sidebar-icon.svg?react";
+import AssignmentsSidebarIcon from "../../../assets/assignments-Sidebar-icon.svg?react";
 
-import ExamSidebarIcon from "../assets/examIcon-SidebarMenu.svg?react";
-import ExtraSidebarIcon from "../assets/extraIcon-SidebarMenu.svg?react";
-import ProjectSidebarIcon from "../assets/projectIcon-SidebarMenu.svg?react";
-import TaskSidebarIcon from "../assets/taskIcon-SidebarMenu.svg?react";
+import ExamSidebarIcon from "../../../assets/examIcon-SidebarMenu.svg?react";
+import ExtraSidebarIcon from "../../../assets/extraIcon-SidebarMenu.svg?react";
+import ProjectSidebarIcon from "../../../assets/projectIcon-SidebarMenu.svg?react";
+import TaskSidebarIcon from "../../../assets/taskIcon-SidebarMenu.svg?react";
 
-import ReportIcon from "../assets/reportIcon-SidebarMenu.svg?react";
-import WeeklyLoad from "../assets/weeklyLoadIcon-SidebarMenu.svg?react";
+import ReportIcon from "../../../assets/reportIcon-SidebarMenu.svg?react";
+import WeeklyLoad from "../../../assets/weeklyLoadIcon-SidebarMenu.svg?react";
 
 import SidebarItem from "./SidebarItem";
 

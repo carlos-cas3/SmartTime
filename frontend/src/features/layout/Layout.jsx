@@ -1,8 +1,8 @@
 // src/layouts/Layout.jsx
-import "../app/App.css";
+import "../../app/App.css";
 import { useState } from "react";
-import Sidebar from "../sidebar/Sidebar";
-import Topbar from "../topbar/Topbar";
+import Sidebar from "../layout/sidebar/Sidebar";
+import Topbar from "../layout/topbar/Topbar";
 import { Outlet, useLocation } from "react-router-dom";
 
 function Layout() {
