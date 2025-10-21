@@ -1,5 +1,5 @@
 import Layout from "../layout/Layout";
-import Home from "../components/Home/Home";
+import Dashboard from "../features/dashboard/Dashboard";
 import Calendar from "../pages/Calendar";
 import Assignments from "../components/assignments/Assignments";
 
@@ -7,8 +7,8 @@ import Profile from "../components/profile/Profile";
 import Settings from "../components/settings/Settings";
 import Notifications from "../components/notifications/Notifications"
 
-import Login from "../components/login/Login";
-import Register from "../components/register/Register";
+import Login from "../features/auth/login/Login";
+import Register from "../features/auth/register/Register";
 
 import Exams from "../components/assignments/exams/Exams";
 import Extras from "../components/assignments/extras/Extras";
@@ -30,7 +30,7 @@ const routes = [
         children: [
             {
                 path: "dashboard",
-                element: <Home />,
+                element: <Dashboard />,
             },
             {
                 path: "calendario",

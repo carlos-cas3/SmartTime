@@ -1,5 +1,5 @@
 // src/layouts/Layout.jsx
-import "../App.css";
+import "../app/App.css";
 import { useState } from "react";
 import Sidebar from "../sidebar/Sidebar";
 import Topbar from "../topbar/Topbar";

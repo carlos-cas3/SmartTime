@@ -1,19 +1,20 @@
+import { useEffect } from "react";
 import React, { useState } from "react";
+
+import { es } from "date-fns/locale";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import { format, parse, startOfWeek as dfStartOfWeek, getDay } from "date-fns";
-import { es } from "date-fns/locale";
 
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import CustomToolbar from "../custom/CustomToolbar";
+import CustomDateCell from "../custom/headers/CustomDateCell";
+import CustomMonthHeader from "../custom/headers/CustomMonthHeader";
+import useHighlightMonthCell from "../custom/headers/hooks/useHighlightMonthCell";
+
+import ContextMenu from "../menu/ContextMenu";
+import CustomDateCellWrapper from "../menu/CustomDateCellWrapper";
+
 import "./CalendarPage.css";
-
-import CustomToolbar from "./custom/CustomToolbar";
-import CustomMonthHeader from "./custom/headers/CustomMonthHeader";
-import useHighlightMonthCell from "./custom/headers/hooks/useHighlightMonthCell";
-import CustomDateCell from "./custom/headers/CustomDateCell";
-import { useEffect } from "react";
-
-import ContextMenu from "./menu/ContextMenu";
-import CustomDateCellWrapper from "./menu/CustomDateCellWrapper";
 
 const locales = { es };
 

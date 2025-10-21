@@ -1,10 +1,11 @@
 import { FaTasks, FaUser } from "react-icons/fa";
-import InfoCard from "../UI/InfoCard";
-import StudyHoursChart from "../charts/StudyHoursChart";
-import ActivityLineChart from "../charts/ActivityLineChart";
 
-import "./Home.css";
-import ProgressBarChart from "../charts/ProgressBarChart";
+import InfoCard from "../../components/UI/InfoCard";
+
+import "./Dashboard.css";
+
+import StudyHoursChart from "./components/StudyHoursChart";
+import ActivityLineChart from "./components/ActivityLineChart";
 
 export default function Dashboard() {
     const actividades = [
