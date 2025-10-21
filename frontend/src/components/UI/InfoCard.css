@@ -101,3 +101,65 @@
     background: #8b0038;
     transform: translateY(-2px);
 }
+
+
+
+/* --- Variante summary --- */
+.info-card-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+/* Encabezado con el icono y texto */
+.info-card-summary-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Fondo verde suave para el icono */
+.info-card-summary-icon-wrapper {
+    background-color: #ecfdf5; /* verde muy suave */
+    border-radius: 0.6rem;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Icono verde */
+.info-card-summary-icon {
+    color: #16a34a; /* verde medio */
+}
+
+/* Texto de descripción ("Completadas") */
+.info-card-summary-desc {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Valor principal ("13") */
+.info-card-summary-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #111;
+    margin-left: 0.2rem;
+}
+
+/* Usa los estilos de la barra ya definidos, pero puedes ajustarlos aquí si quieres un look más suave */
+.info-card-progress {
+    width: 100%;
+    height: 8px;
+    background-color: #e5e7eb; /* gris claro */
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-top: 0.3rem;
+}
+
+.info-card-progress-bar {
+    height: 100%;
+    background-color: #111827; /* gris oscuro */
+    border-radius: 9999px;
+    transition: width 0.4s ease;
+}

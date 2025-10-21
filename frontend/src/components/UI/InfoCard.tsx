@@ -4,7 +4,8 @@ import "./InfoCard.css";
 import InfoCardSimple from "./InfoCardSimple";
 import InfoCardStats from "./InfoCardStats";
 import InfoCardList from "./InfoCardList";
-import InfoCardSettings from "./InfoCardSettings"; // 👈 importa tu componente
+import InfoCardSettings from "./InfoCardSettings";
+import InfoCardSummary from "./InfoCardSummary";
 
 interface SettingsItem {
     key: string;
@@ -33,7 +34,7 @@ interface InfoCardProps {
     listItems?: ListItem[];
     settingsItems?: SettingsItem[]; // 👈 añadimos esta prop
     onChangeSetting?: (key: string, value: any) => void;
-    variant?: "simple" | "stats" | "list" | "settings"; // 👈 añadimos "settings"
+    variant?: "simple" | "stats" | "list" | "settings" | "summary";
     actions?: React.ReactNode; // 👈 añadimos actions
 }
 
@@ -48,7 +49,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
     settingsItems,
     onChangeSetting,
     variant = "simple",
-    actions, 
+    actions,
 }) => {
     return (
         <div
@@ -78,16 +79,24 @@ const InfoCard: React.FC<InfoCardProps> = ({
                 <InfoCardList description={description} listItems={listItems} />
             )}
 
+            {variant === "summary" && (
+                <InfoCardSummary
+                    icon={Icon}
+                    value={value}
+                    description={description}
+                    progress={progress}
+                />
+            )}
+
             {variant === "settings" && settingsItems && (
                 <InfoCardSettings
                     description={description}
                     settingsItems={settingsItems as any}
                     onChange={onChangeSetting}
-                
                 />
             )}
-            
-             {/* 👇 Nuevo bloque para el botón (si existe) */}
+
+            {/* 👇 Nuevo bloque para el botón (si existe) */}
             {actions && <div className="info-card-actions">{actions}</div>}
         </div>
     );

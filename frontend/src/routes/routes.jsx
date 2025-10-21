@@ -16,8 +16,10 @@ import Projects from "../components/assignments/projects/Projects";
 import Tasks from "../components/assignments/tasks/Tasks";
 
 
-import WeeklyLoad from "../components/weeklyLoad/WeeklyLoad";
+import CargaSemanal from "../components/cargaSemanal/CargaSemanal";
 import Reports from "../components/reports/Reports";
+
+import EditProfile from "../editprofile/EditProfile";
 
 
 
@@ -70,11 +72,15 @@ const routes = [
             },
             {
                 path: "cargaSemanal",
-                element: <WeeklyLoad/>
+                element: <CargaSemanal/>
             },
             {
                 path: "reportes",
                 element: <Reports/>
+            },
+            {
+                path: "editProfile",
+                element: <EditProfile/>
             }
         ],
     },

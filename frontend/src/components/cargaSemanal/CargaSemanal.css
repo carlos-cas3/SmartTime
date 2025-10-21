@@ -1,0 +1,16 @@
+.carga-semanal-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    height: 100%;
+}
+
+.carga-semanal-row {
+    display: grid;
+    gap: 2rem;
+}
+
+.carga-semanal-row.row-1 {
+    grid-template-columns: repeat(4, 1fr);
+}

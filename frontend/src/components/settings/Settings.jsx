@@ -9,8 +9,13 @@ import {
 
 import InfoCard from "../UI/InfoCard";
 import "./Settings.css";
+import ProfileCard from "../UI/Profilecard";
+
+import { useNavigate } from "react-router-dom";
 
 function Settings() {
+    const navigate = useNavigate(); 
+    
     // Preferencias del sistema
     const [preferences, setPreferences] = useState({
         language: "Español",
@@ -82,24 +87,24 @@ function Settings() {
         },
     ];
 
+    const user = {
+        name: "Juan Pérez",
+        initials: "JP",
+        email: "juan.perez@unmsm.edu.pe",
+        code: "20190234",
+        role: "Estudiante",
+        faculty: "Ingeniería de Sistemas e Informática",
+        cycle: "10mo Ciclo",
+    };
+
     return (
         <div className="settings-container">
-
             <div className="profile">
-                <InfoCard
-                    title={
-                        <div className="info-card-header-custom">
-                            <MdOutlineSecurity className="info-card-icon" />
-                            <span className="info-card-title-text">
-                                Seguridad
-                            </span>
-                        </div>
-                    }
-                    description="Configura las opciones de seguridad de la aplicación"
-                    variant="settings"
-                    settingsItems={securitySettings}
+                <ProfileCard
+                    user={user}
+                    variant="full"
+                    onEdit={() => navigate("/editProfile")}
                 />
-
             </div>
             <div className="settings-control">
                 <InfoCard
@@ -118,6 +123,7 @@ function Settings() {
                     actions={
                         <button
                             className="settings-action-btn"
+                            
                             onClick={handleSave}
                         >
                             Guardar cambios
