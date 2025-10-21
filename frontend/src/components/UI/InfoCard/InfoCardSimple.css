@@ -1,0 +1,45 @@
+/* === Variante SIMPLE (integrada al fondo) === */
+.info-card--simple {
+    box-shadow: none;
+}
+
+.info-card--simple .info-card-header {
+    margin-bottom: 0.5rem;
+}
+
+.info-card--simple .info-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Texto principal */
+.info-card--simple .info-card-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+}
+
+/* Descripción */
+.info-card--simple .info-card-desc {
+    color: #777;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Barra de progreso */
+.info-card--simple .info-card-progress {
+    height: 0.6rem;
+    background-color: #eee;
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+
+.info-card--simple .info-card-progress-bar {
+    height: 100%;
+    background-color: #800000;
+    border-radius: 0.375rem;
+}

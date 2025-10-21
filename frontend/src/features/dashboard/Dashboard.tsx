@@ -44,12 +44,14 @@ export default function Dashboard() {
                 />
                 <InfoCard
                     title="Avance del proyecto"
+                    icon={FaUser}
                     value="60%"
                     description="Completado hasta la fecha"
                     progress={60}
                 />
                 <InfoCard
                     variant="simple" // ✅ usa simple para que pase por InfoCardSimple
+                    icon={FaUser}
                     title="Avance del proyecto"
                     value="60%"
                     description="Completado hasta la fecha"

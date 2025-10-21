@@ -1,6 +1,10 @@
 import React from "react";
+import InfoCardBase from "./InfoCardBase";
+import "./InfoCardSimple.css";
 
 interface InfoCardSimpleProps {
+    title?: string;
+    icon?: React.ReactNode;
     value?: string | number;
     description?: string;
     progress?: number;
@@ -8,21 +12,21 @@ interface InfoCardSimpleProps {
 }
 
 const InfoCardSimple: React.FC<InfoCardSimpleProps> = ({
+    title,
+    icon,
     value,
     description,
     progress,
     chart,
 }) => {
     return (
-        <div className="info-card-simple">
+        <InfoCardBase title={title} icon={icon} variant="simple">
             {value !== undefined && <p className="info-card-value">{value}</p>}
             {description && <p className="info-card-desc">{description}</p>}
 
             {typeof progress === "number" &&
                 (chart ? (
-                    <div style={{ width: "50%", height: "120px" }}>
-                        {chart}
-                    </div>
+                    <div style={{ width: "50%", height: "120px" }}>{chart}</div>
                 ) : (
                     <div className="info-card-progress">
                         <div
@@ -31,7 +35,7 @@ const InfoCardSimple: React.FC<InfoCardSimpleProps> = ({
                         />
                     </div>
                 ))}
-        </div>
+        </InfoCardBase>
     );
 };
 
