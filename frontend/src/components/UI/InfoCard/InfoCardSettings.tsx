@@ -1,36 +1,39 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaChevronDown, FaCheck } from "react-icons/fa";
-
 import "./InfoCardSettings.css";
 
-/**
- * settingsItems: Array de objetos:
- * {
- *   key: string,
- *   icon?: ReactNode,
- *   title: string,
- *   description?: string,
- *   type: "toggle" | "select" | "button" | "custom",
- *   value?: any,
- *   options?: Array<{ value: any, label: string }>
- * }
- *
- * onChange(key, newValue) => función para actualizar valores temporalmente
- *
- * NOTA: No guarda automáticamente. Solo cambia localmente.
- */
+interface SelectOption {
+    value: any;
+    label: string;
+}
+
+interface SettingsItem {
+    key: string;
+    icon?: React.ReactNode;
+    title: string;
+    description?: string;
+    type: "toggle" | "select" | "button" | "custom";
+    value?: any;
+    actionLabel?: string;
+    options?: SelectOption[];
+}
+
+interface InfoCardSettingsProps {
+    description?: string;
+    settingsItems?: SettingsItem[];
+    onChange?: (key: string, newValue: any) => void;
+}
+
 export default function InfoCardSettings({
     description,
     settingsItems = [],
     onChange,
-}) {
-    // Estado local (sin autosave)
-    const [localValues, setLocalValues] = useState(() =>
+}: InfoCardSettingsProps) {
+    const [localValues, setLocalValues] = useState<Record<string, any>>(() =>
         settingsItems.reduce((acc, it) => ({ ...acc, [it.key]: it.value }), {})
     );
 
     useEffect(() => {
-        // sincronizar cuando cambien los props
         setLocalValues(
             settingsItems.reduce(
                 (acc, it) => ({ ...acc, [it.key]: it.value }),
@@ -39,35 +42,39 @@ export default function InfoCardSettings({
         );
     }, [settingsItems]);
 
-    const [editingKey, setEditingKey] = useState(null);
-    const inlineRefs = useRef({});
+    const [editingKey, setEditingKey] = useState<string | null>(null);
+    const inlineRefs = useRef<Record<string, HTMLDivElement | null>>(
+        {} as Record<string, HTMLDivElement | null>
+    );
 
     useEffect(() => {
-        function handleClick(e) {
+        function handleClick(e: MouseEvent) {
             if (editingKey) {
                 const el = inlineRefs.current[editingKey];
-                if (el && !el.contains(e.target)) setEditingKey(null);
+                if (el && !el.contains(e.target as Node)) {
+                    setEditingKey(null);
+                }
             }
         }
         document.addEventListener("mousedown", handleClick);
         return () => document.removeEventListener("mousedown", handleClick);
     }, [editingKey]);
 
-    const handleValueChange = (key, newVal) => {
+    const handleValueChange = (key: string, newVal: any) => {
         setLocalValues((prev) => ({ ...prev, [key]: newVal }));
-        if (typeof onChange === "function") onChange(key, newVal);
+        if (onChange) onChange(key, newVal);
     };
 
-    const handleToggle = (key, current) => {
+    const handleToggle = (key: string, current: any) => {
         handleValueChange(key, !current);
     };
 
-    const handleSelectChoose = (key, val) => {
+    const handleSelectChoose = (key: string, val: any) => {
         handleValueChange(key, val);
         setEditingKey(null);
     };
 
-    const renderControl = (item) => {
+    const renderControl = (item: SettingsItem) => {
         const val = localValues[item.key];
 
         if (item.type === "toggle") {
@@ -86,7 +93,9 @@ export default function InfoCardSettings({
             return (
                 <div
                     className="inline-select"
-                    ref={(el) => (inlineRefs.current[item.key] = el)}
+                    ref={(el) => {
+                        inlineRefs.current[item.key] = el;
+                    }}
                 >
                     {editingKey === item.key ? (
                         <div className="inline-options" role="listbox">
@@ -110,7 +119,7 @@ export default function InfoCardSettings({
                                     <span className="inline-option-label">
                                         {opt.label}
                                     </span>
-                                    {localValues[item.key] === opt.value && (
+                                    {val === opt.value && (
                                         <FaCheck className="inline-check" />
                                     )}
                                 </button>
@@ -152,7 +161,6 @@ export default function InfoCardSettings({
             <div className="settings-header">
                 {description && <p className="settings-desc">{description}</p>}
             </div>
-
             <div className="settings-list">
                 {settingsItems.map((item) => (
                     <div className="settings-item" key={item.key}>
@@ -171,11 +179,9 @@ export default function InfoCardSettings({
                                 )}
                             </div>
                         </div>
-
                         <div className="settings-right">
                             <div className="settings-control-wrap">
                                 {renderControl(item)}
-                                {/* ❌ Eliminado el mensaje "Guardado" */}
                             </div>
                         </div>
                     </div>

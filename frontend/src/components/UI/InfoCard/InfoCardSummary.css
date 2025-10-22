@@ -1,0 +1,56 @@
+.info-card-summary {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.summary-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.7;
+}
+
+.summary-description {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.summary-value {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.summary-progress {
+    margin-top: 4px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: #0093f4;
+    /* o tu color primario */
+    transition: width 0.4s ease;
+}

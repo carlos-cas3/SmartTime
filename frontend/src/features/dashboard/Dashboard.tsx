@@ -1,4 +1,4 @@
-import { FaTasks, FaUser } from "react-icons/fa";
+import { FaBookOpen, FaTasks, FaUser } from "react-icons/fa";
 
 import InfoCard from "../../components/UI/InfoCard";
 
@@ -6,6 +6,8 @@ import "./Dashboard.css";
 
 import StudyHoursChart from "./components/StudyHoursChart";
 import ActivityLineChart from "./components/ActivityLineChart";
+import InfoCardList from "../../components/UI/InfoCard/InfoCardList";
+import InfoCardStats from "../../components/UI/InfoCard/InfoCardStats";
 
 export default function Dashboard() {
     const actividades = [
@@ -50,7 +52,7 @@ export default function Dashboard() {
                     progress={60}
                 />
                 <InfoCard
-                    variant="simple" // ✅ usa simple para que pase por InfoCardSimple
+                    variant="simple"
                     icon={FaUser}
                     title="Avance del proyecto"
                     value="60%"
@@ -61,28 +63,44 @@ export default function Dashboard() {
 
             {/* FILA 2 → 2 columnas */}
             <div className="dashboard-row row-2">
-                <InfoCard
+                <InfoCardStats
                     title="Distribución de horas dedicadas al estudio"
                     description="Horas de estudio semanales"
-                    variant="stats"
                     chart={<StudyHoursChart />}
                 />
-                <InfoCard
-                    title="Distribución de horas dedicadas al estudio"
-                    description="Horas de estudio semanales"
-                    variant="stats"
+                <InfoCardStats
+                    title="Progreso de actividad"
+                    description="Tendencia semanal de productividad"
                     chart={<ActivityLineChart />}
                 />
             </div>
 
             {/* FILA 3 → 1 columna */}
             <div className="dashboard-row row-1">
-                <InfoCard
-                    title="Actividades pendientes"
-                    description="Lista de actividades con sus fechas y prioridades"
-                    variant="list"
-                    icon={FaTasks}
-                    listItems={actividades}
+                <InfoCardList
+                    title="Tareas pendientes"
+                    icon={<FaBookOpen />}
+                    description="Actividades programadas para esta semana"
+                    listItems={[
+                        {
+                            icon: "work",
+                            title: "Reunión de proyecto",
+                            date: "21/10",
+                            priority: "Alta",
+                        },
+                        {
+                            icon: "book",
+                            title: "Revisar documentación",
+                            date: "22/10",
+                            priority: "Media",
+                        },
+                        {
+                            icon: "code",
+                            title: "Implementar API",
+                            date: "23/10",
+                            priority: "Baja",
+                        },
+                    ]}
                 />
             </div>
         </div>
