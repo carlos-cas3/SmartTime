@@ -1,13 +1,12 @@
 import { FaBookOpen, FaTasks, FaUser } from "react-icons/fa";
 
-import InfoCard from "../../components/UI/InfoCard";
-
 import "./Dashboard.css";
 
 import StudyHoursChart from "./components/StudyHoursChart";
 import ActivityLineChart from "./components/ActivityLineChart";
 import InfoCardList from "../../components/UI/InfoCard/InfoCardList";
 import InfoCardStats from "../../components/UI/InfoCard/InfoCardStats";
+import InfoCardSimple from "../../components/UI/InfoCard/InfoCardSimple";
 
 export default function Dashboard() {
     const actividades = [
@@ -38,22 +37,23 @@ export default function Dashboard() {
         <div className="dashboard-rows">
             <div className="dashboard-row row-3">
                 {/* FILA 1 → 3 columnas */}
-                <InfoCard
+                <InfoCardSimple
                     title="Usuarios activos"
-                    icon={FaUser}
+                    icon={<FaUser />}
                     value="1,230"
                     description="Usuarios en línea hoy"
                 />
-                <InfoCard
+
+                <InfoCardSimple
                     title="Avance del proyecto"
-                    icon={FaUser}
+                    icon={<FaUser />}
                     value="60%"
                     description="Completado hasta la fecha"
                     progress={60}
                 />
-                <InfoCard
-                    variant="simple"
-                    icon={FaUser}
+
+                <InfoCardSimple
+                    icon={<FaUser />}
                     title="Avance del proyecto"
                     value="60%"
                     description="Completado hasta la fecha"

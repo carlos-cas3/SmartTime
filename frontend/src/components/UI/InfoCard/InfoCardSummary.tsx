@@ -17,7 +17,7 @@ const InfoCardSummary: React.FC<InfoCardSummaryProps> = ({
     progress,
 }) => {
     return (
-        <div className="info-card-summary">
+        <div className="info-card info-card-summary">
             <div className="summary-header">
                 <div className="summary-icon">{icon}</div>
                 {tag && <span className="summary-tag">{tag}</span>}

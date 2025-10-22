@@ -2,9 +2,7 @@
 
 /* Elimina completamente el fondo y sombra del card base */
 .info-card--simple {
-    background: transparent !important;
-    box-shadow: none !important;
-    padding: 0 !important;
+
 }
 
 /* Header minimalista (opcional) */
