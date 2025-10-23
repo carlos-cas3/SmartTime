@@ -1,43 +1,38 @@
-import InfoCard from "../../components/UI/InfoCard";
-import { FaBookOpen, FaCheckCircle, FaClock } from "react-icons/fa";
-import { IoAlertCircle } from "react-icons/io5";
+import InfoCardSummary from "../../components/UI/InfoCard/InfoCardSummary.tsx";
+import { FaBook, FaTasks, FaCalendarCheck } from "react-icons/fa";
 import "./CargaSemanal.css";
 
 function CargaSemanal() {
     return (
         <div className="carga-semanal-rows">
+            <h1>Carga Semanal</h1> {/* ← AHORA ARRIBA */}
             <div className="carga-semanal-row row-1">
-                <InfoCard
-                    variant="summary"
-                    value="25"
-                    description="Total de Actividades"
-                    icon={FaBookOpen}
-                    progress={100}
+                <InfoCardSummary
+                    icon={<FaBook />}
+                    tag="Esta semana"
+                    description="Promedio general"
+                    value="18.4"
+                    progress={75}
                 />
-                <InfoCard
-                    variant="summary"
-                    value="13"
-                    description="Completadas"
-                    icon={FaCheckCircle}
-                    progress={50}
+                <InfoCardSummary
+                    icon={<FaCalendarCheck />}
+                    description="Asistencias de hoy"
+                    value="92%"
+                    progress={92}
                 />
-                <InfoCard
-                    variant="summary"
-                    value="12"
-                    description="Pendientes"
-                    icon={FaClock}
-                    progress={30}
+                <InfoCardSummary
+                    icon={<FaTasks />}
+                    tag="Pendientes"
+                    description="Tareas por entregar"
+                    value="4"
                 />
-                <InfoCard
-                    variant="summary"
-                    value="5"
-                    description="Atrasadas"
-                    icon={IoAlertCircle}
-                    progress={10}
+                <InfoCardSummary
+                    icon={<FaTasks />}
+                    tag="Pendientes"
+                    description="Tareas por entregar"
+                    value="4"
                 />
             </div>
-
-            <h1>Carga Semanal</h1>
         </div>
     );
 }

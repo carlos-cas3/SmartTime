@@ -1,5 +1,6 @@
 import React from "react";
 import { FaBookOpen, FaBriefcase, FaCode, FaCalendarAlt } from "react-icons/fa";
+import InfoCardBase from "./InfoCardBase";
 import "./InfoCardList.css";
 
 export interface InfoCardListItem {
@@ -11,33 +12,35 @@ export interface InfoCardListItem {
 }
 
 interface InfoCardListProps {
+    title?: string;
+    icon?: React.ReactNode;
     description?: string;
     listItems: InfoCardListItem[];
 }
 
 const InfoCardList: React.FC<InfoCardListProps> = ({
+    title,
+    icon,
     description,
     listItems,
 }) => {
     const getIcon = (type?: string) => {
         switch (type) {
             case "book":
-                return <FaBookOpen size={22} />;
+                return <FaBookOpen size={20} />;
             case "work":
-                return <FaBriefcase size={22} />;
+                return <FaBriefcase size={20} />;
             case "code":
-                return <FaCode size={22} />;
+                return <FaCode size={20} />;
             default:
                 return null;
         }
     };
 
     return (
-        <div className="info-card-list">
+        <InfoCardBase title={title} icon={icon} variant="list">
             {description && (
-                <div className="info-card-list-header">
-                    <p>{description}</p>
-                </div>
+                <p className="info-card-list-description">{description}</p>
             )}
 
             <div className="info-card-list-container">
@@ -49,10 +52,11 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
                     listItems.map((item, index) => (
                         <div key={index} className="info-card-list-item">
                             <div className="info-card-list-left">
-                                <div className="info-card-list-icon">
-                                    {getIcon(item.icon)}
-                                </div>
-
+                                {item.icon && (
+                                    <div className="info-card-list-icon">
+                                        {getIcon(item.icon)}
+                                    </div>
+                                )}
                                 <div className="info-card-list-text">
                                     <h4>{item.title}</h4>
                                     {item.course && <span>{item.course}</span>}
@@ -62,7 +66,7 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
                             <div className="info-card-list-right">
                                 {item.date && (
                                     <div className="date">
-                                        <FaCalendarAlt size={15} />
+                                        <FaCalendarAlt size={14} />
                                         <span>{item.date}</span>
                                     </div>
                                 )}
@@ -80,7 +84,7 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
                     ))
                 )}
             </div>
-        </div>
+        </InfoCardBase>
     );
 };
 

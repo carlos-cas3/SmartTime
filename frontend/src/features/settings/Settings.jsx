@@ -9,33 +9,32 @@ import {
     MdOutlineSecurity,
 } from "react-icons/md";
 
-import InfoCard from "../../components/UI/InfoCard";
 import ProfileCard from "../../components/UI/Profilecard";
+import InfoCardBase from "../../components/UI/InfoCard/InfoCardBase";
+import InfoCardSettings from "../../components/UI/InfoCard/InfoCardSettings";
 
 import "./Settings.css";
 
+
 function Settings() {
-    const navigate = useNavigate(); 
-    
+    const navigate = useNavigate();
+
     // Preferencias del sistema
     const [preferences, setPreferences] = useState({
         language: "Español",
         theme: false,
         hourZone: "GMT-5",
     });
+    const [isDirty, setIsDirty] = useState(false);
 
-    // Usuaruio cambia algo (toggle, select, etc.)
     const handleSettingChange = (key, value) => {
-        setPreferences((prev) => ({
-            ...prev,
-            [key]: value,
-        }));
+        setPreferences((prev) => ({ ...prev, [key]: value }));
+        setIsDirty(true); // ← Activa el botón automáticamente
     };
 
-    // Usuario hace clic en "Guardar cambios"
     const handleSave = () => {
-        console.log("Preferencias guardadas:", preferences);
-        alert("Preferencias guardadas correctamente ✅");
+        console.log("Guardando en backend:", preferences);
+        setIsDirty(false); // ← DESPUÉS de guardar, lo reseteas
     };
 
     // Configuración de items del sistema
@@ -108,31 +107,19 @@ function Settings() {
                 />
             </div>
             <div className="settings-control">
-                <InfoCard
-                    title={
-                        <div className="info-card-header-custom">
-                            <IoMdSettings className="info-card-icon" />
-                            <span className="info-card-title-text">
-                                Preferencias del Sistema
-                            </span>
-                        </div>
-                    }
-                    description="Personaliza la apariencia y configuración regional"
+                <InfoCardBase
+                    title="Preferencias del Sistema"
+                    isDirty={isDirty}
+                    onSave={handleSave}
                     variant="settings"
-                    settingsItems={settingsSystem}
-                    onChangeSetting={handleSettingChange}
-                    actions={
-                        <button
-                            className="settings-action-btn"
-                            
-                            onClick={handleSave}
-                        >
-                            Guardar cambios
-                        </button>
-                    }
-                />
+                >
+                    <InfoCardSettings
+                        settingsItems={settingsSystem}
+                        onChange={handleSettingChange}
+                    />
+                </InfoCardBase>
 
-                <InfoCard
+                <InfoCardBase
                     title={
                         <div className="info-card-header-custom">
                             <MdOutlineSecurity className="info-card-icon" />
@@ -141,10 +128,15 @@ function Settings() {
                             </span>
                         </div>
                     }
-                    description="Configura las opciones de seguridad de la aplicación"
                     variant="settings"
-                    settingsItems={securitySettings}
-                />
+                >
+                    <InfoCardSettings
+                        settingsItems={securitySettings}
+                        onChange={(key, value) => {
+                            console.log("Seguridad updated:", key, value); // aplica instantáneo sin botón
+                        }}
+                    />
+                </InfoCardBase>
             </div>
         </div>
     );
