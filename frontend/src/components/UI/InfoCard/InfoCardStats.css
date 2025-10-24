@@ -36,6 +36,11 @@
 }
 
 .info-card-stats .info-card-chart {
-    margin-top: 0.25rem;
-    /* un ligero respiro visual */
+    flex: 1;
+    width: 100%;
+    height: 50rem; 
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

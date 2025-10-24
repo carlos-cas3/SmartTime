@@ -7,6 +7,7 @@ interface InfoCardStatsProps {
     icon?: React.ReactNode;
     description?: string;
     chart?: React.ReactNode;
+    legend?: React.ReactNode; 
 }
 
 const InfoCardStats: React.FC<InfoCardStatsProps> = ({

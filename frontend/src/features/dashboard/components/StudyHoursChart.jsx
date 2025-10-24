@@ -1,11 +1,4 @@
-import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    Tooltip,
-    ResponsiveContainer,
-} from "recharts";
+import BarChartSimple from "../../../components/UI/Charts/BarChartSimple";
 
 export default function StudyHoursChart() {
     const data = [
@@ -17,16 +10,15 @@ export default function StudyHoursChart() {
         { day: "Sab", hours: 7 },
         { day: "Dom", hours: 4 },
     ];
+
     return (
-        <div>
-            <ResponsiveContainer width="100%" height={250}>
-                <BarChart data={data}>
-                    <XAxis dataKey="day" />
-                    <YAxis />
-                    <Tooltip />
-                    <Bar dataKey="hours" fill="#8B0000" />
-                </BarChart>
-            </ResponsiveContainer>
-        </div>
+        <BarChartSimple
+            data={data}
+            xKey="day"
+            yKey="hours"
+            color="#8B0000"
+            showGrid={true}
+            showTooltip={true}
+        />
     );
 }
