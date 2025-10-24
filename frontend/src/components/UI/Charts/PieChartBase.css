@@ -1,0 +1,30 @@
+.piechart-container {
+    width: 100%;
+    background: #fff;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s ease;
+}
+
+.piechart-container:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.piechart-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+.piechart-subtitle {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+    text-align: center;
+}

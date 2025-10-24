@@ -14,3 +14,11 @@
 .carga-semanal-row.row-1 {
     grid-template-columns: repeat(4, 1fr);
 }
+
+.carga-semanal-row.row-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.carga-semanal-row.row-3 {
+    grid-template-columns: repeat(1, 1fr);
+}
