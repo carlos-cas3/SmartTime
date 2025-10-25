@@ -1,4 +1,4 @@
-import InfoCardTable from "../../../components/UI/InfoCard/InfoCardTable";
+import InfoCardTable from "../../../components/UI/InfoCard/InfoCardTable/InfoCardTable";
 
 export default function ReportsTableRow() {
     return (
