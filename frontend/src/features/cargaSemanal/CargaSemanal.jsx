@@ -4,7 +4,7 @@ import CargaSemanalStatsRow from "./components/CargaSemanalStatsRow";
 import CargaSemanalChartsRow from "./components/CargaSemanalChartsRow";
 import CargaSemanalBarRow from "./components/CargaSemanalBarRow";
 
-function CargaSemanal() {
+export default function CargaSemanal() {
     return (
         <div className="carga-semanal-rows">
             <div className="carga-semanal-row row-1">
@@ -18,10 +18,6 @@ function CargaSemanal() {
             <div className="carga-semanal-row row-3">
                 <CargaSemanalBarRow />
             </div>
-
-            
         </div>
     );
 }
-
-export default CargaSemanal;

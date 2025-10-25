@@ -1,0 +1,24 @@
+.reports-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    height: 100%;
+}
+
+.reports-row {
+    display: grid;
+    gap: 2rem;
+}
+
+.reports-row.row-1 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.reports-row.row-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.reports-row.row-3 {
+    grid-template-columns: repeat(1, 1fr);
+}

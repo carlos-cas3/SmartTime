@@ -4,9 +4,10 @@ import "./InfoCardSummary.css";
 interface InfoCardSummaryProps {
     icon?: React.ReactNode;
     tag?: string; // Ej: "Esta semana", "Hoy", etc.
-    description: string;
+    description?: string;
     value: string | number;
     progress?: number; // opcional, 0–100
+    titleBesideIcon?: boolean; //
 }
 
 const InfoCardSummary: React.FC<InfoCardSummaryProps> = ({
@@ -15,15 +16,26 @@ const InfoCardSummary: React.FC<InfoCardSummaryProps> = ({
     description,
     value,
     progress,
+    titleBesideIcon,
 }) => {
     return (
         <div className="info-card info-card-summary">
             <div className="summary-header">
-                <div className="summary-icon">{icon}</div>
+                {/* IZQUIERDA: icono + posible título */}
+                <div className="summary-left">
+                    {icon && <div className="summary-icon">{icon}</div>}
+                    {titleBesideIcon && (
+                        <span className="summary-title">{titleBesideIcon}</span>
+                    )}
+                </div>
+
+                {/* DERECHA: tag tal como ya lo tienes */}
                 {tag && <span className="summary-tag">{tag}</span>}
             </div>
 
-            <p className="summary-description">{description}</p>
+            {description && (
+                <p className="summary-description">{description}</p>
+            )}
 
             <div className="summary-value">{value}</div>
 
