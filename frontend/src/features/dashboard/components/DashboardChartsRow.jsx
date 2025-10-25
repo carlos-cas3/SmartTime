@@ -1,7 +1,7 @@
 import InfoCardStats from "../../../components/UI/InfoCard/InfoCardStats";
 
-import StudyHoursChart from "./StudyHoursChart";
-import ActivityLineChart from "./ActivityLineChart";
+import StudyHoursChart from "./charts/StudyHoursChart";
+import ActivityLineChart from "./charts/ActivityLineChart";
 
 export default function DashboardChartsRow() {
     return (

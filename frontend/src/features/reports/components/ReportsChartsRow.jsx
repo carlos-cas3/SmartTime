@@ -1,6 +1,6 @@
 import InfoCardStats from "../../../components/UI/InfoCard/InfoCardStats";
-import ActivityPendingXDayBarChart from "./ActivityPendingXDayBarChart";
-import ProductivityChart from "./ProductivityChart";
+import ActivityPendingXDayBarChart from "./charts/ActivityPendingXDayBarChart";
+import ProductivityChart from "./charts/ProductivityChart";
 
 export default function ReportsChartsRow() {
     return (

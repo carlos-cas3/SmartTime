@@ -1,5 +1,5 @@
-import ActivityPieChart from "./ActivityPieChart";
-import AcademicVsExtra from "./AcademicVsExtra";
+import ActivityPieChart from "./charts/ActivityPieChart";
+import AcademicVsExtra from "./charts/AcademicVsExtra";
 import InfoCardStats from "../../../components/UI/InfoCard/InfoCardStats";
 
 export default function CargaSemanalChartsRow() {

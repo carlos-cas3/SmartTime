@@ -1,4 +1,4 @@
-import BarChartComparative from "../../../components/UI/Charts/BarChart/BarChartComparative";
+import BarChartComparative from "../../../../components/UI/Charts/BarChart/BarChartComparative";
 
 export default function ActivityPendingXDayBarChart() {
     const data = [

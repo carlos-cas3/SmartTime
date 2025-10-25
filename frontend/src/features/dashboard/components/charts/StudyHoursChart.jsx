@@ -1,4 +1,4 @@
-import BarChartSimple from "../../../components/UI/Charts/BarChart/BarChartSimple";
+import BarChartSimple from "../../../../components/UI/Charts/BarChart/BarChartSimple";
 
 export default function StudyHoursChart() {
     const data = [

@@ -1,4 +1,4 @@
-import PieChartBase from "../../../components/UI/Charts/PieChartBase";
+import PieChartBase from "../../../../components/UI/Charts/PieChartBase";
 
 export default function ActivityPieChart() {
     const data = [

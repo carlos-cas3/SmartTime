@@ -1,5 +1,5 @@
 // components/ActivityLineChart.jsx
-import LineChartBase from "../../../components/UI/Charts/LineChartBase";
+import LineChartBase from "../../../../components/UI/Charts/LineChartBase";
 
 export default function ActivityLineChart() {
     // Datos específicos del dashboard
