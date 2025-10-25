@@ -1,0 +1,9 @@
+.info-card-table-wrapper {
+    width: 100%;
+}
+
+.info-card-desc {
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}

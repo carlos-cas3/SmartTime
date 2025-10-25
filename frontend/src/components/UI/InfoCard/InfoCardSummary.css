@@ -11,6 +11,18 @@
     align-items: center;
 }
 
+.summary-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.summary-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
 .summary-icon {
     width: 40px;
     height: 40px;
@@ -33,10 +45,11 @@
     opacity: 0.8;
 }
 
-.summary-value {
+.info-card-summary .summary-value {
     font-size: 2rem;
     font-weight: bold;
 }
+
 
 .summary-progress {
     margin-top: 4px;

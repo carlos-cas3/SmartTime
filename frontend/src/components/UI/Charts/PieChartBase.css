@@ -28,3 +28,9 @@
     margin-bottom: 1rem;
     text-align: center;
 }
+
+.pie-wrapper {
+    width: 100%;
+    height: 300px;
+    /* 👈 define el tamaño del área del gráfico */
+}
