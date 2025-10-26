@@ -7,17 +7,20 @@ export default function DropdownSelect({
     onChange,
     placeholder = "Seleccionar...",
     icon,
-    open, // <- controlado desde el padre
-    onToggle, // <- abrir/cerrar
-    onClose, // <- cerrar cuando elegimos opción
+    open,
+    onToggle,
+    onClose,
+    size = "md", // ← nuevo prop
 }) {
     const selected = options.find((o) => o.value === value);
 
     return (
-        <div className="dropdown-select" onClick={(e) => e.stopPropagation()}>
+        <div
+            className={`dropdown-select ${size}`}
+            onClick={(e) => e.stopPropagation()}
+        >
             <button className="dropdown-trigger" onClick={onToggle}>
                 {icon && <span className="dropdown-icon">{icon}</span>}
-
                 <span
                     className={`dropdown-label ${
                         !selected ? "placeholder" : ""
@@ -25,7 +28,6 @@ export default function DropdownSelect({
                 >
                     {selected ? selected.label : placeholder}
                 </span>
-
                 <FiChevronDown
                     className={`dropdown-chevron ${open ? "open" : ""}`}
                 />

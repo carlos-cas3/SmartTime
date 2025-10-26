@@ -4,7 +4,7 @@ import { BookOpen, ClipboardList, PenTool } from "lucide-react";
 import "./ActivityItem.css";
 
 
-export default function ActivityItem({ item }) {
+export default function ActivityItem({ item , onAction}) {
     const getIconByType = (type) => {
         switch (type) {
             case "exam":
@@ -19,7 +19,7 @@ export default function ActivityItem({ item }) {
     };
 
     return (
-        <div className="activity-item">
+        <div className={`activity-item status-${item.status} priority-${item.priority}`}>
             {/* ICONO */}
             <div className="activity-icon">{getIconByType(item.type)}</div>
 
@@ -27,6 +27,7 @@ export default function ActivityItem({ item }) {
             <div className="activity-info">
                 <div className="activity-title-row">
                     <h3 className="activity-title">{item.title}</h3>
+                    
                     <DropdownActions
                         actions={[
                             {
@@ -42,7 +43,7 @@ export default function ActivityItem({ item }) {
                                 type: "delete",
                             },
                         ]}
-                        onActionClick={(id) => console.log("Acción:", id)}
+                        onActionClick={(id) => onAction(id, item)} 
                     />
                 </div>
 

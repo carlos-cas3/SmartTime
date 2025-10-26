@@ -1,14 +1,11 @@
 .activity-item {
     display: flex;
     position: relative;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 16px 20px;
+    gap: 1rem;
+    padding: 2rem 2rem;
     background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    margin-bottom: 12px;
-    cursor: pointer;
+    border: 0.2rem solid #e5e7eb;
+    border-radius: 1rem;
     z-index: auto;
 }
 
@@ -17,9 +14,26 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
     transform: translateY(-2px);
     z-index: 1;
-    position: relative; /* ✅ EVITA stacking context paralelo */
+    position: relative;
+    /* ✅ EVITA stacking context paralelo */
 }
 
+
+/* BORDES SEGÚN ESTADO */
+.activity-item.status-completed {
+    border-color: #10b981;
+    /* verde */
+}
+
+.activity-item.status-pending {
+    border-color: #fbbf24;
+    /* amarillo/anaranjado */
+}
+
+.activity-item.status-not-completed {
+    border-color: #ef4444;
+    /* rojo */
+}
 
 .activity-icon {
     width: 44px;
@@ -41,7 +55,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative; /* IMPORTANTE para dropdown */
+    position: relative;
+    /* IMPORTANTE para dropdown */
 }
 
 .activity-title {
@@ -110,3 +125,4 @@
 .date {
     color: #6b7280;
 }
+
