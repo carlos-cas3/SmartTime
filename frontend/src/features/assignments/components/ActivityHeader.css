@@ -1,0 +1,73 @@
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.activity-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-input {
+    width: 20rem;
+    max-width: 350px;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #dcdcdc;
+    font-size: 14px;
+}
+
+.filters {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.filters select {
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    background: #fff;
+    font-size: 14px;
+}
+
+.activity-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.view-toggle {
+    height: 36px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f3f3f3;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.view-toggle:hover {
+    background: #e6e6e6;
+}
+
+.add-btn {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    border: none;
+    background: #7b1e3f;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.add-btn:hover {
+    background: #681a35;
+}

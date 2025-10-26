@@ -1,5 +1,5 @@
 import React from "react";
-import InfoCardBase from "./InfoCardBase";
+import InfoCardBase from "../InfoCardBase.tsx";
 import Table from "./Table.tsx";
 import "./InfoCardTable.css";
 

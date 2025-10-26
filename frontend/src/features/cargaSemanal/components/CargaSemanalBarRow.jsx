@@ -1,5 +1,5 @@
 import InfoCardStats from "../../../components/UI/InfoCard/InfoCardStats";
-import CurseBarChart from "./CurseBarChart";
+import CurseBarChart from "./charts/CurseBarChart";
 
 export default function CargaSemanalBarRow() {
     return (

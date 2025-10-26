@@ -1,4 +1,4 @@
-import BarChartStacked from "../../../components/UI/Charts/BarChartStacked";
+import BarChartStacked from "../../../../components/UI/Charts/BarChart/BarChartStacked";
 
 export default function StudyHoursChart() {
     const data = [

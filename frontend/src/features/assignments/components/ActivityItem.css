@@ -1,0 +1,112 @@
+.activity-item {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    z-index: auto;
+}
+
+.activity-item:hover {
+    border-color: #d0d4db;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
+    z-index: 1;
+    position: relative; /* ✅ EVITA stacking context paralelo */
+}
+
+
+.activity-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 12px;
+    background: #f4f6fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #374151;
+}
+
+.activity-info {
+    flex: 1;
+}
+
+.activity-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative; /* IMPORTANTE para dropdown */
+}
+
+.activity-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.activity-category {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 3px;
+    display: block;
+}
+
+.activity-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.83rem;
+    margin-top: 10px;
+}
+
+/* CHIP BASE */
+.chip {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-transform: capitalize;
+}
+
+/* STATUS */
+.status.pending {
+    background: #fff9e6;
+    color: #b45309;
+}
+
+.status.completed {
+    background: #e6f9ed;
+    color: #047857;
+}
+
+.status.not-completed {
+    background: #ffe8e8;
+    color: #b91c1c;
+}
+
+/* PRIORIDAD */
+.priority.high {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.priority.medium {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.priority.low {
+    background: #e0f7f2;
+    color: #047857;
+}
+
+.date {
+    color: #6b7280;
+}

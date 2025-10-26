@@ -1,7 +1,7 @@
 import { Bar, Legend, Tooltip, CartesianGrid, XAxis, YAxis } from "recharts";
 import BarChartBase from "./BarChartBase";
 import CustomTooltipComparative from "./CustomToolTipComparative";
-import CustomLegend from "./CustomLegend";
+import CustomLegend from "../CustomLegend";
 
 export default function BarChartComparative({ data, keys, colors }) {
     // Defaults — SOLO si el usuario NO manda `colors`

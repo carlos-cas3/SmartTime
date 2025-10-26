@@ -1,4 +1,4 @@
-import RadialChartBase from "../../../components/UI/Charts/RadialChartBase";
+import RadialChartBase from "../../../../components/UI/Charts/RadialChartBase";
 
 export default function ProductivityRadialChart() {
     const data = [
