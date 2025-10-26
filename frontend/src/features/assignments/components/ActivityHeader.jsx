@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import DropdownSelect from "../../../components/UI/Dropdown/DropDownSelect";
+import DropdownSelect from "../../../components/UI/Dropdown/DropdownSelect";
 import { Grid, List } from "lucide-react";
 import "./ActivityHeader.css";
 
