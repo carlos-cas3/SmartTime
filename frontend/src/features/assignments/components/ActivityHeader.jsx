@@ -62,6 +62,7 @@ export default function ActivityHeader({
                             );
                         }}
                         onClose={() => setOpenDropdown(null)}
+                        size="sm"
                     />
 
                     <DropdownSelect
@@ -77,6 +78,7 @@ export default function ActivityHeader({
                             );
                         }}
                         onClose={() => setOpenDropdown(null)}
+                        size="sm"
                     />
                 </div>
             </div>
