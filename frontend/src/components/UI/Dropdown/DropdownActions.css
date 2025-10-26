@@ -1,0 +1,77 @@
+.actions-wrapper {
+    position: relative;
+    z-index: auto; /* 👈 evita crear stacking context propio */
+}
+.actions-trigger {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s ease;
+}
+
+.actions-trigger:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.actions-menu {
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    padding: 6px 0;
+    min-width: 140px;
+    z-index: 999999; /* 🚨 más alto que todo */
+    pointer-events: auto;
+}
+
+
+/* Items del menú */
+.action-item {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.18s ease;
+    display: flex;           /* ✅ Alinea icono + texto horizontal */
+    align-items: center;     /* ✅ Centrado vertical */
+    gap: 8px;                /* ✅ Espacio entre icono y texto */
+}
+
+.action-icon {
+    display: flex;           /* ✅ Por si son íconos SVG */
+    align-items: center;
+    font-size: 1rem;
+}
+
+
+.action-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+/* Estilo para eliminar */
+.action-item.delete {
+    color: #dc2626;
+    font-weight: 500;
+}
+
+.action-item.delete:hover {
+    background: rgba(255, 0, 0, 0.08);
+}
+
+@keyframes smoothFade {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

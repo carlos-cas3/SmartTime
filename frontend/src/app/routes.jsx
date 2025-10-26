@@ -10,10 +10,11 @@ import Reports from "../features/reports/Reports";
 import Login from "../features/auth/login/Login";
 import Register from "../features/auth/register/Register";
 
-import Exams from "../features/assignments/exams/Exams";
-import Extras from "../features/assignments/extras/Extras";
-import Projects from "../features/assignments/projects/Projects";
-import Tasks from "../features/assignments/tasks/Tasks";
+
+import Exams from "../features/assignments/pages/Exams";
+import Extras from "../features/assignments/pages/Extras";
+import Projects from "../features/assignments/pages/Projects";
+import Tasks from "../features/assignments/pages/Tasks";
 
 
 import CargaSemanal from "../features/cargaSemanal/CargaSemanal";
