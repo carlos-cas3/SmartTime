@@ -1,3 +1,5 @@
+import { createPortal } from "react-dom"
+
 import { useEffect } from "react";
 import DropdownSelect from "../../../components/UI/Dropdown/DropdownSelect";
 
@@ -18,7 +20,7 @@ export default function ActivityModal({
 
     if (!isOpen) return null;
 
-    return (
+    return createPortal(
         <div className="modal-overlay" onClick={onClose}>
             <div
                 className="modal-container"
@@ -108,6 +110,7 @@ export default function ActivityModal({
                     </div>
                 </form>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }
