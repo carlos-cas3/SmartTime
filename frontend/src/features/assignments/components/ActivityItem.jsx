@@ -3,8 +3,13 @@ import DropdownActions from "../../../components/UI/Dropdown/DropdownActions";
 import { BookOpen, ClipboardList, PenTool } from "lucide-react";
 import "./ActivityItem.css";
 
-
-export default function ActivityItem({ item , onAction}) {
+export default function ActivityItem({
+    item,
+    onAction,
+    openDropdownId,
+    onToggleDropdown,
+    onCloseDropdown,
+}) {
     const getIconByType = (type) => {
         switch (type) {
             case "exam":
@@ -19,16 +24,20 @@ export default function ActivityItem({ item , onAction}) {
     };
 
     return (
-        <div className={`activity-item status-${item.status} priority-${item.priority}`}>
-            {/* ICONO */}
+        <div
+            className={`activity-item status-${item.status} priority-${item.priority}`}
+        >
             <div className="activity-icon">{getIconByType(item.type)}</div>
 
-            {/* CONTENIDO */}
             <div className="activity-info">
                 <div className="activity-title-row">
                     <h3 className="activity-title">{item.title}</h3>
-                    
+
                     <DropdownActions
+                        dropdownId={`actions-${item.id}`} // ✅ id único
+                        open={openDropdownId === `actions-${item.id}`} // ✅ se controla desde arriba
+                        onToggle={onToggleDropdown}
+                        onClose={onCloseDropdown}
                         actions={[
                             {
                                 id: "view",
@@ -43,7 +52,7 @@ export default function ActivityItem({ item , onAction}) {
                                 type: "delete",
                             },
                         ]}
-                        onActionClick={(id) => onAction(id, item)} 
+                        onActionClick={(actionId) => onAction(actionId, item)}
                     />
                 </div>
 

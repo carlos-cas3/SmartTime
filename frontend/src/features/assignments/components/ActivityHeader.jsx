@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import DropdownSelect from "../../../components/UI/Dropdown/DropdownSelect";
 import { Grid, List, XCircle } from "lucide-react";
 import "./ActivityHeader.css";
@@ -13,16 +12,10 @@ export default function ActivityHeader({
     matrixView,
     onToggleMatrixView,
     onAddActivity,
+    openDropdownId, // ← viene del padre (ActivityPage)
+    onToggleDropdown, // ← función para alternar dropdowns
+    onCloseDropdown, // ← función para cerrarlos
 }) {
-    const [openDropdown, setOpenDropdown] = useState(null); // "status" | "priority" | null
-
-    // Cerrar al hacer click afuera:
-    useEffect(() => {
-        const handleClickOutside = () => setOpenDropdown(null);
-        window.addEventListener("click", handleClickOutside);
-        return () => window.removeEventListener("click", handleClickOutside);
-    }, []);
-
     const statusOptions = [
         { label: "Estado: Todos", value: "all" },
         { label: "Completado", value: "completed" },
@@ -41,56 +34,54 @@ export default function ActivityHeader({
         onSearchChange("");
         onStatusChange("all");
         onPriorityChange("all");
+        onCloseDropdown(); // cerrar dropdowns al limpiar
     };
 
     return (
-        <div className="activity-header" onClick={() => setOpenDropdown(null)}>
+        <div className="activity-header" onClick={onCloseDropdown}>
             <div className="activity-header-left">
                 <input
                     className="search-input"
                     type="text"
-                    placeholder="Buscar actividades..."
+                    placeholder="Buscar títulos de las actividades..."
                     value={search}
-                    onChange={(e) => onSearchChange(e.target.value)}
+                    data-close-dropdown 
+                    onChange={(e) => {
+                        onSearchChange(e.target.value);
+                    }}
                 />
 
-                <div className="filters">
+                <div className="filters" onClick={(e) => e.stopPropagation()}>
+                    {/* Dropdown de Estado */}
                     <DropdownSelect
+                        dropdownId="header-status"
                         options={statusOptions}
                         value={status}
                         onChange={onStatusChange}
                         placeholder="Estado"
-                        open={openDropdown === "status"}
-                        onToggle={(e) => {
-                            e.stopPropagation();
-                            setOpenDropdown(
-                                openDropdown === "status" ? null : "status"
-                            );
-                        }}
-                        onClose={() => setOpenDropdown(null)}
+                        open={openDropdownId === "header-status"}
+                        onToggle={() => onToggleDropdown("header-status")}
+                        onClose={onCloseDropdown}
                         size="sm"
                     />
 
+                    {/* Dropdown de Prioridad */}
                     <DropdownSelect
+                        dropdownId="header-priority"
                         options={priorityOptions}
                         value={priority}
                         onChange={onPriorityChange}
                         placeholder="Prioridad"
-                        open={openDropdown === "priority"}
-                        onToggle={(e) => {
-                            e.stopPropagation();
-                            setOpenDropdown(
-                                openDropdown === "priority" ? null : "priority"
-                            );
-                        }}
-                        onClose={() => setOpenDropdown(null)}
+                        open={openDropdownId === "header-priority"}
+                        onToggle={() => onToggleDropdown("header-priority")}
+                        onClose={onCloseDropdown}
                         size="sm"
                     />
 
                     <button
                         className="clear-filters-btn"
                         onClick={(e) => {
-                            e.stopPropagation(); // evita cerrar dropdowns
+                            e.stopPropagation();
                             handleClearFilters();
                         }}
                     >
@@ -99,7 +90,10 @@ export default function ActivityHeader({
                 </div>
             </div>
 
-            <div className="activity-header-right">
+            <div
+                className="activity-header-right"
+                onClick={(e) => e.stopPropagation()}
+            >
                 <button className="view-toggle" onClick={onToggleMatrixView}>
                     {matrixView ? <List size={18} /> : <Grid size={18} />}
                 </button>

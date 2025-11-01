@@ -83,3 +83,12 @@
 .check-icon {
     color: #7b1e3f;
 }
+
+.dropdown-select.error .dropdown-trigger {
+    border: 1px solid #ff4d4d;
+    background-color: #fff1f1;
+}
+
+.dropdown-select.error .placeholder {
+    color: #d22;
+}
