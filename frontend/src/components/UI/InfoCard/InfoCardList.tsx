@@ -1,9 +1,12 @@
 import React from "react";
-import { FaBookOpen, FaBriefcase, FaCode, FaCalendarAlt } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // 👈 import
 import InfoCardBase from "./InfoCardBase";
 import "./InfoCardList.css";
 
 export interface InfoCardListItem {
+    id?: string | number;
+    type?: "task" | "project" | "exam" | "extra";
     icon?: "book" | "work" | "code";
     title: string;
     course?: string;
@@ -16,6 +19,7 @@ interface InfoCardListProps {
     icon?: React.ReactNode;
     description?: string;
     listItems: InfoCardListItem[];
+    showViewMore?: boolean;
 }
 
 const InfoCardList: React.FC<InfoCardListProps> = ({
@@ -23,17 +27,54 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
     icon,
     description,
     listItems,
+    showViewMore = false,
 }) => {
-    const getIcon = (type?: string) => {
-        switch (type) {
-            case "book":
-                return <FaBookOpen size={20} />;
-            case "work":
-                return <FaBriefcase size={20} />;
-            case "code":
-                return <FaCode size={20} />;
-            default:
-                return null;
+    const navigate = useNavigate();
+
+    const getRemainingTime = (dateString?: string): string => {
+        if (!dateString) return "";
+
+        let targetDate;
+        if (dateString.includes("-")) {
+            targetDate = new Date(dateString);
+        } else if (dateString.includes("/")) {
+            const [day, month] = dateString.split("/").map(Number);
+            const year = new Date().getFullYear();
+            targetDate = new Date(year, month - 1, day);
+        } else return "";
+
+        const today = new Date();
+        const diffTime = targetDate.getTime() - today.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays > 1) return `Faltan ${diffDays} días`;
+        if (diffDays === 1) return "Mañana";
+        if (diffDays === 0) return "Hoy";
+        if (diffDays === -1) return "Ayer";
+        return `Venció hace ${Math.abs(diffDays)} días`;
+    };
+
+    const handleViewMore = (item: InfoCardListItem) => {
+        if (!item.type) return;
+
+        const typeRoutes: Record<string, string> = {
+            task: "/actividades/tareas",
+            project: "/actividades/proyectos",
+            exam: "/actividades/examenes",
+            extra: "/actividades/extras",
+        };
+
+        // 👇 Aquí va el console.log
+        console.log(
+            "ITEM TYPE:",
+            item.type,
+            "→ Route:",
+            typeRoutes?.[item.type]
+        );
+
+        const targetRoute = typeRoutes[item.type];
+        if (targetRoute) {
+            navigate(targetRoute);
         }
     };
 
@@ -54,7 +95,7 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
                             <div className="info-card-list-left">
                                 {item.icon && (
                                     <div className="info-card-list-icon">
-                                        {getIcon(item.icon)}
+                                        {item.icon}
                                     </div>
                                 )}
                                 <div className="info-card-list-text">
@@ -67,7 +108,9 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
                                 {item.date && (
                                     <div className="date">
                                         <FaCalendarAlt size={14} />
-                                        <span>{item.date}</span>
+                                        <span>
+                                            {getRemainingTime(item.date)}
+                                        </span>
                                     </div>
                                 )}
                                 {item.priority && (
@@ -78,6 +121,16 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
                                     >
                                         {item.priority}
                                     </span>
+                                )}
+
+                                {/* 👇 Botón opcional por item */}
+                                {showViewMore && (
+                                    <button
+                                        className="view-more-btn"
+                                        onClick={() => handleViewMore(item)}
+                                    >
+                                        Ver más
+                                    </button>
                                 )}
                             </div>
                         </div>
