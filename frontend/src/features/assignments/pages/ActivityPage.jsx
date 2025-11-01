@@ -82,10 +82,8 @@ export default function ActivityPage({ useDataHook }) {
             const clickedInput = e.target.closest("input, select, textarea");
             const clickedFilter = e.target.closest("[data-close-dropdown]");
 
-            // 👇 Si el click fue dentro de un dropdown, no cierres nada
             if (clickedDropdown) return;
 
-            // 👇 Si fue en un input, filtro o botón global → cierra
             if (clickedInput || clickedFilter) {
                 handleCloseDropdown();
                 return;
@@ -110,11 +108,18 @@ export default function ActivityPage({ useDataHook }) {
 
     // 🔹 Filtros
     const filteredData = data
-        .filter(
-            (item) =>
+        .filter((item) => {
+            const normalize = (str) =>
+                str
+                    ?.normalize("NFD") // separa letras de sus tildes
+                    .replace(/[\u0300-\u036f]/g, "") // elimina los diacríticos (tildes)
+                    .toLowerCase(); // ignora mayúsculas
+
+            return (
                 search === "" ||
-                item.title.toLowerCase().includes(search.toLowerCase())
-        )
+                normalize(item.title).includes(normalize(search))
+            );
+        })
         .filter((item) => status === "all" || item.status === status)
         .filter((item) => priority === "all" || item.priority === priority);
 

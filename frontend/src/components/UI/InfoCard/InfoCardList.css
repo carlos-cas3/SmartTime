@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    
+
 }
 
 /* --- Estado vacío --- */
@@ -45,7 +45,20 @@
 }
 
 .info-card-list-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
     color: #800000;
+    /* color por defecto para iconos tipo font */
+    flex-shrink: 0;
+}
+
+/* Ajusta automáticamente los SVG importados */
+.info-card-list-icon svg {
+    width: 24px;
+    height: 24px;
 }
 
 .info-card-list-text h4 {
@@ -97,6 +110,24 @@
     background: #52c41a;
     color: #fff;
 }
+
+/* --- Botón "Ver más" --- */
+.view-more-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.view-more-btn:hover {
+    background-color: #1e40af;
+}
+
+
 
 /* --- Responsive --- */
 @media (max-width: 768px) {

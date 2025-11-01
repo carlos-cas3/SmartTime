@@ -1,6 +1,11 @@
 import { FiEye, FiTrash2, FiEdit } from "react-icons/fi";
 import DropdownActions from "../../../components/UI/Dropdown/DropdownActions";
-import { BookOpen, ClipboardList, PenTool } from "lucide-react";
+
+import ExamSidebarIcon from "../../../assets/examIcon-SidebarMenu.svg?react";
+import ExtraSidebarIcon from "../../../assets/extraIcon-SidebarMenu.svg?react";
+import ProjectSidebarIcon from "../../../assets/projectIcon-SidebarMenu.svg?react";
+import TaskSidebarIcon from "../../../assets/taskIcon-SidebarMenu.svg?react";
+
 import "./ActivityItem.css";
 
 export default function ActivityItem({
@@ -13,13 +18,13 @@ export default function ActivityItem({
     const getIconByType = (type) => {
         switch (type) {
             case "exam":
-                return <ClipboardList size={24} />;
-            case "assignment":
-                return <PenTool size={24} />;
-            case "quiz":
-                return <BookOpen size={24} />;
+                return <ExamSidebarIcon size={24} />;
+            case "extra":
+                return <ExtraSidebarIcon size={24} />;
+            case "project":
+                return <ProjectSidebarIcon size={24} />;
             default:
-                return <ClipboardList size={24} />;
+                return <TaskSidebarIcon size={24} />;
         }
     };
 
