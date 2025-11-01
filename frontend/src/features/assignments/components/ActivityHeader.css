@@ -71,3 +71,21 @@
 .add-btn:hover {
     background: #681a35;
 }
+
+.clear-filters-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 0.85rem;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.clear-filters-btn:hover {
+    background-color: #f2f2f2;
+}

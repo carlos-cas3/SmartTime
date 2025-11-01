@@ -1,8 +1,6 @@
+import useProjectsData from "../hooks/useProjectsData"
+import ActivityPage from "./ActivityPage";
 
-export default function Projects() {
-    return (
-        <div>
-            <h1>Proyectos</h1>
-        </div>
-    );
+export default function Extras() {
+    return <ActivityPage title="Projectos" useDataHook={useProjectsData} />;
 }

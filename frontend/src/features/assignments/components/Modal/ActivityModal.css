@@ -91,6 +91,14 @@
     border-color: #0093f4;
 }
 
+.cell.selected {
+    background: #0093f4;
+    color: white;
+    border-color: #007fd1;
+    font-weight: 500;
+}
+
+
 .modal-actions {
     display: flex;
     justify-content: flex-end;
