@@ -1,8 +1,6 @@
+import useTasksData from "../hooks/useTasksData"
+import ActivityPage from "./ActivityPage";
 
-export default function Tasks() {
-    return (
-        <div>
-            <h1>Tareas</h1>
-        </div>
-    );
+export default function Extras() {
+    return <ActivityPage title="Projectos" useDataHook={useTasksData} />;
 }

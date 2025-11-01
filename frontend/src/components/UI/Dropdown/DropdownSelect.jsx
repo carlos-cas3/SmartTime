@@ -19,7 +19,7 @@ export default function DropdownSelect({
             className={`dropdown-select ${size}`}
             onClick={(e) => e.stopPropagation()}
         >
-            <button className="dropdown-trigger" onClick={onToggle}>
+            <button type="button" className="dropdown-trigger" onClick={onToggle}>
                 {icon && <span className="dropdown-icon">{icon}</span>}
                 <span
                     className={`dropdown-label ${

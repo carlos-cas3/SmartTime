@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import DropdownSelect from "../../../components/UI/Dropdown/DropdownSelect";
-import { Grid, List } from "lucide-react";
+import { Grid, List, XCircle } from "lucide-react";
 import "./ActivityHeader.css";
 
 export default function ActivityHeader({
@@ -36,6 +36,12 @@ export default function ActivityHeader({
         { label: "Media", value: "medium" },
         { label: "Baja", value: "low" },
     ];
+
+    const handleClearFilters = () => {
+        onSearchChange("");
+        onStatusChange("all");
+        onPriorityChange("all");
+    };
 
     return (
         <div className="activity-header" onClick={() => setOpenDropdown(null)}>
@@ -80,6 +86,16 @@ export default function ActivityHeader({
                         onClose={() => setOpenDropdown(null)}
                         size="sm"
                     />
+
+                    <button
+                        className="clear-filters-btn"
+                        onClick={(e) => {
+                            e.stopPropagation(); // evita cerrar dropdowns
+                            handleClearFilters();
+                        }}
+                    >
+                        <XCircle size={16} /> Limpiar
+                    </button>
                 </div>
             </div>
 
