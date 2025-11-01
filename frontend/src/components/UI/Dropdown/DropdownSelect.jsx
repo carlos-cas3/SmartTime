@@ -2,6 +2,7 @@ import { FiChevronDown, FiCheck } from "react-icons/fi";
 import "./DropdownSelect.css";
 
 export default function DropdownSelect({
+    dropdownId, // ✅ nuevo
     options = [],
     value,
     onChange,
@@ -16,10 +17,14 @@ export default function DropdownSelect({
 
     return (
         <div
-            className={`dropdown-select ${size}`}
+            className={`dropdown-select dropdown-root ${size}`}
             onClick={(e) => e.stopPropagation()}
         >
-            <button type="button" className="dropdown-trigger" onClick={onToggle}>
+            <button
+                type="button"
+                className="dropdown-trigger"
+                onClick={() => onToggle?.(dropdownId)} // ✅ pasa el id
+            >
                 {icon && <span className="dropdown-icon">{icon}</span>}
                 <span
                     className={`dropdown-label ${

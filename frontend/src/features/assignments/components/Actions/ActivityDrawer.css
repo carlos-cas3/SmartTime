@@ -1,0 +1,166 @@
+.drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    pointer-events: none;
+    transition: background 0.3s ease;
+    z-index: 1000;
+}
+
+.drawer-overlay.open {
+    background: rgba(0, 0, 0, 0.35);
+    pointer-events: auto;
+}
+
+
+.drawer-content {
+    position: fixed;
+    /* <-- cambia de absolute a fixed */
+    top: 0;
+    right: 0;
+    width: 420px;
+    height: 100%;
+    background: #fff;
+    border-left: 1px solid #eee;
+    transform: translateX(100%);
+    /* fuera de pantalla */
+    transition: transform 0.35s ease;
+    padding: 1.5rem;
+    overflow-y: auto;
+    z-index: 1001;
+    /* un poco más alto que el overlay */
+}
+
+.drawer-content.open {
+    transform: translateX(0);
+    /* entra desde la derecha */
+}
+
+
+/* HEADER */
+.drawer-top {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.activity-badge {
+    background: #f3e8ff;
+    color: #7b2cbf;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    display: inline-block;
+    width: fit-content;
+    font-weight: 600;
+}
+
+.drawer-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.drawer-subtitle {
+    color: #7a7a7a;
+    font-size: 14px;
+}
+
+/* CARDS */
+.drawer-info-grid {
+    margin-top: 1.3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .8rem;
+}
+
+.info-card {
+    background: #fafafa;
+    padding: .9rem;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.info-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+.info-value {
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+.info-value.state {
+    color: #0074ff;
+}
+
+.info-value.priority {
+    color: #d7263d;
+}
+
+/* SECTIONS */
+.drawer-section {
+    margin-top: 1.4rem;
+}
+
+.drawer-section h4 {
+    margin-bottom: .4rem;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.drawer-text {
+    color: #555;
+    line-height: 1.4;
+}
+
+.matriz-box {
+    background: #f7f2ff;
+    padding: .8rem;
+    border-radius: 10px;
+    border: 1px solid #e0d3ff;
+}
+
+/* FOOTER BUTTONS */
+.drawer-footer {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+
+.btn-edit {
+    background: #7b0f28;
+    color: #fff;
+    padding: .75rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-delete {
+    background: #fff;
+    color: #d7263d;
+    border: 1px solid #d7263d;
+    padding: .75rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* CLOSE ICON */
+.close-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}

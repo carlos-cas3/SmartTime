@@ -42,6 +42,13 @@ export default function ActivityModal({
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Validar que todos los campos tengan valor
+        if (!title || !priority || !status || !category || !date || !matriz) {
+            alert("Por favor, completar todos los campos");
+            return;
+        }
+
         const data = { title, priority, status, category, date, matriz };
         onSubmit(data);
         onClose();
@@ -76,7 +83,7 @@ export default function ActivityModal({
                 {/* Formulario */}
                 <form className="modal-form" onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Título *</label>
+                        <label>Título</label>
                         <input
                             type="text"
                             value={title}
