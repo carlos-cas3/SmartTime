@@ -1,10 +1,10 @@
 import { FiEye, FiTrash2, FiEdit } from "react-icons/fi";
-import DropdownActions from "../../../components/UI/Dropdown/DropdownActions";
+import DropdownActions from "../../../../components/UI/Dropdown/DropdownActions";
 
-import ExamSidebarIcon from "../../../assets/examIcon-SidebarMenu.svg?react";
-import ExtraSidebarIcon from "../../../assets/extraIcon-SidebarMenu.svg?react";
-import ProjectSidebarIcon from "../../../assets/projectIcon-SidebarMenu.svg?react";
-import TaskSidebarIcon from "../../../assets/taskIcon-SidebarMenu.svg?react";
+import ExamSidebarIcon from "../../../../assets/examIcon-SidebarMenu.svg?react";
+import ExtraSidebarIcon from "../../../../assets/extraIcon-SidebarMenu.svg?react";
+import ProjectSidebarIcon from "../../../../assets/projectIcon-SidebarMenu.svg?react";
+import TaskSidebarIcon from "../../../../assets/taskIcon-SidebarMenu.svg?react";
 
 import "./ActivityItem.css";
 

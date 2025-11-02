@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import ActivityHeader from "../components/ActivityHeader";
-import ActivityContent from "../components/ActivityContent";
-import EditActivity from "../components/Actions/EditActivity";
-import CreateActivity from "../components/Actions/CreateActivity";
-import ActivityDrawer from "../components/Actions/ActivityDrawer";
-import "../components/ActivityContainer.css";
+import ActivityHeader from "./components/ActivityHeader/ActivityHeader";
+import ActivityContent from "./components/ActivityContent";
+
+import EditActivity from "./actions/EditActivity";
+import CreateActivity from "./actions/CreateActivity";
+import ActivityDrawer from "./actions/ActivityDrawer";
+import "./ActivityPage.css";
 
 export default function ActivityPage({ useDataHook }) {
     const [data, setData] = useState(useDataHook());
@@ -19,7 +20,6 @@ export default function ActivityPage({ useDataHook }) {
 
     const [openDropdownId, setOpenDropdownId] = useState(null);
 
-    // 🔹 Manejo de acciones del dropdown
     const handleAction = (action, item) => {
         if (action === "edit") {
             setSelectedItem(item);
@@ -59,7 +59,6 @@ export default function ActivityPage({ useDataHook }) {
             );
             console.log("Eliminado:", activityToDelete);
 
-            // 👇 Cierra el drawer automáticamente si estaba abierto
             setIsViewOpen(false);
             setSelectedItem(null);
         }

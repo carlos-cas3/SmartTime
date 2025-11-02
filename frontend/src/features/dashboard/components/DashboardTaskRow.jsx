@@ -3,7 +3,6 @@ import InfoCardList from "../../../components/UI/InfoCard/InfoCardList";
 import useAllData from "../../assignments/hooks/useAllData"; // Asegúrate de ajustar la ruta
 
 export default function DashboardTaskRow() {
-    // Obtener solo 5 actividades pendientes
     const pendingItems = useAllData({ status: "pending" }).slice(0, 5);
 
     const listItems = pendingItems.map((item) => ({
@@ -21,7 +20,7 @@ export default function DashboardTaskRow() {
             icon={<FaBookOpen />}
             description="Actividades programadas para esta semana"
             listItems={listItems}
-            showViewMore={false}
+            showViewMore={true}
         />
     );
 }

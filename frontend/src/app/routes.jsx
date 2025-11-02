@@ -1,7 +1,7 @@
 import Layout from "../features/layout/Layout";
 import Dashboard from "../features/dashboard/Dashboard";
 import Calendar from "../pages/Calendar";
-import Assignments from "../features/assignments/Assignments";
+import Assignments from "../features/assignments/pages/Assignments";
 
 import Profile from "../features/profile/Profile";
 import Settings from "../features/settings/Settings";
