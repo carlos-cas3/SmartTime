@@ -20,6 +20,8 @@ interface InfoCardListProps {
     description?: string;
     listItems: InfoCardListItem[];
     showViewMore?: boolean;
+    onAction?: (item: InfoCardListItem) => void; // 👈 NUEVO
+    actionLabel?: string;
 }
 
 const InfoCardList: React.FC<InfoCardListProps> = ({
@@ -28,6 +30,8 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
     description,
     listItems,
     showViewMore = false,
+    onAction,
+    actionLabel = "Ver más", // 👈 texto por defecto
 }) => {
     const navigate = useNavigate();
 
@@ -55,6 +59,13 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
     };
 
     const handleViewMore = (item: InfoCardListItem) => {
+        // ✅ Si el padre envió una función personalizada → úsala
+        if (onAction) {
+            onAction(item);
+            return;
+        }
+
+        // ✅ Caso por defecto → navegar según el tipo
         if (!item.type) return;
 
         const typeRoutes: Record<string, string> = {
@@ -64,18 +75,9 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
             extra: "/actividades/extras",
         };
 
-        // 👇 Aquí va el console.log
-        console.log(
-            "ITEM TYPE:",
-            item.type,
-            "→ Route:",
-            typeRoutes?.[item.type]
-        );
-
         const targetRoute = typeRoutes[item.type];
-        if (targetRoute) {
-            navigate(targetRoute);
-        }
+
+        if (targetRoute) navigate(targetRoute);
     };
 
     return (
@@ -129,7 +131,7 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
                                         className="view-more-btn"
                                         onClick={() => handleViewMore(item)}
                                     >
-                                        Ver más
+                                        {actionLabel}
                                     </button>
                                 )}
                             </div>

@@ -1,5 +1,5 @@
-import ActivityListContainer from "./ActivityListContainer";
-import ActivityMatrixView from "./ActivityMatrixView.jsx";
+import ActivityListContainer from "./ActivityList/ActivityListContainer";
+import ActivityMatrixView from "./ActivityMatrix/ActivityMatrixView.jsx";
 
 export default function ActivityContent({
     data = [],

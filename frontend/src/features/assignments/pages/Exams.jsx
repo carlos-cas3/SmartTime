@@ -1,5 +1,5 @@
 import useExamsData from "../hooks/useExamsData";
-import ActivityPage from "./ActivityPage";
+import ActivityPage from "../ActivityPage";
 
 export default function Exams() {
     return <ActivityPage useDataHook={useExamsData} />;

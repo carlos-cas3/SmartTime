@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import DropdownSelect from "../../../../components/UI/Dropdown/DropdownSelect";
+import DropdownSelect from "../../../components/UI/Dropdown/DropdownSelect";
 import "./ActivityModal.css";
 
 export default function ActivityModal({

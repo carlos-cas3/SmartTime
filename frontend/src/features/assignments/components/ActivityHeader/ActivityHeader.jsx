@@ -1,4 +1,4 @@
-import DropdownSelect from "../../../components/UI/Dropdown/DropdownSelect";
+import DropdownSelect from "../../../../components/UI/Dropdown/DropdownSelect";
 import { Grid, List, XCircle } from "lucide-react";
 import "./ActivityHeader.css";
 
