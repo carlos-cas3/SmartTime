@@ -1,8 +1,8 @@
 import ActivityModal from "./ActivityModal";
 
-export default function EditActivity({ isOpen, onClose, activity, onUpdate }) {
+export default function EditActivity({ isOpen, onClose, activity, onUpdate , title}) {
     const handleSubmit = (data) => {
-        onUpdate({ ...activity, ...data }); // ← mantiene el id original
+        onUpdate({ ...activity, ...data });
     };
 
     return (
@@ -11,7 +11,7 @@ export default function EditActivity({ isOpen, onClose, activity, onUpdate }) {
             onClose={onClose}
             onSubmit={handleSubmit}
             initialData={activity}
-            titleHeader="Editar Actividad"
+            titleHeader= {title}
             description="Modifica los datos de la actividad seleccionada"
         />
     );

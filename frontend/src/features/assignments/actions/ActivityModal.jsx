@@ -20,7 +20,7 @@ export default function ActivityModal({
     const [openPriority, setOpenPriority] = useState(false);
     const [openStatus, setOpenStatus] = useState(false);
 
-    // 👇 Cuando el modal se abre en modo edición, precargar datos
+    // modal se abre en modo edición, precargar datos
     useEffect(() => {
         if (initialData) {
             setTitle(initialData.title || "");
@@ -30,7 +30,7 @@ export default function ActivityModal({
             setDate(initialData.date || "");
             setMatriz(initialData.matriz || "");
         }
-    }, [initialData, isOpen]); // se ejecuta cada vez que cambie la data o se abre el modal
+    }, [initialData, isOpen]);
 
     useEffect(() => {
         const handleEsc = (e) => e.key === "Escape" && onClose();

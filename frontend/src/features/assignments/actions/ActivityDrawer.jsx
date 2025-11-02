@@ -8,6 +8,7 @@ export default function ActivityDrawer({
     onClose,
     onEdit,
     onDelete,
+    labels = { edit: "Editar", delete: "Eliminar" },
 }) {
     if (!activity) return null;
 
@@ -70,13 +71,14 @@ export default function ActivityDrawer({
                         className="btn-edit"
                         onClick={() => onEdit(activity)}
                     >
-                        Editar Proyecto
+                        {labels.edit}
                     </button>
+
                     <button
                         className="btn-delete"
                         onClick={() => onDelete(activity)}
                     >
-                        Eliminar Proyecto
+                        {labels.delete}
                     </button>
                 </div>
 
