@@ -7,7 +7,7 @@ import CreateActivity from "./actions/CreateActivity";
 import ActivityDrawer from "./actions/ActivityDrawer";
 import "./ActivityPage.css";
 
-export default function ActivityPage({ useDataHook }) {
+export default function ActivityPage({ useDataHook, createTitle, editTitle , drawerLabels }) {
     const [data, setData] = useState(useDataHook());
 
     const [search, setSearch] = useState("");
@@ -88,7 +88,6 @@ export default function ActivityPage({ useDataHook }) {
                 return;
             }
 
-            // 👇 Si fue fuera de todo → también cierra
             handleCloseDropdown();
         };
 
@@ -110,9 +109,9 @@ export default function ActivityPage({ useDataHook }) {
         .filter((item) => {
             const normalize = (str) =>
                 str
-                    ?.normalize("NFD") // separa letras de sus tildes
-                    .replace(/[\u0300-\u036f]/g, "") // elimina los diacríticos (tildes)
-                    .toLowerCase(); // ignora mayúsculas
+                    ?.normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .toLowerCase();
 
             return (
                 search === "" ||
@@ -161,6 +160,7 @@ export default function ActivityPage({ useDataHook }) {
                 onClose={() => setIsViewOpen(false)}
                 onEdit={handleEditFromView}
                 onDelete={handleDelete}
+                labels={drawerLabels}
             />
 
             {isModalOpen &&
@@ -170,12 +170,14 @@ export default function ActivityPage({ useDataHook }) {
                         onClose={() => setIsModalOpen(false)}
                         activity={selectedItem}
                         onUpdate={handleUpdate}
+                        title={editTitle}
                     />
                 ) : (
                     <CreateActivity
                         isOpen={isModalOpen}
                         onClose={() => setIsModalOpen(false)}
                         onCreate={handleCreate}
+                        title={createTitle}
                     />
                 ))}
         </div>
