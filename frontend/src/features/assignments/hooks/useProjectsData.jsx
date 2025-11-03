@@ -18,7 +18,7 @@ export default function useProjectsData() {
             date: "2025-10-15", 
             priority: "medium",
             type: "project",
-            matriz: "Importante pero No Urgente",
+            matriz: "Urgente y No Importante",
         },
         {
             id: 3,
@@ -28,7 +28,7 @@ export default function useProjectsData() {
             date: "2025-10-28", 
             priority: "low",
             type: "project",
-            matriz: "Urgente pero No Importante",
+            matriz: "No Urgente y No Importante",
         },
     ];
 }

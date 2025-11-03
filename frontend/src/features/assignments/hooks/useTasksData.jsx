@@ -18,7 +18,7 @@ export default function useTasksData() {
             date: "2025-10-20",
             priority: "medium",
             type: "task",
-            matriz: "Importante pero No Urgente",
+            matriz: "No Urgente e Importante",
         },
         {
             id: 3,
@@ -28,7 +28,7 @@ export default function useTasksData() {
             date: "2025-10-29",
             priority: "low",
             type: "task",
-            matriz: "Urgente pero No Importante",
+            matriz: "Urgente y No Importante",
         },
     ];
 }
