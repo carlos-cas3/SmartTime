@@ -12,6 +12,7 @@ export interface InfoCardListItem {
     course?: string;
     date?: string;
     priority?: "Alta" | "Media" | "Baja" | string;
+    status?: "Pendiente" | "No Completado" | "Completado" | string;
 }
 
 interface InfoCardListProps {
@@ -20,7 +21,7 @@ interface InfoCardListProps {
     description?: string;
     listItems: InfoCardListItem[];
     showViewMore?: boolean;
-    onAction?: (item: InfoCardListItem) => void; // 👈 NUEVO
+    onAction?: (action: string, item: InfoCardListItem) => void;
     actionLabel?: string;
 }
 
@@ -28,10 +29,10 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
     title,
     icon,
     description,
-    listItems,
+    listItems = [],
     showViewMore = false,
     onAction,
-    actionLabel = "Ver más", // 👈 texto por defecto
+    actionLabel = "Ver más",
 }) => {
     const navigate = useNavigate();
 
@@ -59,13 +60,13 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
     };
 
     const handleViewMore = (item: InfoCardListItem) => {
-        // ✅ Si el padre envió una función personalizada → úsala
+        //Si el padre envió una función personalizada → úsala
         if (onAction) {
-            onAction(item);
+            onAction( "view" , item);
             return;
         }
 
-        // ✅ Caso por defecto → navegar según el tipo
+        // Caso por defecto → navegar según el tipo
         if (!item.type) return;
 
         const typeRoutes: Record<string, string> = {
@@ -124,8 +125,17 @@ const InfoCardList: React.FC<InfoCardListProps> = ({
                                         {item.priority}
                                     </span>
                                 )}
+                                {item.status && (
+                                    <span
+                                        className={`status ${item.status
+                                            .toLowerCase()
+                                            .replace(/\s+/g, "-")
+                                            .trim()}`}
+                                    >
+                                        {item.status}
+                                    </span>
+                                )}
 
-                                {/* 👇 Botón opcional por item */}
                                 {showViewMore && (
                                     <button
                                         className="view-more-btn"

@@ -8,7 +8,7 @@ export default function useExtrasData() {
             date: "2025-10-10", 
             priority: "low",
             type: "extra",
-            matriz: "No Urgente pero Importante",
+            matriz: "No Urgente y No Importante",
         },
         {
             id: 2,
@@ -18,7 +18,7 @@ export default function useExtrasData() {
             date: "2025-11-20",
             priority: "medium",
             type: "extra",
-            matriz: "Importante pero No Urgente",
+            matriz: "Urgente e Importante",
         },
         {
             id: 3,
@@ -38,7 +38,7 @@ export default function useExtrasData() {
             date: "2025-11-05",
             priority: "low",
             type: "extra",
-            matriz: "No Urgente y No Importante",
+            matriz: "No Urgente e Importante",
         },
     ];
 }

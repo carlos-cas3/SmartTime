@@ -1,0 +1,32 @@
+.matrix-container {
+    width: 100%;
+    background: #ffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.matrix-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    padding-top: 1rem;
+    margin: 0;
+    
+}
+
+.eisenhower-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+}
+
+@media (max-width: 768px) {
+    .eisenhower-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}

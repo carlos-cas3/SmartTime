@@ -1,5 +1,8 @@
 .activity-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 exactas */
+    border-radius: 1rem;
+    padding: 1rem;
     gap: 2rem;
+    background: #ffff;
 }

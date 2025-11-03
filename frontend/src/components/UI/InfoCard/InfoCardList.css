@@ -127,6 +127,27 @@
     background-color: #1e40af;
 }
 
+.status {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.status.pendiente {
+    background-color: #ffcc00;
+    color: #333;
+}
+
+.status.en-progreso {
+    background-color: #4e9fff;
+    color: white;
+}
+
+.status.completado {
+    background-color: #4caf50;
+    color: white;
+}
 
 
 /* --- Responsive --- */

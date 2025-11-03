@@ -9,6 +9,23 @@ export default function ActivityContent({
     onToggleDropdown,
     onCloseDropdown,
 }) {
+    const groupedData = matrixView
+        ? {
+            doFirst: data.filter(
+                (item) => item.matriz === "Urgente e Importante"
+            ),
+            schedule: data.filter(
+                (item) => item.matriz === "Urgente y No Importante"
+            ),
+            delegate: data.filter(
+                (item) => item.matriz === "No Urgente e Importante"
+            ),
+            eliminate: data.filter(
+                (item) => item.matriz === "No Urgente y No Importante"
+            ),
+        }
+        : null;
+
     return (
         <div className="activity-content">
             {!matrixView ? (
@@ -16,12 +33,14 @@ export default function ActivityContent({
                     items={data}
                     onAction={onAction}
                     openDropdownId={openDropdownId}
-                    onToggleDropdown={onToggleDropdown} 
+                    onToggleDropdown={onToggleDropdown}
                     onCloseDropdown={onCloseDropdown}
                 />
             ) : (
-                <ActivityMatrixView items={data} 
-                // onCloseDropdown={handleCloseDropdown}
+                <ActivityMatrixView
+                    items={groupedData}
+                    onAction={onAction}
+                    // onCloseDropdown={handleCloseDropdown}
                 />
             )}
         </div>
