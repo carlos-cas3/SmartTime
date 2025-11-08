@@ -12,6 +12,8 @@ import WeeklyLoad from "../../../assets/weeklyLoadIcon-SidebarMenu.svg?react";
 
 import SidebarItem from "./SidebarItem";
 
+import "./SidebarMenu.css"
+
 function SidebarMenu({ collapsed }) {
     const menuItems = [
         { icon: HomeSidebarIcon, label: "Dashboard", path: "/dashboard" },

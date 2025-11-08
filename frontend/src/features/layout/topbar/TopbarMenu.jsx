@@ -1,37 +1,38 @@
-import UserTopbarIcon from "../../../assets/user-Topbar-icon.svg?react";
-import SettingsTopbarIcon from "../../../assets/settings-Topbar-icon.svg?react";
-import NotificationTopbarIcon from "../../../assets/notifications-Topbar-icon.svg?react"
+import { useState } from "react";
+import userTopbarIcon from "../../../assets/user-Topbar-icon.svg?react";
+import notificationTopbarIcon from "../../../assets/notifications-Topbar-icon.svg?react";
+import settingsTopbarIcon from "../../../assets/settings-Topbar-icon.svg?react";
+import MenuItem from "../../../components/Shared/MenuItem";
+import "./TopbarMenu.css";
 
-import TopbarItem from "./TopbarItem";
+export default function TopbarMenu() {
+    const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+    
 
-function TopbarMenu() {
+    const user = {
+        name: "Juan Pérez",
+        email: "juanperez@email.com",
+    };
+
     const menuItems = [
         {
-            icon: NotificationTopbarIcon,
-            label: "",
-            path: "/notifications",
+            icon: notificationTopbarIcon,
+            badgeCount: 3,
+            onClick: () => setIsNotificationOpen((prev) => !prev),
+            isActive: isNotificationOpen, 
         },
         {
-            icon: SettingsTopbarIcon,
-            label: "",
-            path: "/settings", // ruta hacia ajustes
+            icon: settingsTopbarIcon,
+            label: "Settings",
+            path: "/settings",
         },
-        
-        
-        // si quisieras uno con acción en vez de path
-        // {
-        //     icon: LogoutTopbarIcon,
-        //     label: "Cerrar sesión",
-        //     onClick: () => console.log("Cerrar sesión"),
-        // },
         {
-            icon: UserTopbarIcon,
-            label: "", // lo dejamos vacío porque no es solo un texto simple
+            icon: userTopbarIcon,
             path: "/profile",
             extraContent: (
                 <div className="profile-info">
-                    <span className="profile-name">Juan Pérez</span>
-                    <span className="profile-email">juanperez@email.com</span>
+                    <span className="profile-name">{user.name}</span>
+                    <span className="profile-email">{user.email}</span>
                 </div>
             ),
         },
@@ -40,17 +41,8 @@ function TopbarMenu() {
     return (
         <div className="topbar-menu">
             {menuItems.map((item, index) => (
-                <TopbarItem
-                    key={index}
-                    icon={item.icon}
-                    label={item.label}
-                    path={item.path}
-                    onClick={item.onClick}
-                    extraContent={item.extraContent}
-                />
+                <MenuItem key={index} {...item} showLabel={false} />
             ))}
         </div>
     );
 }
-
-export default TopbarMenu;

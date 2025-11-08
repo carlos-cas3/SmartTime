@@ -1,0 +1,58 @@
+.sidebar .sidebar-item {
+    color: var(--texto-claro) !important;
+    fill: var(--texto-claro);
+    stroke: var(--texto-claro);
+    border-radius: 0.6rem;
+    padding: 0.5rem 0.8rem;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* Hover */
+.sidebar .sidebar-item:hover {
+    background: var(--rosado-suave);
+    color: var(--vino-medio) !important;
+}
+
+/* Iconos dentro del sidebar */
+.sidebar .sidebar-item .menu-icon {
+    width: 1.6rem;
+    height: 1.6rem;
+    transition: transform 0.2s ease;
+    fill: var(--texto-claro);
+    stroke: var(--texto-claro);
+}
+
+.sidebar .sidebar-item:hover .menu-icon {
+    fill: var(--vino-medio);
+    stroke: var(--vino-medio);
+}
+
+/* === Submenu dentro del SIDEBAR === */
+.sidebar .submenu-item {
+    color: var(--texto-claro);
+}
+
+.sidebar .submenu-item:hover {
+    background: var(--rosado-suave);
+    color: var(--vino-medio);
+}
+
+/* Cuando está activo */
+.sidebar .submenu-item.active {
+    background: var(--rosado-suave);
+    color: var(--vino-medio);
+}
+
+/* Opcional: iconos del submenu */
+.sidebar .submenu-item .sidebar-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    fill: var(--texto-claro);
+    stroke: var(--texto-claro);
+}
+
+.sidebar .submenu-item:hover .sidebar-icon,
+.sidebar .submenu-item.active .sidebar-icon {
+    fill: var(--vino-medio);
+    stroke: var(--vino-medio);
+}

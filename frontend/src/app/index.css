@@ -2,6 +2,14 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --vino-oscuro: #7C1E3F;
+  --vino-medio: #9B2C55;
+  --vino-claro: #D23E6E;
+  --rosado-suave: #FFD1DF;
+  --texto-claro: #F8E9ED;
+  --notificacion: #FF4D4F;
+  --fondo-claro: #FFFFFF;
+
 }
 
 .icon {
@@ -15,10 +23,10 @@
   object-fit: contain;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   min-height: 100%;
-  overflow-y: hidden;  /* ✅ solo bloquea scroll lateral */
-  overflow-x: hidden;  /* ✅ solo bloquea scroll lateral */
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
-
