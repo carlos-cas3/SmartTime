@@ -1,25 +1,23 @@
-import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import MenuItem from "../../../components/Shared/MenuItem";
-import SubmenuItem from "./SubMenuItem";
+import SubmenuItem from "../../../components/Shared/SubMenuItem";
+
+import "./SidebarMenu.css";
 
 function SidebarItem({ icon, label, path, children, collapsed, onClick }) {
     const [open, setOpen] = useState(false);
     const hasChildren = children && children.length > 0;
+    const location = useLocation();
+    const isActive = path && location.pathname === path;
 
     const handleClick = () => {
-        if (onClick) {
-            onClick(); // 🔴 para botones como "Cerrar sesión"
-        } else if (hasChildren) {
-            setOpen(!open);
-        }
+        if (onClick) onClick();
+        else if (hasChildren) setOpen(!open);
     };
 
-    // 🔹 Cierra automáticamente el submenu cuando el sidebar se colapsa
     useEffect(() => {
-        if (collapsed) {
-            setOpen(false);
-        }
+        if (collapsed) setOpen(false);
     }, [collapsed]);
 
     return (
@@ -30,6 +28,9 @@ function SidebarItem({ icon, label, path, children, collapsed, onClick }) {
                     label={label}
                     path={!hasChildren && !onClick ? path : undefined}
                     showLabel={!collapsed}
+                    className="sidebar-item"
+                    isActive={isActive} // 👈 Aquí usamos la ruta actual.
+                    mode="link"
                 />
             </div>
 

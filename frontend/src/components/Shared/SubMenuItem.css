@@ -1,0 +1,17 @@
+@import './_variables.css';
+
+.submenu-item {
+    display: flex;
+    align-items: center;
+    gap: var(--item-gap);
+    padding: var(--item-padding-y) var(--item-padding-x);
+    font-size: var(--item-font-size);
+    border-radius: var(--item-radius);
+    color: var(--texto-claro);
+    text-decoration: none;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.submenu-item .submenu-label {
+    flex: 1;
+}

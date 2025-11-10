@@ -1,0 +1,82 @@
+/* === CONTENEDOR TOPBAR === */
+.topbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--fondo-claro);
+}
+
+/* === ITEM BASE === */
+.topbar-menu .menu-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 0.9rem;
+    padding: 0.45rem 0.75rem;
+    background: transparent;
+    color: #4a4a4a;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+
+/* Hover */
+.topbar-menu .menu-item:hover {
+    background: rgba(255, 209, 223, 0.55);
+    /* rosado-suave con transparencia */
+    transform: translateY(-1px);
+}
+
+/* Activo */
+.topbar-menu .menu-item.active,
+.topbar-menu .menu-item.is-active {
+    background: rgba(210, 62, 110, 0.18);
+    /* vino-claro pero suave */
+    color: var(--vino-medio);
+}
+
+/* === ICONOS === */
+.topbar-menu .icon-container {
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 0.55rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    transition: transform 0.25s ease;
+}
+
+.topbar-menu .menu-item:hover .icon-container {
+    transform: scale(1.08);
+}
+
+.topbar-menu .menu-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    fill: currentColor;
+}
+
+/* === PERFIL === */
+.topbar-menu .profile-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.6rem;
+    line-height: 1.15;
+}
+
+.topbar-menu .profile-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #3b3b3b;
+}
+
+.topbar-menu .profile-email {
+    font-size: 13px;
+    color: #7a7a7a;
+}
+
+/* Perfil activo */
+.topbar-menu .menu-item.is-active .profile-name,
+.topbar-menu .menu-item.is-active .profile-email {
+    color: var(--vino-medio);
+}

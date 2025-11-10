@@ -1,138 +1,57 @@
-/* === ITEM BASE === */
+@import './_variables.css';
+
 .menu-item {
     display: flex;
     align-items: center;
-    cursor: pointer;
-    height: 2.5rem;
-    border-radius: 1rem;
-    padding: 0.5rem;
-    background: transparent;
+    gap: var(--item-gap);
+    padding: var(--item-padding-y) var(--item-padding-x);
+    font-size: var(--item-font-size);
+    border-radius: var(--item-radius);
+    color: inherit;
     text-decoration: none;
-    color: #F8E9ED;
-    /* texto claro sobre fondo vino */
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: background 0.25s ease, color 0.25s ease;
 }
 
-.menu-item:hover {
-    background: #9B2C55;
-    /* vino más claro */
+.menu-item:focus,
+.menu-item:active,
+.menu-item:visited {
+    text-decoration: none;
+    color: inherit;
 }
 
-/* === ICONO === */
 .icon-container {
-    width: 3rem;
-    height: 3rem;
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease, border 0.2s ease;
+    position: relative;
 }
 
-.menu-item:hover .icon-container {
-    background-color: rgba(255, 255, 255, 0.25);
-}
-
-/* === ICONO SVG === */
 .menu-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    fill: #F8E9ED;
-    transition: fill 0.2s ease;
+    width: 1.6rem;
+    height: 1.6rem;
+    stroke: currentColor;
+    fill: currentColor;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
-/* === LABEL === */
 .menu-label {
-    margin-left: 0.5rem;
     font-size: 18px;
-    color: #F8E9ED;
-    transition: color 0.2s ease;
+    color: inherit;
 }
 
-/* === ESTILO ACTIVO (padre abierto o seleccionado) === */
-.menu-item.active-parent {
-    background-color: #D23E6E;
-    /* rosado fuerte */
-    color: white;
+.badge {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0 6px;
+    border-radius: 999px;
+    color: inherit;
 }
 
-.menu-item.active-parent .icon-container {
-    background-color: #F8E9ED;
-}
-
-.menu-item.active-parent .menu-icon {
-    fill: #7C1E3F;
-    /* vino oscuro */
-}
-
-/* --- SUBMENU --- */
-.submenu {
+.menu-item .content {
     display: flex;
+    padding: 0;
     flex-direction: column;
-    gap: 0.4rem;
-    margin-left: 2.5rem;
-    margin-top: 0.5rem;
-}
-
-.submenu-item {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    height: 2.3rem;
-    border-radius: 0.8rem;
-    padding: 0.3rem 0.8rem;
-    background-color: #F8E9ED;
-    /* fondo claro para contraste */
-    color: #7C1E3F;
-    /* texto vino */
-    font-size: 15px;
-    gap: 0.8rem;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-.submenu-item:hover {
-    background: #FFD1DF;
-    /* rosado suave */
-}
-
-.submenu-item.active {
-    background-color: #D23E6E;
-    color: white;
-}
-
-.submenu-item .icon-container {
-    width: 2.5rem;
-    height: 2.5rem;
-    background-color: rgba(124, 30, 63, 0.1);
-    border-radius: 0.6rem;
-    display: flex;
-    align-items: center;
     justify-content: center;
+    background-color: transparent;
 }
 
-.submenu-item.active .icon-container {
-    background-color: white;
-}
-
-/* === Estado abierto (padre expandido) === */
-.menu-item.open-parent {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: #FFD1DF;
-}
-
-.menu-item.open-parent .icon-container {
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid #FFD1DF;
-}
-
-.menu-item.open-parent .menu-icon {
-    fill: #FFD1DF;
-}
-
-.menu-item,
-.menu-item a,
-.submenu-item,
-.submenu-item a {
-    text-decoration: none !important;
-}

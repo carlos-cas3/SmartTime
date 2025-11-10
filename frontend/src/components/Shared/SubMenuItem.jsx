@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 
+import "./SubMenuItem.css"
+
 function SubMenuItem({ icon: Icon, label, path }) {
     return (
         <NavLink
@@ -8,10 +10,8 @@ function SubMenuItem({ icon: Icon, label, path }) {
                 `submenu-item ${isActive ? "active" : ""}`
             }
         >
-            <div className="icon-container">
-                <Icon className="sidebar-icon" />
-            </div>
-            <span className="submenu-label">{label}</span>
+                <Icon className="menu-icon" />
+                <span className="menu-label">{label}</span>
         </NavLink>
     );
 }
