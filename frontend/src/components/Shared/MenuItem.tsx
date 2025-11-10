@@ -11,6 +11,7 @@ interface MenuItemProps {
     badgeCount?: number;
     className?: string;
     isActive?: boolean;
+    mode?: "link" | "action";
 }
 
 export default function MenuItem({
@@ -23,6 +24,7 @@ export default function MenuItem({
     badgeCount = 0,
     className = "",
     isActive = false,
+    mode = "link",
 }: MenuItemProps) {
     const content = (
         <>
@@ -47,21 +49,28 @@ export default function MenuItem({
         </>
     );
 
-    return path ? (
+    if (mode === "action") {
+        // 🔹 Modo Topbar: controlado manualmente
+        return (
+            <div
+                className={`menu-item ${className} ${
+                    isActive ? "is-active" : ""
+                }`}
+                onClick={onClick}
+            >
+                {content}
+            </div>
+        );
+    }
+
+    return (
         <NavLink
-            to={path}
+            to={path || "#"}
             className={({ isActive: navIsActive }) =>
                 `menu-item ${className} ${navIsActive ? "is-active" : ""}`
             }
         >
             {content}
         </NavLink>
-    ) : (
-        <div
-            className={`menu-item ${className} ${isActive ? "is-active" : ""}`}
-            onClick={onClick}
-        >
-            {content}
-        </div>
     );
 }
