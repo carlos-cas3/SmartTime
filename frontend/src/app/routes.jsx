@@ -67,7 +67,7 @@ const routes = [
                 element: <Settings/>
             },
             {
-                path: "notifications",
+                path: "notificaciones",
                 element: <Notifications/>
             },
             {
