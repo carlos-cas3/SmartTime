@@ -1,6 +1,6 @@
 import { FaBookOpen } from "react-icons/fa";
 import InfoCardList from "../../../components/UI/InfoCard/InfoCardList";
-import useAllData from "../../assignments/hooks/useAllData"; // Asegúrate de ajustar la ruta
+import useAllData from "../../assignments/hooks/useAllData";
 
 export default function DashboardTaskRow() {
     const pendingItems = useAllData({ status: "pending" }).slice(0, 5);

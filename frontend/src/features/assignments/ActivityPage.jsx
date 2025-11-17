@@ -5,6 +5,7 @@ import ActivityContent from "./components/ActivityContent";
 import EditActivity from "./actions/EditActivity";
 import CreateActivity from "./actions/CreateActivity";
 import ActivityDrawer from "./actions/ActivityDrawer";
+
 import "./ActivityPage.css";
 
 export default function ActivityPage({ useDataHook, createTitle, editTitle , drawerLabels }) {
@@ -104,7 +105,7 @@ export default function ActivityPage({ useDataHook, createTitle, editTitle , dra
         );
     }, [openDropdownId]);
 
-    // 🔹 Filtros
+    // Filtros
     const filteredData = data
         .filter((item) => {
             const normalize = (str) =>
