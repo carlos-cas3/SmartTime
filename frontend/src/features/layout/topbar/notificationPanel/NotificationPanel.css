@@ -1,0 +1,196 @@
+/* PANEL GENERAL */
+.notification-panel {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 380px;
+    background: var(--fondo-claro);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    max-height: 460px;
+    overflow-y: auto;
+    z-index: 2000;
+    animation: fadeIn 0.22s ease-out;
+}
+
+/* SCROLLBAR CUSTOM */
+.notification-panel::-webkit-scrollbar {
+    width: 10px;
+}
+
+.notification-panel::-webkit-scrollbar-track {
+    background: #f3f3f5;
+    border-radius: 10px;
+}
+
+.notification-panel::-webkit-scrollbar-thumb {
+    background: var(--vino-medio);
+    border-radius: 10px;
+    border: 2px solid #f3f3f5;
+}
+
+.notification-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--vino-oscuro);
+}
+
+/* HEADER */
+.np-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.np-header-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--vino-oscuro);
+}
+
+.np-count {
+    background: var(--vino-oscuro);
+    padding: 4px 10px;
+    border-radius: 12px;
+    color: var(--texto-claro);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* SECCIÓN */
+.np-section {
+    margin-bottom: 16px;
+}
+
+.np-section-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--vino-medio);
+    margin: 10px 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ITEM */
+.notif-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fafbfd;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.notif-item:hover {
+    background: #f4f6ff;
+    transform: translateY(-2px);
+}
+
+/* TEXTO DEL ITEM */
+.notif-text h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 4px;
+}
+
+.notif-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    color: var(--vino-oscuro);
+    opacity: 0.85;
+}
+
+.calendar-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* BOTÓN VER MÁS */
+.notif-btn {
+    background: var(--vino-medio);
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.notif-btn:hover {
+    background: var(--vino-oscuro);
+}
+
+/* TEXTO: HAY MÁS */
+.notif-more {
+    text-align: left;
+    font-size: 0.8rem;
+    margin-top: -2px;
+    padding: 6px;
+    cursor: pointer;
+    color: var(--vino-medio);
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.notif-more:hover {
+    color: var(--vino-oscuro);
+}
+
+/* VACÍO */
+.np-empty,
+.notif-empty {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    padding: 12px 0;
+}
+
+/* FOOTER */
+.np-footer {
+    padding: 14px;
+    text-align: center;
+
+    background: #fafbfd;
+    /* mismo fondo que notif-item */
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+
+    color: var(--vino-oscuro);
+    font-weight: 600;
+    font-size: 0.85rem;
+
+    cursor: pointer;
+    border-radius: 0 0 12px 12px;
+
+    transition: background 0.25s ease, color 0.2s ease;
+}
+
+.np-footer:hover {
+    background: rgba(140, 0, 60, 0.06);
+    /* vino MUY suave */
+    color: var(--vino-medio);
+}
+
+
+
+/* ANIMACIÓN */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
