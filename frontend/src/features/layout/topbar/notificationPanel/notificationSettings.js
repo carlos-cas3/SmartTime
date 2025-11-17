@@ -6,4 +6,5 @@ export const defaultSettings = {
         extras: true,
     },
     priorityFilter: ["high"],
+    advanceTime: "1w",
 };

@@ -5,7 +5,7 @@ export default function useExamsData() {
             title: "Examen de Matemáticas",
             category: "Cálculo I",
             status: "pending",
-            date: "2025-11-17",
+            date: "2025-11-25",
             priority: "high",
             type: "exam",
             matriz: "Urgente e Importante",
