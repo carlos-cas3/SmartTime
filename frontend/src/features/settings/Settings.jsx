@@ -29,12 +29,12 @@ function Settings() {
 
     const handleSettingChange = (key, value) => {
         setPreferences((prev) => ({ ...prev, [key]: value }));
-        setIsDirty(true); // ← Activa el botón automáticamente
+        setIsDirty(true); // Activa el botón automáticamente
     };
 
     const handleSave = () => {
         console.log("Guardando en backend:", preferences);
-        setIsDirty(false); // ← DESPUÉS de guardar, lo reseteas
+        setIsDirty(false); // DESPUÉS de guardar, lo reseteas
     };
 
     // Configuración de items del sistema

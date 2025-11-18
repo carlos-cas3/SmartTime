@@ -1,0 +1,32 @@
+.list-container-single {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.list-item-single {
+    padding: 10px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    background-color: #fafafa;
+}
+
+/* Hover */
+.list-item-single:hover {
+    background-color: #f0f0f0;
+}
+
+/* Ítem seleccionado */
+.list-item-single.selected {
+    background-color: #e8ecff;
+    border-color: #4b6bff;
+    font-weight: 600;
+}
