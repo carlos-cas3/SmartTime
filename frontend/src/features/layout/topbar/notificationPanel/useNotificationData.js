@@ -17,28 +17,28 @@ export default function useNotificationData(settings) {
         filterByPriority(examsRaw, settings.priorityFilter),
         advance
     )
-        .filter(x => settings.sections.exams)
+        .filter(() => settings.sections.exams)
         .map(e => normalizeItem(e, "exam"));
 
     const tasks = filterByTime(
         filterByPriority(tasksRaw, settings.priorityFilter),
         advance
     )
-        .filter(x => settings.sections.tasks)
+        .filter(() => settings.sections.tasks)
         .map(t => normalizeItem(t, "task"));
 
     const projects = filterByTime(
         filterByPriority(projectsRaw, settings.priorityFilter),
         advance
     )
-        .filter(x => settings.sections.projects)
+        .filter(() => settings.sections.projects)
         .map(p => normalizeItem(p, "project"));
 
     const extras = filterByTime(
         filterByPriority(extrasRaw, settings.priorityFilter),
         advance
     )
-        .filter(x => settings.sections.extras)
+        .filter(() => settings.sections.extras)
         .map(ex => normalizeItem(ex, "extra"));
 
     const total = exams.length + tasks.length + projects.length + extras.length;
