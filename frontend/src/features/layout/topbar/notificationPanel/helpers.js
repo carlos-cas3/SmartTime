@@ -30,16 +30,21 @@ export function parseAdvanceTime(value) {
 // Filtrar por rango de tiempo desde ahora
 export function filterByTime(items, advanceTime) {
     const limit = parseAdvanceTime(advanceTime);
+
+    // Normalizar "hoy"
     const now = new Date();
+    now.setHours(0, 0, 0, 0); // inicio del día
 
     return items.filter((item) => {
         if (!item.date) return false;
 
         const target = new Date(item.date);
+
+        // Hacer que el evento sea al final del día
+        target.setHours(23, 59, 59, 999);
+
         const diff = target - now;
 
-        // > 0 → no está vencido
-        // <= limit → dentro del rango configurado
         return diff > 0 && diff <= limit;
     });
 }
