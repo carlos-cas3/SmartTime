@@ -40,7 +40,6 @@ export function filterByTime(items, advanceTime) {
 
         const target = new Date(item.date);
 
-        // Hacer que el evento sea al final del día
         target.setHours(23, 59, 59, 999);
 
         const diff = target - now;
