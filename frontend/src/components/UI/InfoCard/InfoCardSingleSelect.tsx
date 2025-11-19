@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./InfoCardSingleSelect.css"
+import { FaCheck } from "react-icons/fa";
+import "./InfoCardSingleSelect.css";
 
 export interface SingleSelectOption {
     label: string;
@@ -8,7 +9,7 @@ export interface SingleSelectOption {
 
 interface InfoCardSingleSelectProps {
     options: SingleSelectOption[];
-    value: string;            
+    value: string;
     onChange: (newValue: string) => void;
 }
 
@@ -39,7 +40,9 @@ const InfoCardSingleSelect: React.FC<InfoCardSingleSelectProps> = ({
                     onClick={() => handleSelect(opt.value)}
                 >
                     <span>{opt.label}</span>
-                    {selected === opt.value && <span>✔</span>}
+                    {selected === opt.value && (
+                            <FaCheck className="inline-check" />
+                    )}
                 </div>
             ))}
         </div>
