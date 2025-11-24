@@ -1,0 +1,14 @@
+.academic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columnas */
+    gap: 1rem;
+}
+
+
+.academic-field label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: #555;
+}

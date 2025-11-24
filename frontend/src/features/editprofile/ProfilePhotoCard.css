@@ -1,0 +1,83 @@
+.profile-photo-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    max-width: 340px;
+}
+
+.profile-photo-card h3 {
+    margin: 0 0 4px;
+}
+
+.photo-container {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+}
+
+.photo-preview {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.photo-preview img,
+.default-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #B03052;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+.camera-icon {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background: white;
+    padding: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
+}
+
+.upload-btn {
+    width: 100%;
+    padding: 8px;
+    background: #FFF;
+    border: 1px solid #CCC;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.rules {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.student-code-box {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.student-code-box input {
+    padding: 8px;
+    border: 1px solid #CCC;
+    border-radius: 6px;
+    background: #F7F7F7;
+    cursor: pointer;
+}
+
+.warning {
+    font-size: 12px;
+    color: #B03052;
+    margin-top: 4px;
+}

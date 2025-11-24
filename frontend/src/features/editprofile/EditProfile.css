@@ -1,0 +1,31 @@
+/* Contenedor principal */
+.edit-profile-page {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+/* Columna izquierda: foto + info personal */
+.edit-profile-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 45vh;
+}
+
+/* Columna derecha: info académica + otros */
+.edit-profile-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 70vh;
+}
+
+/* Opcional: ajustar tamaño de cada card si requieres */
+.profile-photo-card,
+.edit-personal-info-card,
+.academic-info-card {
+    width: 100%;
+    /* que se ajuste SOLO dentro de las columnas */
+}
