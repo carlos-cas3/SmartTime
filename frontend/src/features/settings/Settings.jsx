@@ -13,12 +13,13 @@ import ProfileCard from "../../components/UI/Profilecard";
 import InfoCardBase from "../../components/UI/InfoCard/InfoCardBase";
 import InfoCardSettings from "../../components/UI/InfoCard/InfoCardSettings";
 
-import "./Settings.css";
+import { useUser } from "../../Contexts/user/useUser";
 
+import "./Settings.css";
 
 function Settings() {
     const navigate = useNavigate();
-
+    const { user } = useUser();
     // Preferencias del sistema
     const [preferences, setPreferences] = useState({
         language: "Español",
@@ -87,15 +88,10 @@ function Settings() {
         },
     ];
 
-    const user = {
-        name: "Juan Pérez",
-        initials: "JP",
-        email: "juan.perez@unmsm.edu.pe",
-        code: "20190234",
-        role: "Estudiante",
-        faculty: "Ingeniería de Sistemas e Informática",
-        cycle: "10mo Ciclo",
-    };
+    // Si el usuario aún no está cargado
+    if (!user) {
+        return <div className="settings-container">Cargando perfil...</div>;
+    }
 
     return (
         <div className="settings-container">

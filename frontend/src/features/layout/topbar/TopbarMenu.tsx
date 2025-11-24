@@ -18,10 +18,15 @@ export default function TopbarMenu() {
 
     const [activeItem, setActiveItem] = useState(null);
 
-    const { total } = useNotificationData(defaultSettings);
+    const storedSettings = localStorage.getItem("notif-settings");
+    const settings = storedSettings
+        ? JSON.parse(storedSettings)
+        : defaultSettings;
+
+    const { total } = useNotificationData(settings);
 
     const panelRef = useRef(null);
-    const notifButtonRef = useRef(null); 
+    const notifButtonRef = useRef(null);
 
     const user = {
         name: "Juan Pérez",
@@ -112,7 +117,7 @@ export default function TopbarMenu() {
                                     className="notification-panel-wrapper"
                                     ref={panelRef}
                                 >
-                                    <NotificationPanel total={total} />
+                                    <NotificationPanel />
                                 </div>
                             )}
                     </div>

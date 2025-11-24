@@ -7,9 +7,15 @@ import NotificationFooter from "./NotificationFooter";
 import { defaultSettings } from "./notificationSettings";
 import useNotificationData from "./useNotificationData";
 
-export default function NotificationPanel({ total, settings = defaultSettings }) {
-    const { exams, tasks, projects, extras } =
-        useNotificationData(settings);
+export default function NotificationPanel() {
+    const storedSettings = localStorage.getItem("notif-settings");
+    const settings = storedSettings
+        ? JSON.parse(storedSettings)
+        : defaultSettings;
+
+    const { exams, tasks, projects, extras , total} = useNotificationData(settings);
+
+
 
     return (
         <div className="notification-panel">

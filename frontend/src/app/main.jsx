@@ -4,11 +4,14 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import UserProvider from "../Contexts/user/UserProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+            <UserProvider>
+                <App />
+            </UserProvider>
+        </BrowserRouter>
+    </React.StrictMode>
 );
