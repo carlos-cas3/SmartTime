@@ -11,11 +11,23 @@ interface AcademicInfo {
 
 interface AcademicInfoCardProps {
     initialData: AcademicInfo;
-    onChange: (data: AcademicInfo) => void; // <-- Notifica cambios
+    onChange: (data: AcademicInfo) => void;
 }
 
-// Config centralizado
-const academicFields = {
+interface SelectOption {
+    value: string;
+    label: string;
+}
+
+interface AcademicFieldConfig {
+    label: string;
+    type: "select";
+    options: SelectOption[];
+    placeholder: string;
+}
+
+// Config centralizado tipado correctamente
+const academicFields: Record<string, AcademicFieldConfig> = {
     faculty: {
         label: "Facultad",
         type: "select",
@@ -46,7 +58,6 @@ const academicFields = {
     },
 };
 
-// ---------- Componente ----------
 export default function AcademicInfoCard({ initialData, onChange }: AcademicInfoCardProps) {
     const [formData, setFormData] = useState<AcademicInfo>({
         faculty: initialData.faculty,
@@ -55,12 +66,10 @@ export default function AcademicInfoCard({ initialData, onChange }: AcademicInfo
 
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
-    // Cuando cambia el usuario dentro del formulario, notificamos al padre
     useEffect(() => {
         onChange(formData);
     }, [formData]);
 
-    // Actualizar valores del formulario
     const handleChange = (field: keyof AcademicInfo, value: string) => {
         setFormData((prev) => ({
             ...prev,
@@ -69,11 +78,7 @@ export default function AcademicInfoCard({ initialData, onChange }: AcademicInfo
     };
 
     return (
-        <InfoCardBase
-            title="Información Académica"
-            variant="default"
-            isDirty={false}  // <-- no muestra botón
-        >
+        <InfoCardBase title="Información Académica" variant="default" isDirty={false}>
             <div className="academic-grid">
                 {Object.entries(academicFields).map(([key, field]) => (
                     <div key={key} className="academic-field">
@@ -85,10 +90,10 @@ export default function AcademicInfoCard({ initialData, onChange }: AcademicInfo
                             options={field.options}
                             placeholder={field.placeholder}
                             open={openDropdown === key}
-                            onToggle={(id) =>
+                            onToggle={(id: string) =>
                                 setOpenDropdown(openDropdown === id ? null : id)
                             }
-                            onChange={(value) =>
+                            onChange={(value: string) =>
                                 handleChange(key as keyof AcademicInfo, value)
                             }
                             onClose={() => setOpenDropdown(null)}
