@@ -8,7 +8,7 @@ import {
     MdOutlineSecurity,
 } from "react-icons/md";
 
-import ProfileCard from "../../components/UI/temp";
+import ProfileCard from "../../components/UI/ProfileCard";
 import InfoCardBase from "../../components/UI/InfoCard/InfoCardBase";
 import InfoCardSettings from "../../components/UI/InfoCard/InfoCardSettings";
 

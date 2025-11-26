@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../Contexts/user/UserContext";
-import ProfileCard from "../../components/UI/temp.jsx";
+import ProfileCard from "../../components/UI/ProfileCard.jsx";
 import PersonalInfoCard from "./PersonalInfoCard";
 import "./Profile.css";
 
