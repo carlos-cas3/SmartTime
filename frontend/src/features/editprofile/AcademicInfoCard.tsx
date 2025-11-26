@@ -11,17 +11,17 @@ interface AcademicInfo {
 
 interface AcademicInfoCardProps {
     initialData: AcademicInfo;
-    onSave?: (data: AcademicInfo) => void;
+    onChange: (data: AcademicInfo) => void; // <-- Notifica cambios
 }
 
-// Configuración centralizada de campos
+// Config centralizado
 const academicFields = {
     faculty: {
         label: "Facultad",
         type: "select",
         options: [
             {
-                value: "fisi",
+                value: "Ingeniería de Sistemas e Informática",
                 label: "Ingeniería de Sistemas e Informática",
             },
         ],
@@ -31,78 +31,68 @@ const academicFields = {
         label: "Ciclo actual",
         type: "select",
         options: [
-            { value: "1", label: "1er Ciclo" },
-            { value: "2", label: "2do Ciclo" },
-            { value: "3", label: "3er Ciclo" },
-            { value: "4", label: "4to Ciclo" },
-            { value: "5", label: "5to Ciclo" },
-            { value: "6", label: "6to Ciclo" },
-            { value: "7", label: "7mo Ciclo" },
-            { value: "8", label: "8vo Ciclo" },
-            { value: "9", label: "9no Ciclo" },
-            { value: "10", label: "10mo Ciclo" },
+            { value: "1er Ciclo", label: "1er Ciclo" },
+            { value: "2do Ciclo", label: "2do Ciclo" },
+            { value: "3er Ciclo", label: "3er Ciclo" },
+            { value: "4to Ciclo", label: "4to Ciclo" },
+            { value: "5to Ciclo", label: "5to Ciclo" },
+            { value: "6to Ciclo", label: "6to Ciclo" },
+            { value: "7mo Ciclo", label: "7mo Ciclo" },
+            { value: "8vo Ciclo", label: "8vo Ciclo" },
+            { value: "9no Ciclo", label: "9no Ciclo" },
+            { value: "10mo Ciclo", label: "10mo Ciclo" },
         ],
         placeholder: "Seleccionar ciclo",
     },
 };
 
 // ---------- Componente ----------
-export default function AcademicInfoCard({
-    initialData,
-    onSave,
-}: AcademicInfoCardProps) {
-    const [formData, setFormData] = useState(initialData);
+export default function AcademicInfoCard({ initialData, onChange }: AcademicInfoCardProps) {
+    const [formData, setFormData] = useState<AcademicInfo>({
+        faculty: initialData.faculty,
+        cycle: initialData.cycle,
+    });
+
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-    const [isDirty, setIsDirty] = useState(false);
 
-    // Detecta cambios
+    // Cuando cambia el usuario dentro del formulario, notificamos al padre
     useEffect(() => {
-        setIsDirty(JSON.stringify(formData) !== JSON.stringify(initialData));
-    }, [formData, initialData]);
+        onChange(formData);
+    }, [formData]);
 
-    // Actualiza valores
+    // Actualizar valores del formulario
     const handleChange = (field: keyof AcademicInfo, value: string) => {
-        setFormData((prev) => ({ ...prev, [field]: value }));
-    };
-
-    const handleSave = () => {
-        if (onSave) onSave(formData);
+        setFormData((prev) => ({
+            ...prev,
+            [field]: value,
+        }));
     };
 
     return (
         <InfoCardBase
             title="Información Académica"
             variant="default"
-            isDirty={isDirty}
-            onSave={handleSave}
-            
+            isDirty={false}  // <-- no muestra botón
         >
             <div className="academic-grid">
                 {Object.entries(academicFields).map(([key, field]) => (
                     <div key={key} className="academic-field">
                         <label>{field.label}</label>
 
-                        {field.type === "select" && (
-                            <DropdownSelect
-                                dropdownId={key}
-                                value={(formData as any)[key]}
-                                options={field.options}
-                                placeholder={field.placeholder}
-                                open={openDropdown === key}
-                                onToggle={(id) =>
-                                    setOpenDropdown(
-                                        openDropdown === id ? null : id
-                                    )
-                                }
-                                onChange={(value) =>
-                                    handleChange(
-                                        key as keyof AcademicInfo,
-                                        value
-                                    )
-                                }
-                                onClose={() => setOpenDropdown(null)}
-                            />
-                        )}
+                        <DropdownSelect
+                            dropdownId={key}
+                            value={(formData as any)[key]}
+                            options={field.options}
+                            placeholder={field.placeholder}
+                            open={openDropdown === key}
+                            onToggle={(id) =>
+                                setOpenDropdown(openDropdown === id ? null : id)
+                            }
+                            onChange={(value) =>
+                                handleChange(key as keyof AcademicInfo, value)
+                            }
+                            onClose={() => setOpenDropdown(null)}
+                        />
                     </div>
                 ))}
             </div>

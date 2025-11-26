@@ -1,14 +1,17 @@
 .academic-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 columnas */
-    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
 }
 
+.academic-field {
+    display: flex;
+    flex-direction: column;
+}
 
 .academic-field label {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-    color: #555;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: #444;
 }

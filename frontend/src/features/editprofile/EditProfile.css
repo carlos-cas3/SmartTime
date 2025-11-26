@@ -1,31 +1,52 @@
-/* Contenedor principal */
+/* --- CONTENEDOR PRINCIPAL --- */
 .edit-profile-page {
-    display: flex;
-    justify-content: center;
-    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    /* 3 columnas */
     gap: 2rem;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Columna izquierda: foto + info personal */
+/* --- COLUMNA 1: Foto --- */
 .edit-profile-left {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    width: 45vh;
 }
 
-/* Columna derecha: info académica + otros */
+/* --- COLUMNA 2: Datos personales --- */
+.edit-profile-center {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* --- COLUMNA 3: Datos académicos --- */
 .edit-profile-right {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    width: 70vh;
 }
 
-/* Opcional: ajustar tamaño de cada card si requieres */
+/* --- OPCIONAL para que las tarjetas ocupen todo el ancho --- */
 .profile-photo-card,
 .edit-personal-info-card,
 .academic-info-card {
     width: 100%;
-    /* que se ajuste SOLO dentro de las columnas */
+}
+
+.edit-profile-save-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
 }

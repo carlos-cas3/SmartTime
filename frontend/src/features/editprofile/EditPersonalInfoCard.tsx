@@ -1,39 +1,43 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import InfoCardBase from "../../components/UI/InfoCard/InfoCardBase";
 import "./EditPersonalInfoCard.css";
+import { UserContext } from "../../Contexts/user/UserContext";
 
 export default function EditPersonalInfoCard() {
-    // 1) Cargar datos iniciales desde localStorage
-    const [formData, setFormData] = useState(() => {
-        const saved = localStorage.getItem("profile-info");
-        return saved
-            ? JSON.parse(saved)
-            : {
-                fullName: "",
-                email: "",
-                phone: "",
-                city: "",
-                country: "Perú",
-                address: "",
-                bio: "",
-            };
+
+    const { user, updateUser } = useContext(UserContext);
+
+    // 1) Valores iniciales: se llenan usando el usuario del contexto
+    const [formData, setFormData] = useState({
+        fullName: user.fullName || user.name || "",
+        email: user.email || "",
+        phone: user.phone || "",
+        city: user.city || "",
+        country: user.country || "Perú",
+        address: user.address || "",
+        bio: user.bio || "",
     });
 
     const [isDirty, setIsDirty] = useState(false);
 
-    // 2) Detectar cambios (igual que Notifications)
+    // 2) Detectar cambios comparando formData vs user
     useEffect(() => {
-        const saved = localStorage.getItem("profile-info");
-        const parsed = saved ? JSON.parse(saved) : {};
+        const currentUserData = {
+            fullName: user.fullName || user.name || "",
+            email: user.email || "",
+            phone: user.phone || "",
+            city: user.city || "",
+            country: user.country || "Perú",
+            address: user.address || "",
+            bio: user.bio || "",
+        };
 
-        setIsDirty(JSON.stringify(formData) !== JSON.stringify(parsed));
-    }, [formData]);
+        setIsDirty(JSON.stringify(formData) !== JSON.stringify(currentUserData));
+    }, [formData, user]);
 
     // 3) Manejar campos
     const handleChange = (e) => {
         const { name, value } = e.target;
-
-        console.log("Cambio detectado:", name, "=>", value);
 
         setFormData((prev) => ({
             ...prev,
@@ -41,17 +45,27 @@ export default function EditPersonalInfoCard() {
         }));
     };
 
-    // 4) Guardar cambios
+    // 4) Guardar cambios al UserContext (ya NO a localStorage manualmente)
     const saveProfile = () => {
-        localStorage.setItem("profile-info", JSON.stringify(formData));
+        updateUser({
+            name: formData.fullName,
+            fullName: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+            city: formData.city,
+            country: formData.country,
+            address: formData.address,
+            bio: formData.bio,
+        });
+
         setIsDirty(false);
-        console.log("Perfil guardado:", formData);
     };
 
     return (
         <div className="edit-profile-container">
             <InfoCardBase title="Información Personal">
                 <div className="form-grid">
+
                     <div className="field">
                         <label>Nombre completo</label>
                         <input
@@ -124,10 +138,10 @@ export default function EditPersonalInfoCard() {
                             rows={3}
                         />
                     </div>
+
                 </div>
             </InfoCardBase>
 
-            {/* Igual que Notifications: el botón aparece solo si hubo cambios */}
             {isDirty && (
                 <div className="edit-profile-save-container">
                     <button className="save-all-button" onClick={saveProfile}>

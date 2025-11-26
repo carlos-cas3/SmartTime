@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { UserContext } from "./UserContext";
 
 const defaultUser = {
@@ -9,18 +9,36 @@ const defaultUser = {
     role: "Estudiante",
     faculty: "Ingeniería de Sistemas e Informática",
     cycle: "10mo Ciclo",
+    photo: null,
 };
 
 export default function UserProvider({ children }) {
-    const [user, setUser] = useState(defaultUser);
-
-    useEffect(() => {
+    // Inicializar correctamente con localStorage
+    const [user, setUser] = useState(() => {
         const saved = localStorage.getItem("user");
-        if (saved) setUser(JSON.parse(saved));
-    }, []);
+        return saved ? JSON.parse(saved) : defaultUser;
+    });
 
     const updateUser = (newData) => {
-        const updated = { ...user, ...newData };
+        console.log("🟣 updateUser() recibió:", newData);
+
+        const updatedName = newData.name || user.name;
+
+        const initials = updatedName
+            .split(" ")
+            .map((word) => word[0])
+            .join("")
+            .toUpperCase()
+            .slice(0, 2);
+
+        const updated = {
+            ...user,
+            ...newData,
+            initials,
+        };
+
+        console.log("🟣 User final actualizado:", updated);
+
         setUser(updated);
         localStorage.setItem("user", JSON.stringify(updated));
     };

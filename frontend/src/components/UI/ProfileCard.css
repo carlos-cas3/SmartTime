@@ -120,3 +120,76 @@
     background-color: #f8e4ea;
     color: #79142a;
 }
+
+
+/* ------------------------------ */
+/* VARIANTE PRESENTATION (vista elegante del perfil) */
+/* ------------------------------ */
+
+.profile-card.presentation {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    flex-direction: row;
+    text-align: left;
+}
+
+.profile-card.presentation .profile-avatar {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #a02a3a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+}
+
+.profile-card.presentation .profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-card.presentation .profile-info {
+    flex: 1;
+}
+
+.profile-card.presentation .profile-name {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.profile-card.presentation .profile-tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-card.presentation .tag.role {
+    background: #fdeceb;
+    color: #b7002e;
+}
+
+.profile-card.presentation .tag.code {
+    background: #eef3f7;
+    color: #23374d;
+}
+
+.profile-card.presentation .profile-details {
+    font-size: 14px;
+    color: #555;
+}
+
+.profile-card.presentation .profile-details .detail {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 2px 0;
+}

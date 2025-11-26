@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { IoLanguage } from "react-icons/io5";
-import { IoMdSettings } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { FaPalette, FaMoon } from "react-icons/fa";
 import {
@@ -9,7 +8,7 @@ import {
     MdOutlineSecurity,
 } from "react-icons/md";
 
-import ProfileCard from "../../components/UI/Profilecard";
+import ProfileCard from "../../components/UI/ProfileCard";
 import InfoCardBase from "../../components/UI/InfoCard/InfoCardBase";
 import InfoCardSettings from "../../components/UI/InfoCard/InfoCardSettings";
 
@@ -19,26 +18,33 @@ import "./Settings.css";
 
 function Settings() {
     const navigate = useNavigate();
-    const { user } = useUser();
-    // Preferencias del sistema
+
+    // AHORA SÍ → traes todo el contexto correcto
+    const { user, updateUser } = useUser();
+
     const [preferences, setPreferences] = useState({
         language: "Español",
         theme: false,
         hourZone: "GMT-5",
     });
+
     const [isDirty, setIsDirty] = useState(false);
 
     const handleSettingChange = (key, value) => {
         setPreferences((prev) => ({ ...prev, [key]: value }));
-        setIsDirty(true); // Activa el botón automáticamente
+        setIsDirty(true);
     };
 
     const handleSave = () => {
-        console.log("Guardando en backend:", preferences);
-        setIsDirty(false); // DESPUÉS de guardar, lo reseteas
+        updateUser({
+            preferences,
+        });
+
+        console.log("ProfileCard recibió USER:", user);
+
+        setIsDirty(false);
     };
 
-    // Configuración de items del sistema
     const settingsSystem = [
         {
             key: "language",
@@ -88,7 +94,6 @@ function Settings() {
         },
     ];
 
-    // Si el usuario aún no está cargado
     if (!user) {
         return <div className="settings-container">Cargando perfil...</div>;
     }
@@ -102,6 +107,7 @@ function Settings() {
                     onEdit={() => navigate("/editProfile")}
                 />
             </div>
+
             <div className="settings-control">
                 <InfoCardBase
                     title="Preferencias del Sistema"
@@ -129,7 +135,7 @@ function Settings() {
                     <InfoCardSettings
                         settingsItems={securitySettings}
                         onChange={(key, value) => {
-                            console.log("Seguridad updated:", key, value); // aplica instantáneo sin botón
+                            console.log("Seguridad updated:", key, value);
                         }}
                     />
                 </InfoCardBase>

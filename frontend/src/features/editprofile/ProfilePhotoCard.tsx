@@ -1,24 +1,55 @@
-import { useState, useRef, ChangeEvent } from "react";
+import { useEffect, useState, useRef, ChangeEvent } from "react";
 import { FaCamera } from "react-icons/fa";
 import InfoCardBase from "../../components/UI/InfoCard/InfoCardBase";
+import { generateInitialsAvatar } from "../../utils/generateAvatar";
 import "./ProfilePhotoCard.css";
 
 interface ProfilePhotoCardProps {
     studentCode: string;
+    studentFullName?: string; // <-- ahora opcional
     initialPhoto?: string | null;
     onSave?: (photo: string | null) => Promise<void> | void;
+    showSaveButton?: boolean;
+    onPhotoChange?: (newPhoto: string | null) => void;
 }
 
 export default function ProfilePhotoCard({
     studentCode,
+    studentFullName,
     initialPhoto = null,
     onSave,
+    showSaveButton = false,
+    onPhotoChange,
 }: ProfilePhotoCardProps) {
     const [photo, setPhoto] = useState<string | null>(initialPhoto);
     const [dirty, setDirty] = useState(false);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
+    // --- Generar avatar si no existe foto ---
+
+    useEffect(() => {
+        if (initialPhoto) {
+            setPhoto(initialPhoto);
+            return;
+        }
+
+        if (studentFullName) {
+            const avatar = generateInitialsAvatar(studentFullName);
+            setPhoto(avatar);
+            if (onPhotoChange) onPhotoChange(avatar);
+        }
+    }, [initialPhoto, studentFullName]);
+
+    // *** NUEVO: sincroniza cambios desde el contexto ***
+    useEffect(() => {
+        if (initialPhoto) {
+            setPhoto(initialPhoto);
+            if (onPhotoChange) onPhotoChange(initialPhoto);
+        }
+    }, [initialPhoto]);
+
+    // --- Cuando el usuario sube una foto ---
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
@@ -36,20 +67,31 @@ export default function ProfilePhotoCard({
 
         const reader = new FileReader();
         reader.onload = () => {
-            setPhoto(reader.result as string);
+            const newPhoto = reader.result as string;
+
+            setPhoto(newPhoto);
             setDirty(true);
+
+            if (onPhotoChange) onPhotoChange(newPhoto);
         };
         reader.readAsDataURL(file);
-    };
 
-    const handleClickUpload = () => {
-        fileInputRef.current?.click();
-    };
+        reader.onload = () => {
+            const newPhoto = reader.result as string;
+            console.log("📸 Nueva foto leída:", newPhoto.slice(0, 40), "...");
 
-    const handleUneditableCode = () => {
-        alert(
-            "El código de estudiante no puede ser modificado. Contacta con administración si necesitas actualizarlo."
-        );
+            setPhoto(newPhoto);
+            setDirty(true);
+
+            if (onPhotoChange) {
+                console.log(
+                    "➡️ Enviando a onPhotoChange:",
+                    newPhoto.slice(0, 40),
+                    "..."
+                );
+                onPhotoChange(newPhoto);
+            }
+        };
     };
 
     const handleSave = async () => {
@@ -62,8 +104,8 @@ export default function ProfilePhotoCard({
             title="Foto de perfil"
             icon={<FaCamera />}
             variant="profile"
-            isDirty={dirty}
-            onSave={handleSave}
+            isDirty={showSaveButton ? dirty : false}
+            onSave={showSaveButton ? handleSave : undefined}
         >
             <div className="photo-container">
                 <div className="photo-preview">
@@ -75,7 +117,10 @@ export default function ProfilePhotoCard({
                         </div>
                     )}
 
-                    <div className="camera-icon" onClick={handleClickUpload}>
+                    <div
+                        className="camera-icon"
+                        onClick={() => fileInputRef.current?.click()}
+                    >
                         <FaCamera />
                     </div>
                 </div>
@@ -89,7 +134,10 @@ export default function ProfilePhotoCard({
                 onChange={handleFileChange}
             />
 
-            <button className="upload-btn" onClick={handleClickUpload}>
+            <button
+                className="upload-btn"
+                onClick={() => fileInputRef.current?.click()}
+            >
                 Subir nueva foto
             </button>
 
@@ -101,13 +149,11 @@ export default function ProfilePhotoCard({
                     type="text"
                     value={studentCode}
                     readOnly
-                    onClick={handleUneditableCode}
+                    onClick={() =>
+                        alert("El código de estudiante no puede modificarse.")
+                    }
                 />
             </div>
-
-            <p className="warning">
-                El código de estudiante no puede ser modificado.
-            </p>
         </InfoCardBase>
     );
 }
