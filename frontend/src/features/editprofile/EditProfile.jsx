@@ -71,7 +71,6 @@ export default function EditProfile() {
             photo: photoData,
         });
 
-        // Esto recarga ProfileCard, Sidebar, etc automáticamente
         setIsDirty(false);
     };
 
