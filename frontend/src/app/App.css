@@ -51,7 +51,6 @@
   border-radius: 2rem;
     overflow-y: auto;
   overflow-x: hidden;
-   /* ✅ Altura total dentro del grid, sin cortar */
   height: 100%;
   box-sizing: border-box;
 }

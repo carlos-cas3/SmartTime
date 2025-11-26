@@ -37,7 +37,6 @@ export default function ActivityPage({ useDataHook, createTitle, editTitle , dra
         const newId =
             data.length > 0 ? Math.max(...data.map((d) => d.id)) + 1 : 1;
         setData((prev) => [...prev, { ...newActivity, id: newId }]);
-        console.log("Nueva actividad creada:", newActivity);
         setIsModalOpen(false);
     };
 
@@ -49,7 +48,6 @@ export default function ActivityPage({ useDataHook, createTitle, editTitle , dra
                     : item
             )
         );
-        console.log("Actividad actualizada:", updatedActivity);
         setIsModalOpen(false);
     };
 
@@ -58,7 +56,6 @@ export default function ActivityPage({ useDataHook, createTitle, editTitle , dra
             setData((prev) =>
                 prev.filter((item) => item.id !== activityToDelete.id)
             );
-            console.log("Eliminado:", activityToDelete);
 
             setIsViewOpen(false);
             setSelectedItem(null);

@@ -11,22 +11,24 @@ import "./TopbarMenu.css";
 
 import useNotificationData from "./notificationPanel/useNotificationData";
 import { defaultSettings } from "./notificationPanel/notificationSettings";
+import { useUser } from "../../../Contexts/user/useUser";
 
 export default function TopbarMenu() {
     const location = useLocation();
     const navigate = useNavigate();
+    const { user } = useUser();
 
     const [activeItem, setActiveItem] = useState(null);
 
-    const { total } = useNotificationData(defaultSettings);
+    const storedSettings = localStorage.getItem("notif-settings");
+    const settings = storedSettings
+        ? JSON.parse(storedSettings)
+        : defaultSettings;
+
+    const { total } = useNotificationData(settings);
 
     const panelRef = useRef(null);
-    const notifButtonRef = useRef(null); 
-
-    const user = {
-        name: "Juan Pérez",
-        email: "juanperez@email.com",
-    };
+    const notifButtonRef = useRef(null);
 
     const handleItemClick = (itemName, path) => {
         setActiveItem((prev) => (prev === itemName ? null : itemName));
@@ -77,8 +79,10 @@ export default function TopbarMenu() {
             onClick: () => handleItemClick("profile", "/profile"),
             extraContent: (
                 <div className="profile-info">
-                    <span className="profile-name">{user.name}</span>
-                    <span className="profile-email">{user.email}</span>
+                    <span className="profile-name">
+                        {user?.name || "Cargando..."}
+                    </span>
+                    <span className="profile-email">{user?.email || ""}</span>
                 </div>
             ),
         },
@@ -112,7 +116,7 @@ export default function TopbarMenu() {
                                     className="notification-panel-wrapper"
                                     ref={panelRef}
                                 >
-                                    <NotificationPanel total={total} />
+                                    <NotificationPanel />
                                 </div>
                             )}
                     </div>

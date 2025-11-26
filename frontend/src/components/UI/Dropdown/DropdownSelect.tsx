@@ -1,8 +1,28 @@
 import { FiChevronDown, FiCheck } from "react-icons/fi";
 import "./DropdownSelect.css";
 
+// -------------------- Tipos --------------------
+export interface SelectOption {
+    value: string;
+    label: string;
+}
+
+interface DropdownSelectProps {
+    dropdownId: string;
+    options: SelectOption[];
+    value: string;
+    onChange: (value: string) => void;
+    placeholder?: string;
+    icon?: React.ReactNode;
+    open: boolean;
+    onToggle: (id: string) => void;
+    onClose: () => void;
+    size?: "sm" | "md" | "lg";
+}
+
+// -------------------- Componente --------------------
 export default function DropdownSelect({
-    dropdownId, // ✅ nuevo
+    dropdownId,
     options = [],
     value,
     onChange,
@@ -11,8 +31,8 @@ export default function DropdownSelect({
     open,
     onToggle,
     onClose,
-    size = "md", // ← nuevo prop
-}) {
+    size = "md",
+}: DropdownSelectProps) {
     const selected = options.find((o) => o.value === value);
 
     return (
@@ -23,7 +43,7 @@ export default function DropdownSelect({
             <button
                 type="button"
                 className="dropdown-trigger"
-                onClick={() => onToggle?.(dropdownId)} // ✅ pasa el id
+                onClick={() => onToggle(dropdownId)}
             >
                 {icon && <span className="dropdown-icon">{icon}</span>}
                 <span

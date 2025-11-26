@@ -24,8 +24,6 @@ function Notifications() {
         setSettings((prev) => {
             const updated = { ...prev, ...newValues };
 
-            console.log("🟦 Nuevo cambio detectado:", newValues);
-            console.log("🟩 Settings actualizados:", updated);
 
             return updated;
         });
