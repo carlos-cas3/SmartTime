@@ -37,7 +37,6 @@ export default function EditProfile() {
         );
 
         setPhotoData(newPhoto);
-        console.log("📌 photoData ahora:", newPhoto?.slice(0, 40), "...");
 
         updateUser({ photo: newPhoto });
 
@@ -65,11 +64,7 @@ export default function EditProfile() {
     };
 
     const saveAll = () => {
-        console.log("Guardando PERSONAL:", personalData);
-        console.log("Guardando ACADÉMICO:", academicData);
-        console.log("Guardando FOTO:", photoData);
 
-        // ⬇⬇⬇ ACTUALIZA EL USER CONTEXT (lo más importante)
         updateUser({
             ...personalData,
             ...academicData,

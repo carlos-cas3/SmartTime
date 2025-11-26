@@ -20,7 +20,6 @@ export default function UserProvider({ children }) {
     });
 
     const updateUser = (newData) => {
-        console.log("🟣 updateUser() recibió:", newData);
 
         const updatedName = newData.name || user.name;
 
@@ -37,7 +36,6 @@ export default function UserProvider({ children }) {
             initials,
         };
 
-        console.log("🟣 User final actualizado:", updated);
 
         setUser(updated);
         localStorage.setItem("user", JSON.stringify(updated));

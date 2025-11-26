@@ -26,7 +26,7 @@ export default function useHighlightMonthCell() {
     const handleSelectSlot = (slotInfo) => {
         const { row, col } = getRowCol(slotInfo.start);
 
-        console.log("✅ Celda clickeada:", {
+        console.log("Celda clickeada:", {
             date: slotInfo.start.toDateString(),
             dayOfMonth: slotInfo.start.getDate(),
             row,
@@ -43,7 +43,7 @@ export default function useHighlightMonthCell() {
 
         // Verificar si esta celda debe ser destacada
         if (highlightedCell.row === row && highlightedCell.col === col) {
-            console.log("🎯 Highlight aplicado:", {
+            console.log("Highlight aplicado:", {
                 date: date.toDateString(),
                 dayOfMonth: date.getDate(),
                 row,

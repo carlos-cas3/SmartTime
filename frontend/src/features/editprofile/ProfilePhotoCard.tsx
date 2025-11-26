@@ -76,22 +76,6 @@ export default function ProfilePhotoCard({
         };
         reader.readAsDataURL(file);
 
-        reader.onload = () => {
-            const newPhoto = reader.result as string;
-            console.log("📸 Nueva foto leída:", newPhoto.slice(0, 40), "...");
-
-            setPhoto(newPhoto);
-            setDirty(true);
-
-            if (onPhotoChange) {
-                console.log(
-                    "➡️ Enviando a onPhotoChange:",
-                    newPhoto.slice(0, 40),
-                    "..."
-                );
-                onPhotoChange(newPhoto);
-            }
-        };
     };
 
     const handleSave = async () => {

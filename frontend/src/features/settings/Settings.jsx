@@ -40,7 +40,6 @@ function Settings() {
             preferences,
         });
 
-        console.log("ProfileCard recibió USER:", user);
 
         setIsDirty(false);
     };
