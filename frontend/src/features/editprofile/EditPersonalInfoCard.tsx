@@ -5,7 +5,20 @@ import { UserContext } from "../../Contexts/user/UserContext";
 
 export default function EditPersonalInfoCard() {
 
-    const { user, updateUser } = useContext(UserContext);
+    const context = useContext(UserContext);
+    const { user, updateUser } = context ?? {
+        user: {
+            fullName: "",
+            name: "",
+            email: "",
+            phone: "",
+            city: "",
+            country: "Perú",
+            address: "",
+            bio: "",
+        },
+        updateUser: (u: any) => {},
+    };
 
     // 1) Valores iniciales: se llenan usando el usuario del contexto
     const [formData, setFormData] = useState({
@@ -36,7 +49,9 @@ export default function EditPersonalInfoCard() {
     }, [formData, user]);
 
     // 3) Manejar campos
-    const handleChange = (e) => {
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    ) => {
         const { name, value } = e.target;
 
         setFormData((prev) => ({
