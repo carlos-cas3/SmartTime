@@ -31,7 +31,7 @@ export default function EditProfile() {
 
     const updatePhoto = (newPhoto) => {
         console.log(
-            "🟢 updatePhoto() recibido:",
+            "updatePhoto() recibido:",
             newPhoto?.slice(0, 40),
             "..."
         );
