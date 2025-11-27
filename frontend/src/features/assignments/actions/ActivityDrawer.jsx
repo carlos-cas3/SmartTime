@@ -12,6 +12,29 @@ export default function ActivityDrawer({
 }) {
     if (!activity) return null;
 
+    const TRANSLATIONS = {
+        type: {
+            task: "Tarea",
+            exam: "Examen",
+            project: "Proyecto",
+            extra: "Extra",
+        },
+        status: {
+            pending: "Pendiente",
+            "not-completed": "No completado",
+            completed: "Completado",
+        },
+        priority: {
+            high: "Alta",
+            medium: "Media",
+            low: "Baja",
+        },
+    };
+
+    function t(category, key) {
+        return TRANSLATIONS[category]?.[key] || key;
+    }
+
     return createPortal(
         <div
             className={`drawer-overlay ${isOpen ? "open" : ""}`}
@@ -23,34 +46,42 @@ export default function ActivityDrawer({
             >
                 {/* HEADER */}
                 <div className="drawer-top">
-                    <span className="activity-badge">{activity.type}</span>
+                    <span className="activity-badge">
+                        {t("type", activity.type)}
+                    </span>
                     <h2 className="drawer-title">{activity.title}</h2>
                     <p className="drawer-subtitle">{activity.category}</p>
                 </div>
 
                 {/* INFO CARDS */}
                 <div className="drawer-info-grid">
-                    <div className="info-card">
-                        <p className="info-label">
+                    <div className="info-cardDrawer">
+                        <p className="info-labelDrawer">
                             <Layers size={14} /> Estado
                         </p>
-                        <p className="info-value state">{activity.status}</p>
+                        <span
+                            className={`info-valueDrawer state state-${activity.status}`}
+                        >
+                            {t("status", activity.status)}
+                        </span>
                     </div>
 
-                    <div className="info-card">
-                        <p className="info-label">
+                    <div className="info-cardDrawer">
+                        <p className="info-labelDrawer">
                             <Flag size={14} /> Prioridad
                         </p>
-                        <p className="info-value priority">
-                            {activity.priority}
-                        </p>
+                        <span
+                            className={`info-valueDrawer priority priority-${activity.priority}`}
+                        >
+                            {t("priority", activity.priority)}
+                        </span>
                     </div>
 
-                    <div className="info-card">
-                        <p className="info-label">
+                    <div className="info-cardDrawer">
+                        <p className="info-labelDrawer">
                             <Calendar size={14} /> Fecha límite
                         </p>
-                        <p className="info-value">{activity.date}</p>
+                        <p className="info-valueDrawer">{activity.date}</p>
                     </div>
                 </div>
 

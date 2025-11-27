@@ -56,3 +56,8 @@
     fill: var(--vino-medio);
     stroke: var(--vino-medio);
 }
+
+.sidebar .sidebar-item:active {
+    background: var(--rosado-suave);
+    color: var(--vino-medio) !important;
+}

@@ -29,7 +29,7 @@ function SidebarItem({ icon, label, path, children, collapsed, onClick }) {
                     path={!hasChildren && !onClick ? path : undefined}
                     showLabel={!collapsed}
                     className="sidebar-item"
-                    isActive={isActive} // 👈 Aquí usamos la ruta actual.
+                    isActive={isActive} 
                     mode="link"
                 />
             </div>
