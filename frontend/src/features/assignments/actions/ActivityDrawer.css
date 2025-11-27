@@ -76,33 +76,50 @@
     gap: .8rem;
 }
 
-.info-card {
+.info-cardDrawer {
     background: #fafafa;
-    padding: .9rem;
-    border-radius: 12px;
+    padding: 1rem;
+    border-radius: 1rem;
     border: 1px solid #eee;
 }
 
-.info-label {
+.info-labelDrawer {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 13px;
     opacity: 0.7;
 }
 
-.info-value {
-    margin-top: 4px;
+.info-valueDrawer {
+    font-size: 20px;
     font-weight: 600;
 }
 
-.info-value.state {
-    color: #0074ff;
+
+.info-valueDrawer.state.state-pending {
+    color: #ff9800; 
 }
 
-.info-value.priority {
-    color: #d7263d;
+.info-valueDrawer.state.state-not-completed {
+    color: #f44336; 
 }
+
+.info-valueDrawer.state.state-completed {
+    color: #4caf50; 
+}
+
+.info-valueDrawer.priority.priority-high {
+    color:  #f44336;
+}
+
+.info-valueDrawer.priority.priority-medium {
+    color: #ff9800;
+}
+
+.info-valueDrawer.priority.priority-low {
+    color: #4caf50;
+}
+
 
 /* SECTIONS */
 .drawer-section {
