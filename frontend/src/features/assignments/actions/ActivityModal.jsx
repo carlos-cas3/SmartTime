@@ -20,17 +20,34 @@ export default function ActivityModal({
     const [openPriority, setOpenPriority] = useState(false);
     const [openStatus, setOpenStatus] = useState(false);
 
-    // modal se abre en modo edición, precargar datos
     useEffect(() => {
         if (initialData) {
             setTitle(initialData.title || "");
             setPriority(initialData.priority || "");
             setStatus(initialData.status || "");
             setCategory(initialData.category || "");
-            setDate(initialData.date || "");
             setMatriz(initialData.matriz || "");
+
+            if (initialData.date) {
+            let formatted = initialData.date;
+
+            if (initialData.date.includes("-")) {
+                const parts = initialData.date.split("-");
+
+                if (parts[0].length === 2) {
+                    const [dd, mm, yyyy] = parts;
+                    formatted = `${yyyy}-${mm}-${dd}`;
+                }
+            }
+
+            setDate(formatted);
+        } else {
+            setDate("");
+        }
         }
     }, [initialData, isOpen]);
+
+
 
     useEffect(() => {
         const handleEsc = (e) => e.key === "Escape" && onClose();
@@ -49,7 +66,10 @@ export default function ActivityModal({
             return;
         }
 
-        const data = { title, priority, status, category, date, matriz };
+        const [yyyy, mm, dd] = date.split("-");
+        const formattedDate = `${dd}-${mm}-${yyyy}`;
+
+        const data = { title, priority, status, category, date: formattedDate, matriz };
         onSubmit(data);
         onClose();
     };
@@ -138,7 +158,7 @@ export default function ActivityModal({
                     </div>
 
                     <div className="form-group">
-                        <label>Date</label>
+                        <label>Fecha</label>
                         <input
                             type="date"
                             value={date}
