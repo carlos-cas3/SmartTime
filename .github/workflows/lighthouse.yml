@@ -43,7 +43,24 @@ jobs:
 
       - name: Run Lighthouse CI
         working-directory: ./frontend
-        run: lhci autorun --collect.url=http://localhost:8080
+        run: |
+          lhci collect --url=http://localhost:8080/ \
+                       --url=http://localhost:8080/dashboard \
+                       --url=http://localhost:8080/calendario \
+                       --url=http://localhost:8080/actividades/examenes \
+                       --url=http://localhost:8080/actividades/extras \
+                       --url=http://localhost:8080/actividades/proyectos \
+                       --url=http://localhost:8080/actividades/tareas \
+                       --url=http://localhost:8080/profile \
+                       --url=http://localhost:8080/settings \
+                       --url=http://localhost:8080/notificaciones \
+                       --url=http://localhost:8080/cargaSemanal \
+                       --url=http://localhost:8080/reportes \
+                       --url=http://localhost:8080/editProfile \
+                       --url=http://localhost:8080/login \
+                       --url=http://localhost:8080/register
+          lhci upload --target=temporary-public-storage
+
 
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v4
