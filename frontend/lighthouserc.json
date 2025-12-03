@@ -1,0 +1,27 @@
+{
+    "ci": {
+        "collect": {
+            "url": [
+                "https://smart-time-k59e.vercel.app/dashboard",
+                "https://smart-time-k59e.vercel.app/calendario",
+                "https://smart-time-k59e.vercel.app/actividades/examenes",
+                "https://smart-time-k59e.vercel.app/actividades/extras",
+                "https://smart-time-k59e.vercel.app/actividades/proyectos",
+                "https://smart-time-k59e.vercel.app/actividades/tareas",
+                "https://smart-time-k59e.vercel.app/profile",
+                "https://smart-time-k59e.vercel.app/settings",
+                "https://smart-time-k59e.vercel.app/notificaciones",
+                "https://smart-time-k59e.vercel.app/cargaSemanal",
+                "https://smart-time-k59e.vercel.app/reportes",
+                "https://smart-time-k59e.vercel.app/editProfile",
+                "https://smart-time-k59e.vercel.app/login",
+                "https://smart-time-k59e.vercel.app/register"
+            ],
+            "numberOfRuns": 1
+        },
+        "upload": {
+            "target": "filesystem",
+            "outputDir": "./lhci-report"
+        }
+    }
+}
