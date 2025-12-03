@@ -24,7 +24,18 @@ jobs:
 
       - name: Build project
         working-directory: ./frontend
-        run: npm run build   # ← genera dist/ en el runner
+        run: npm run build
+
+      - name: Install serve
+        working-directory: ./frontend
+        run: npm install -g serve
+
+      - name: Start server
+        working-directory: ./frontend
+        run: serve -s dist -l 8080 &
+
+      - name: Wait for server
+        run: sleep 5
 
       - name: Install Lighthouse CI
         working-directory: ./frontend
@@ -32,7 +43,7 @@ jobs:
 
       - name: Run Lighthouse CI
         working-directory: ./frontend
-        run: lhci autorun    # ← usa dist/ gracias a lighthouserc.js
+        run: lhci autorun --collect.url=http://localhost:8080
 
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v4
