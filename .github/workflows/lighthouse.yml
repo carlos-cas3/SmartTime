@@ -23,12 +23,15 @@ jobs:
         run: npm install
 
       - name: Build project
+        working-directory: ./frontend
         run: npm run build   # ← genera dist/ en el runner
 
       - name: Install Lighthouse CI
+        working-directory: ./frontend
         run: npm install -g @lhci/cli
 
       - name: Run Lighthouse CI
+        working-directory: ./frontend
         run: lhci autorun    # ← usa dist/ gracias a lighthouserc.js
 
       - name: Upload Lighthouse report
