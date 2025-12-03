@@ -1,9 +1,9 @@
 name: Lighthouse CI
 
 on:
-  workflow_dispatch:        # puedes correrlo manualmente
+  workflow_dispatch:
   push:
-    branches: [ main ]      # correrá cuando hagas push al main
+    branches: [ main ]
 
 jobs:
   lighthouseci:
@@ -11,18 +11,24 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build   # ← genera dist/ en el runner
+
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli
 
       - name: Run Lighthouse CI
-        run: lhci autorun
+        run: lhci autorun    # ← usa dist/ gracias a lighthouserc.js
 
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v4
