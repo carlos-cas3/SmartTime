@@ -13,14 +13,18 @@ const defaultUser = {
 };
 
 export default function UserProvider({ children }) {
-    // Inicializar correctamente con localStorage
     const [user, setUser] = useState(() => {
-        const saved = localStorage.getItem("user");
-        return saved ? JSON.parse(saved) : defaultUser;
+        try {
+            const saved = localStorage.getItem("user");
+            return saved ? JSON.parse(saved) : defaultUser;
+        } catch {
+            console.warn("User corrupto en localStorage, reiniciando...");
+            localStorage.removeItem("user");
+            return defaultUser;
+        }
     });
 
     const updateUser = (newData) => {
-
         const updatedName = newData.name || user.name;
 
         const initials = updatedName
@@ -35,7 +39,6 @@ export default function UserProvider({ children }) {
             ...newData,
             initials,
         };
-
 
         setUser(updated);
         localStorage.setItem("user", JSON.stringify(updated));
