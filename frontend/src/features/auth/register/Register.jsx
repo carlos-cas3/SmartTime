@@ -1,33 +1,17 @@
 import AuthLayout from "../layout/AuthLayout";
 import RegisterForm from "./RegisterForm";
+import { authApi } from "../../../utils/api";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+    const navigate = useNavigate();
 
-    const handleRegister = async (userData) => {
+    const handleRegister = async (formData) => {
         try {
-            const response = await fetch(
-                "http://localhost:3000/auth/register",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(userData),
-                }
-            );
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || "Error en el registro");
-            }
-
-            console.log("REGISTER OK:", data);
-            // aquí luego puedes redirigir a login
-            // navigate("/login");
-
+            await authApi.register(formData);
+            navigate("/login");
         } catch (error) {
-            console.error("REGISTER ERROR:", error.message);
+            throw error;
         }
     };
 
