@@ -10,88 +10,62 @@ import Reports from "../features/reports/Reports";
 import Login from "../features/auth/login/Login";
 import Register from "../features/auth/register/Register";
 
-
 import Exams from "../features/assignments/pages/Exams";
 import Extras from "../features/assignments/pages/Extras";
 import Projects from "../features/assignments/pages/Projects";
 import Tasks from "../features/assignments/pages/Tasks";
 
-
 import CargaSemanal from "../features/cargaSemanal/CargaSemanal";
 
 import EditProfile from "../features/editprofile/EditProfile";
 
-
+import ProtectedRoute from "../components/ProtectedRoute";
 
 const routes = [
     {
         path: "/",
-        element: <Layout />,
+        element: <ProtectedRoute />,
         children: [
             {
-                path: "dashboard",
-                element: <Dashboard />,
-            },
-            {
-                path: "calendario",
-                element: <Calendar />,
-            },
-            {
-                path: "actividades",
-                element: <Assignments/>,
+                element: <Layout />,
                 children: [
                     {
-                        path: "examenes",
-                        element: <Exams/>
+                        path: "dashboard",
+                        element: <Dashboard />,
                     },
                     {
-                        path: "extras",
-                        element: <Extras/>
+                        path: "calendario",
+                        element: <Calendar />,
                     },
                     {
-                        path: "proyectos",
-                        element: <Projects/>
+                        path: "actividades",
+                        element: <Assignments />,
+                        children: [
+                            { path: "examenes", element: <Exams /> },
+                            { path: "extras", element: <Extras /> },
+                            { path: "proyectos", element: <Projects /> },
+                            { path: "tareas", element: <Tasks /> },
+                        ],
                     },
-                    {
-                        path: "tareas",
-                        element: <Tasks/>
-                    }
-                ]
+                    { path: "profile", element: <Profile /> },
+                    { path: "settings", element: <Settings /> },
+                    { path: "notificaciones", element: <Notifications /> },
+                    { path: "cargaSemanal", element: <CargaSemanal /> },
+                    { path: "reportes", element: <Reports /> },
+                    { path: "editProfile", element: <EditProfile /> },
+                ],
             },
-            {
-                path: "profile",
-                element: <Profile/>
-            },
-            {
-                path: "settings",
-                element: <Settings/>
-            },
-            {
-                path: "notificaciones",
-                element: <Notifications/>
-            },
-            {
-                path: "cargaSemanal",
-                element: <CargaSemanal/>
-            },
-            {
-                path: "reportes",
-                element: <Reports/>
-            },
-            {
-                path: "editProfile",
-                element: <EditProfile/>
-            }
         ],
     },
+
     {
         path: "/login",
-        element: <Login/>
+        element: <Login />,
     },
     {
         path: "/register",
-        element: <Register/>
-    }
+        element: <Register />,
+    },
 ];
 
 export default routes;
