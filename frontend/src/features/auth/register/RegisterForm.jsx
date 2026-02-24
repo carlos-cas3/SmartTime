@@ -14,7 +14,10 @@ export default function RegisterForm({ onRegister }) {
         confirmar: "",
     });
 
-    const navigate = useNavigate(); // 👈 Hook para navegar sin recargar la página
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({
@@ -23,13 +26,18 @@ export default function RegisterForm({ onRegister }) {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Registro:", formData);
-        if (onRegister) onRegister(formData);
+        setError("");
+        setLoading(true);
 
-        // Ejemplo: podrías redirigir al login luego de registrar correctamente
-        // navigate("/login");
+        try {
+            await onRegister(formData);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -44,6 +52,8 @@ export default function RegisterForm({ onRegister }) {
             <p className="subtitle">
                 Completa el formulario para registrarte en el sistema
             </p>
+
+            {error && <p className="error" style={{ color: "red", textAlign: "center" }}>{error}</p>}
 
             <div className="form-grid">
                 <div className="input-group full">
@@ -116,8 +126,8 @@ export default function RegisterForm({ onRegister }) {
                 </div>
             </div>
 
-            <button type="submit" className="register-button">
-                Crear Cuenta
+            <button type="submit" className="register-button" disabled={loading}>
+                {loading ? "Creando cuenta..." : "Crear Cuenta"}
             </button>
 
             <div className="login-link">

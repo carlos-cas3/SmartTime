@@ -3,37 +3,27 @@ import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 
-export default function LoginForm() {
+export default function LoginForm({ onLogin }) {
     const [codigo, setCodigo] = useState("");
     const [password, setPassword] = useState("");
     const [recordarme, setRecordarme] = useState(false);
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
+        setLoading(true);
 
         try {
-            const response = await fetch("http://localhost:3000/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ codigo, password }),
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || "Error al iniciar sesión");
-            }
-
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("user", JSON.stringify(data.user));
-            navigate("/dashboard");
+            await onLogin(codigo, password);
         } catch (err) {
             setError(err.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -90,8 +80,8 @@ export default function LoginForm() {
                     </label>
                 </div>
 
-                <button type="submit" className="login-button">
-                    Iniciar Sesión
+                <button type="submit" className="login-button" disabled={loading}>
+                    {loading ? "Iniciando..." : "Iniciar Sesión"}
                 </button>
 
                 <p className="register">

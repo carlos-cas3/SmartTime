@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
+import api from "../utils/api";
 
 export default function ProtectedRoute() {
     const [authorized, setAuthorized] = useState(null);
@@ -12,15 +13,7 @@ export default function ProtectedRoute() {
             return;
         }
 
-        fetch("http://localhost:3000/users/me", {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
-            .then((res) => {
-                if (!res.ok) throw new Error();
-                return res.json();
-            })
+        api.get("/users/me")
             .then(() => setAuthorized(true))
             .catch(() => {
                 localStorage.clear();
