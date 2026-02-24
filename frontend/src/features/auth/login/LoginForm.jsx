@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaUser, FaLock } from "react-icons/fa";
+import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 
@@ -8,6 +8,7 @@ export default function LoginForm() {
     const [password, setPassword] = useState("");
     const [recordarme, setRecordarme] = useState(false);
     const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
 
@@ -31,7 +32,6 @@ export default function LoginForm() {
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
             navigate("/dashboard");
-
         } catch (err) {
             setError(err.message);
         }
@@ -59,14 +59,23 @@ export default function LoginForm() {
 
                 <div className="password-container">
                     <label>Contraseña</label>
-                    <div className="input-group">
+
+                    <div className="input-group password-group">
                         <FaLock className="icon" />
+
                         <input
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
+
+                        <span
+                            className="toggle-password"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </span>
                     </div>
                 </div>
 
@@ -87,7 +96,10 @@ export default function LoginForm() {
 
                 <p className="register">
                     ¿No tienes una cuenta?{" "}
-                    <span onClick={() => navigate("/register")}>
+                    <span
+                        className="register-link"
+                        onClick={() => navigate("/register")}
+                    >
                         Regístrate aquí
                     </span>
                 </p>
