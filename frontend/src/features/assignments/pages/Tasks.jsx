@@ -1,4 +1,4 @@
-import useTasksData from "../hooks/useTasksData";
+﻿import useTasksData from "../hooks/useTasksData";
 import ActivityPage from "../ActivityPage";
 
 export default function Tasks() {
@@ -7,6 +7,7 @@ export default function Tasks() {
             createTitle="Crear tarea"
             editTitle="Editar tarea"
             useDataHook={useTasksData}
+            type="tasks"
             drawerLabels={{
                 edit: "Editar Tarea",
                 delete: "Eliminar Tarea",

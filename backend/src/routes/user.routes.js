@@ -1,11 +1,9 @@
-const express = require("express");
+﻿const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middlewares/auth.middleware");
+const userController = require("../controllers/user.controllers");
 
-router.get("/me", authMiddleware, (req, res) => {
-    res.json({
-        message: "User information retrieved successfully",
-        user: req.user,
-    });
-});
+router.get("/me", authMiddleware, userController.getProfile);
+router.put("/me", authMiddleware, userController.updateProfile);
+
 module.exports = router;

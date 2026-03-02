@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import ActivityHeader from "./components/ActivityHeader/ActivityHeader";
 import ActivityContent from "./components/ActivityContent";
 
@@ -8,8 +8,11 @@ import ActivityDrawer from "./actions/ActivityDrawer";
 
 import "./ActivityPage.css";
 
-export default function ActivityPage({ useDataHook, createTitle, editTitle , drawerLabels }) {
-    const [data, setData] = useState(useDataHook());
+export default function ActivityPage({ useDataHook, createTitle, editTitle, drawerLabels, type }) {
+    const hook = useDataHook();
+    const data = hook[type] || [];
+    const loading = hook.loading;
+    const error = hook.error;
 
     const [search, setSearch] = useState("");
     const [status, setStatus] = useState("all");
@@ -33,32 +36,42 @@ export default function ActivityPage({ useDataHook, createTitle, editTitle , dra
         }
     };
 
-    const handleCreate = (newActivity) => {
-        const newId =
-            data.length > 0 ? Math.max(...data.map((d) => d.id)) + 1 : 1;
-        setData((prev) => [...prev, { ...newActivity, id: newId }]);
-        setIsModalOpen(false);
+    const handleCreate = async (newActivity) => {
+        try {
+            const createFn = hook[`create${type.charAt(0).toUpperCase() + type.slice(1).replace(/s$/, '')}`];
+            if (createFn) {
+                await createFn(newActivity);
+            }
+            setIsModalOpen(false);
+        } catch (err) {
+            alert("Error al crear: " + err.message);
+        }
     };
 
-    const handleUpdate = (updatedActivity) => {
-        setData((prev) =>
-            prev.map((item) =>
-                item.id === updatedActivity.id
-                    ? { ...item, ...updatedActivity }
-                    : item
-            )
-        );
-        setIsModalOpen(false);
+    const handleUpdate = async (updatedActivity) => {
+        try {
+            const updateFn = hook[`update${type.charAt(0).toUpperCase() + type.slice(1).replace(/s$/, '')}`];
+            if (updateFn) {
+                await updateFn(updatedActivity.id, updatedActivity);
+            }
+            setIsModalOpen(false);
+        } catch (err) {
+            alert("Error al actualizar: " + err.message);
+        }
     };
 
-    const handleDelete = (activityToDelete) => {
-        if (window.confirm(`¿Eliminar "${activityToDelete.title}"?`)) {
-            setData((prev) =>
-                prev.filter((item) => item.id !== activityToDelete.id)
-            );
-
-            setIsViewOpen(false);
-            setSelectedItem(null);
+    const handleDelete = async (activityToDelete) => {
+        if (window.confirm(`Â¿Eliminar "${activityToDelete.title}"?`)) {
+            try {
+                const deleteFn = hook[`delete${type.charAt(0).toUpperCase() + type.slice(1).replace(/s$/, '')}`];
+                if (deleteFn) {
+                    await deleteFn(activityToDelete.id);
+                }
+                setIsViewOpen(false);
+                setSelectedItem(null);
+            } catch (err) {
+                alert("Error al eliminar: " + err.message);
+            }
         }
     };
 
@@ -95,14 +108,13 @@ export default function ActivityPage({ useDataHook, createTitle, editTitle , dra
 
     useEffect(() => {
         console.log(
-            "%c[Dropdown Debug]%c openDropdownId →",
+            "%c[Dropdown Debug]%c openDropdownId â†’",
             "color: white; background: #007acc; padding: 2px 4px; border-radius: 4px;",
             "color: #222;",
             openDropdownId
         );
     }, [openDropdownId]);
 
-    // Filtros
     const filteredData = data
         .filter((item) => {
             const normalize = (str) =>
@@ -118,6 +130,26 @@ export default function ActivityPage({ useDataHook, createTitle, editTitle , dra
         })
         .filter((item) => status === "all" || item.status === status)
         .filter((item) => priority === "all" || item.priority === priority);
+
+    if (loading) {
+        return (
+            <div className="activity-container">
+                <div style={{ padding: "20px", textAlign: "center" }}>
+                    Cargando...
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="activity-container">
+                <div style={{ padding: "20px", textAlign: "center", color: "red" }}>
+                    Error: {error}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="activity-container">

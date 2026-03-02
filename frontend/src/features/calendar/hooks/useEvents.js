@@ -1,24 +1,80 @@
-// src/components/calendar/hooks/useEvents.js
-import { useState } from "react";
+﻿import { useState, useEffect } from "react";
+import { eventsApi } from "../../../utils/api";
 
 export function useEvents() {
-    const [events, setEvents] = useState([
-        {
-            id: 1,
-            title: "Clase de Matemáticas",
-            type: "clase",
-            start: new Date(),
-            end: new Date(new Date().getTime() + 60 * 60 * 1000),
-        },
-    ]);
+    const [events, setEvents] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const addEvent = (event) =>
-        setEvents([...events, { ...event, id: Date.now() }]);
+    const fetchEvents = async () => {
+        try {
+            setLoading(true);
+            const data = await eventsApi.getAll();
+            const formattedEvents = data.map((event) => ({
+                ...event,
+                start: new Date(event.start),
+                end: new Date(event.end),
+            }));
+            setEvents(formattedEvents);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-    const removeEvent = (id) => setEvents(events.filter((e) => e.id !== id));
+    useEffect(() => {
+        fetchEvents();
+    }, []);
 
-    const updateEvent = (id, newData) =>
-        setEvents(events.map((e) => (e.id === id ? { ...e, ...newData } : e)));
+    const addEvent = async (event) => {
+        const eventData = {
+            title: event.title,
+            type: event.type || "clase",
+            start: event.start.toISOString(),
+            end: event.end.toISOString(),
+        };
+        const newEvent = await eventsApi.create(eventData);
+        const formattedEvent = {
+            ...newEvent,
+            start: new Date(newEvent.start),
+            end: new Date(newEvent.end),
+        };
+        setEvents((prev) => [...prev, formattedEvent]);
+        return formattedEvent;
+    };
 
-    return { events, addEvent, removeEvent, updateEvent };
+    const removeEvent = async (id) => {
+        await eventsApi.delete(id);
+        setEvents((prev) => prev.filter((e) => e.id !== id));
+    };
+
+    const updateEvent = async (id, newData) => {
+        const eventData = {
+            title: newData.title,
+            type: newData.type,
+            start: newData.start.toISOString(),
+            end: newData.end.toISOString(),
+        };
+        const updated = await eventsApi.update(id, eventData);
+        const formattedEvent = {
+            ...updated,
+            start: new Date(updated.start),
+            end: new Date(updated.end),
+        };
+        setEvents((prev) =>
+            prev.map((e) => (e.id === id ? formattedEvent : e))
+        );
+        return formattedEvent;
+    };
+
+    return {
+        events,
+        loading,
+        error,
+        addEvent,
+        removeEvent,
+        updateEvent,
+        refreshEvents: fetchEvents,
+    };
 }

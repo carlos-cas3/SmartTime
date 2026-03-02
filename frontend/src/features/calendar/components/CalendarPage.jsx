@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+﻿import { useEffect } from "react";
 import React, { useState } from "react";
 
 import { es } from "date-fns/locale";
@@ -13,6 +13,8 @@ import useHighlightMonthCell from "../custom/headers/hooks/useHighlightMonthCell
 
 import ContextMenu from "../menu/ContextMenu";
 import CustomDateCellWrapper from "../menu/CustomDateCellWrapper";
+
+import { useEvents } from "../hooks/useEvents";
 
 import "./CalendarPage.css";
 
@@ -30,7 +32,8 @@ export default function CalendarPage() {
     const [view, setView] = useState("month");
     const [date, setDate] = useState(new Date());
     const [menu, setMenu] = useState(null);
-    const [events, setEvents] = useState([]);
+    
+    const { events, loading, error, addEvent } = useEvents();
 
     const { dayPropGetter, handleSelectSlot } = useHighlightMonthCell();
 
@@ -45,10 +48,34 @@ export default function CalendarPage() {
 
     const closeMenu = () => setMenu(null);
 
-    const onCreate = (ev) => {
-        console.log("Crear evento", ev);
-        closeMenu();
+    const onCreate = async (eventData) => {
+        try {
+            await addEvent(eventData);
+            closeMenu();
+        } catch (err) {
+            alert("Error al crear evento: " + err.message);
+        }
     };
+
+    if (loading) {
+        return (
+            <div className="calendar-container">
+                <div style={{ padding: "20px", textAlign: "center" }}>
+                    Cargando eventos...
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="calendar-container">
+                <div style={{ padding: "20px", textAlign: "center", color: "red" }}>
+                    Error: {error}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="calendar-container">
@@ -83,7 +110,6 @@ export default function CalendarPage() {
 
             {menu && (
                 <ContextMenu
-                
                     rect={menu.rect}
                     date={menu.date}
                     onClose={closeMenu}

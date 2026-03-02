@@ -1,4 +1,4 @@
-import useExamsData from "../hooks/useExamsData";
+﻿import useExamsData from "../hooks/useExamsData";
 import ActivityPage from "../ActivityPage";
 
 export default function Exams() {
@@ -7,6 +7,7 @@ export default function Exams() {
             createTitle="Crear Examen"
             editTitle="Editar examen"
             useDataHook={useExamsData}
+            type="exams"
             drawerLabels={{
                 edit: "Editar Examen",
                 delete: "Eliminar Examen",

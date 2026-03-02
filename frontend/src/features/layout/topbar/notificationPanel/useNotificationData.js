@@ -1,4 +1,4 @@
-import useExamsData from "../../../assignments/hooks/useExamsData";
+﻿import useExamsData from "../../../assignments/hooks/useExamsData";
 import useTasksData from "../../../assignments/hooks/useTasksData";
 import useProjectsData from "../../../assignments/hooks/useProjectsData";
 import useExtrasData from "../../../assignments/hooks/useExtrasData";
@@ -6,10 +6,15 @@ import useExtrasData from "../../../assignments/hooks/useExtrasData";
 import { filterByPriority, normalizeItem , filterByTime} from "./helpers";
 
 export default function useNotificationData(settings) {
-    const examsRaw = useExamsData();
-    const tasksRaw = useTasksData();
-    const projectsRaw = useProjectsData();
-    const extrasRaw = useExtrasData();
+    const examsHook = useExamsData();
+    const tasksHook = useTasksData();
+    const projectsHook = useProjectsData();
+    const extrasHook = useExtrasData();
+
+    const examsRaw = examsHook.exams || [];
+    const tasksRaw = tasksHook.tasks || [];
+    const projectsRaw = projectsHook.projects || [];
+    const extrasRaw = extrasHook.extras || [];
 
     const advance = settings.advanceTime;
 

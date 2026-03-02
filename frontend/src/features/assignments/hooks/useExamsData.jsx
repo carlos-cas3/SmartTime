@@ -1,84 +1,53 @@
+﻿import { useState, useEffect } from "react";
+import { examsApi } from "../../../utils/api";
+
 export default function useExamsData() {
-    return [
-        {
-            id: 1,
-            title: "Examen de Matemáticas",
-            category: "Cálculo I",
-            status: "pending",
-            date: "29-11-2025",
-            priority: "high",
-            type: "exam",
-            matriz: "Urgente e Importante",
-        },
-        {
-            id: 2,
-            title: "Examen de Biología",
-            category: "Biología General",
-            status: "completed",
-            date: "30-12-2025",
-            priority: "medium",
-            type: "exam",
-            matriz: "Urgente y No Importante",
-        },
-        {
-            id: 3,
-            title: "Examen de Física",
-            category: "Física II",
-            status: "not-completed",
-            date: "28-11-2025",
-            priority: "low",
-            type: "exam",
-            matriz: "No Urgente e Importante",
-        },
-        {
-            id: 4,
-            title: "Examen de Química",
-            category: "Química General",
-            status: "pending",
-            date: "20-12-2025",
-            priority: "high",
-            type: "exam",
-            matriz: "No Urgente y No Importante",
-        },
-        {
-            id: 5,
-            title: "Examen de Historia",
-            category: "Historia Universal",
-            status: "completed",
-            date: "18-12-2025",
-            priority: "medium",
-            type: "exam",
-            matriz: "Urgente e Importante",
-        },
-        {
-            id: 6,
-            title: "Examen de Química",
-            category: "Química General",
-            status: "pending",
-            date: "28-11-2025",
-            priority: "high",
-            type: "exam",
-            matriz: "No Urgente y No Importante",
-        },
-        {
-            id: 7,
-            title: "Examen de Historia",
-            category: "Historia Universal",
-            status: "completed",
-            date: "18-12-2025",
-            priority: "medium",
-            type: "exam",
-            matriz: "Urgente e Importante",
-        },
-        {
-            id: 8,
-            title: "Examen de Química",
-            category: "Química General",
-            status: "pending",
-            date: "10-12-2025",
-            priority: "high",
-            type: "exam",
-            matriz: "No Urgente y No Importante",
-        },
-    ];
+    const [exams, setExams] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const fetchExams = async () => {
+        try {
+            setLoading(true);
+            const data = await examsApi.getAll();
+            setExams(data);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchExams();
+    }, []);
+
+    const createExam = async (examData) => {
+        const newExam = await examsApi.create(examData);
+        setExams((prev) => [...prev, newExam]);
+        return newExam;
+    };
+
+    const updateExam = async (id, examData) => {
+        const updated = await examsApi.update(id, examData);
+        setExams((prev) =>
+            prev.map((e) => (e.id === id ? { ...e, ...updated } : e))
+        );
+        return updated;
+    };
+
+    const deleteExam = async (id) => {
+        await examsApi.delete(id);
+        setExams((prev) => prev.filter((e) => e.id !== id));
+    };
+
+    return {
+        exams,
+        loading,
+        error,
+        createExam,
+        updateExam,
+        deleteExam,
+        refreshExams: fetchExams,
+    };
 }

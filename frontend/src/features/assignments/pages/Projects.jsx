@@ -1,4 +1,4 @@
-import useProjectsData from "../hooks/useProjectsData";
+﻿import useProjectsData from "../hooks/useProjectsData";
 import ActivityPage from "../ActivityPage";
 
 export default function Projects() {
@@ -7,6 +7,7 @@ export default function Projects() {
             createTitle="Crear proyecto"
             editTitle="Editar proyecto"
             useDataHook={useProjectsData}
+            type="projects"
             drawerLabels={{
                 edit: "Editar Proyecto",
                 delete: "Eliminar Proyecto",

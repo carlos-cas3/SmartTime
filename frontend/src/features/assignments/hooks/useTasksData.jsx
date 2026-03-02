@@ -1,64 +1,53 @@
+﻿import { useState, useEffect } from "react";
+import { tasksApi } from "../../../utils/api";
+
 export default function useTasksData() {
-    return [
-        {
-            id: 1,
-            title: "Leer capítulo 3 de Álgebra",
-            category: "Matemáticas",
-            status: "pending",
-            date: "17-12-2025",
-            priority: "high",
-            type: "task",
-            matriz: "Urgente e Importante",
-        },
-        {
-            id: 2,
-            title: "Hacer resumen de Historia",
-            category: "Historia Universal",
-            status: "completed",
-            date: "29-11-2025",
-            priority: "high",
-            type: "task",
-            matriz: "No Urgente e Importante",
-        },
-        {
-            id: 3,
-            title: "Practicar ejercicios de Programación",
-            category: "Computación",
-            status: "not-completed",
-            date: "29-12-2025",
-            priority: "high",
-            type: "task",
-            matriz: "Urgente y No Importante",
-        },
-        {
-            id: 4,
-            title: "Leer capítulo 3 de Álgebra",
-            category: "Matemáticas",
-            status: "pending",
-            date: "27-11-2025",
-            priority: "low",
-            type: "task",
-            matriz: "Urgente e Importante",
-        },
-        {
-            id: 5,
-            title: "Hacer resumen de Historia",
-            category: "Historia Universal",
-            status: "completed",
-            date: "29-11-2025",
-            priority: "low",
-            type: "task",
-            matriz: "No Urgente e Importante",
-        },
-        {
-            id: 6,
-            title: "Practicar ejercicios de Programación",
-            category: "Computación",
-            status: "not-completed",
-            date: "30-12-2025",
-            priority: "low",
-            type: "task",
-            matriz: "Urgente y No Importante",
-        },
-    ];
+    const [tasks, setTasks] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const fetchTasks = async () => {
+        try {
+            setLoading(true);
+            const data = await tasksApi.getAll();
+            setTasks(data);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchTasks();
+    }, []);
+
+    const createTask = async (taskData) => {
+        const newTask = await tasksApi.create(taskData);
+        setTasks((prev) => [...prev, newTask]);
+        return newTask;
+    };
+
+    const updateTask = async (id, taskData) => {
+        const updated = await tasksApi.update(id, taskData);
+        setTasks((prev) =>
+            prev.map((t) => (t.id === id ? { ...t, ...updated } : t))
+        );
+        return updated;
+    };
+
+    const deleteTask = async (id) => {
+        await tasksApi.delete(id);
+        setTasks((prev) => prev.filter((t) => t.id !== id));
+    };
+
+    return {
+        tasks,
+        loading,
+        error,
+        createTask,
+        updateTask,
+        deleteTask,
+        refreshTasks: fetchTasks,
+    };
 }

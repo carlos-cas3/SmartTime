@@ -1,44 +1,53 @@
+﻿import { useState, useEffect } from "react";
+import { extrasApi } from "../../../utils/api";
+
 export default function useExtrasData() {
-    return [
-        {
-            id: 1,
-            title: "Charla de Orientación Vocacional",
-            category: "Desarrollo Personal",
-            status: "completed",
-            date: "30-11-2025",
-            priority: "low",
-            type: "extra",
-            matriz: "No Urgente y No Importante",
-        },
-        {
-            id: 2,
-            title: "Taller de Programación",
-            category: "Tecnología",
-            status: "pending",
-            date: "20-12-2025",
-            priority: "medium",
-            type: "extra",
-            matriz: "Urgente e Importante",
-        },
-        {
-            id: 3,
-            title: "Actividad Cultural",
-            category: "Arte y Cultura",
-            status: "not-completed",
-            date: "25-12-2025",
-            priority: "high",
-            type: "extra",
-            matriz: "No Urgente y No Importante",
-        },
-        {
-            id: 4,
-            title: "Feria de Arte Local",
-            category: "Arte y Cultura",
-            status: "not-completed",
-            date: "05-12-2025",
-            priority: "high",
-            type: "extra",
-            matriz: "No Urgente e Importante",
-        },
-    ];
+    const [extras, setExtras] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const fetchExtras = async () => {
+        try {
+            setLoading(true);
+            const data = await extrasApi.getAll();
+            setExtras(data);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchExtras();
+    }, []);
+
+    const createExtra = async (extraData) => {
+        const newExtra = await extrasApi.create(extraData);
+        setExtras((prev) => [...prev, newExtra]);
+        return newExtra;
+    };
+
+    const updateExtra = async (id, extraData) => {
+        const updated = await extrasApi.update(id, extraData);
+        setExtras((prev) =>
+            prev.map((e) => (e.id === id ? { ...e, ...updated } : e))
+        );
+        return updated;
+    };
+
+    const deleteExtra = async (id) => {
+        await extrasApi.delete(id);
+        setExtras((prev) => prev.filter((e) => e.id !== id));
+    };
+
+    return {
+        extras,
+        loading,
+        error,
+        createExtra,
+        updateExtra,
+        deleteExtra,
+        refreshExtras: fetchExtras,
+    };
 }
