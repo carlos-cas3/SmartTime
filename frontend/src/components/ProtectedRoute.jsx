@@ -1,29 +1,40 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../utils/api";
 
 export default function ProtectedRoute() {
     const [authorized, setAuthorized] = useState(null);
+    const location = useLocation();
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const checkAuth = async () => {
+            const token = localStorage.getItem("token");
 
-        if (!token) {
-            setAuthorized(false);
-            return;
-        }
+            if (!token) {
+                setAuthorized(false);
+                return;
+            }
 
-        api.get("/users/me")
-            .then(() => setAuthorized(true))
-            .catch(() => {
+            try {
+                await api.get("/users/me");
+                setAuthorized(true);
+            } catch {
                 localStorage.clear();
                 setAuthorized(false);
-            });
-    }, []);
+            }
+        };
 
-    if (authorized === null) return <p>Cargando...</p>;
+        checkAuth();
 
-    if (!authorized) return <Navigate to="/login" replace />;
+    }, [location.key]);
+
+    if (authorized === null) {
+        return <p>Verificando sesión...</p>;
+    }
+
+    if (!authorized) {
+        return <Navigate to="/login" replace />;
+    }
 
     return <Outlet />;
 }
